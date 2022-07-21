@@ -54,7 +54,6 @@ from raiden.network.transport.matrix.rtc.utils import (
 )
 from raiden.tests.fixtures.blockchain import *  # noqa: F401,F403
 from raiden.tests.fixtures.variables import *  # noqa: F401,F403
-from raiden.tests.integration.exception import RetryTestError
 from raiden.tests.utils.transport import make_requests_insecure
 from raiden.utils.cli import LogLevelConfigType
 from raiden.utils.debugging import enable_monitoring_signal
@@ -307,7 +306,7 @@ def timeout_for_setup_and_call(item):
 
     def report():
         gevent.util.print_run_info()
-        raise RetryTestError(f"Setup and Call timeout >{item.timeout_setup_and_call}s")
+        raise Exception(f"Setup and Call timeout >{item.timeout_setup_and_call}s")
 
     def handler(signum, frame):  # pylint: disable=unused-argument
         report()
