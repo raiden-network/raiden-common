@@ -147,6 +147,8 @@ idna==2.8
     # via
     #   requests
     #   yarl
+importlib-metadata==4.12.0
+    # via flask
 ipfshttpclient==0.8.0a2
     # via web3
 itsdangerous==2.0.1
@@ -232,7 +234,7 @@ pysha3==1.0.2
     # via -r requirements.in
 pytz==2019.1
     # via flask-restful
-raiden-contracts==0.40.3
+raiden-contracts==0.50.1
     # via -r requirements.in
 raiden-webui==1.2.1
     # via -r requirements.in
@@ -307,6 +309,8 @@ wrapt==1.12.1
     # via dbapi-opentracing
 yarl==1.6.3
     # via aiohttp
+zipp==3.8.1
+    # via importlib-metadata
 zope-event==4.4
     # via gevent
 zope-interface==5.1.0

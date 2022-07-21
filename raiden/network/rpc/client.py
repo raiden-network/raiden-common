@@ -328,6 +328,8 @@ def discover_next_available_nonce(web3: Web3, eth_node: EthClient, address: Addr
     elif eth_node is EthClient.GETH:
         geth_assert_rpc_interfaces(web3)
         available_nonce = geth_discover_next_available_nonce(web3, address)
+    elif eth_node is EthClient.ARBITRUM:
+        available_nonce = geth_discover_next_available_nonce(web3, address)
 
     return available_nonce
 
@@ -647,7 +649,7 @@ def estimate_gas_for_function(
     )
 
     try:
-        gas_estimate = web3.eth.estimateGas(estimate_transaction, block_identifier)
+        gas_estimate = web3.eth.estimate_gas(estimate_transaction, block_identifier)
     except ValueError as e:
         if check_value_error(e, CallType.ESTIMATE_GAS):
             gas_estimate = Wei(0)
@@ -888,7 +890,7 @@ class TransactionPending:
         fn = getattr(self.data.contract.functions, self.data.function)
         from_address = to_checksum_address(self.from_address)
 
-        if self.eth_node is EthClient.GETH:
+        if self.eth_node in (EthClient.GETH, EthClient.ARBITRUM):
             # Unfortunately geth does not follow the ethereum JSON-RPC spec and
             # does not accept a block identifier argument for eth_estimateGas
             # parity and py-evm (trinity) do.
@@ -931,7 +933,7 @@ class TransactionPending:
                 data=self.data,
                 extra_log_details=self.extra_log_details,
                 estimated_gas=safe_gas_limit(estimated_gas),
-                gas_price=gas_price,
+                gas_price=gas_price * 2,  # add an error margin for arbitrum
                 approximate_block=(BlockHash(block["hash"]), BlockNumber(block["number"])),
             )
 
@@ -1155,7 +1157,8 @@ class JSONRPCClient:
             eth_node=self.eth_node,
             extra_log_details=extra_log_details,
         )
-        return pending.estimate_gas(BLOCK_ID_PENDING)
+        estimate = pending.estimate_gas(BLOCK_ID_PENDING)
+        return estimate
 
     def transact(self, transaction: Union[TransactionEstimated, EthTransfer]) -> TransactionSent:
         """Allocates an unique `nonce` and send the transaction to the blockchain.

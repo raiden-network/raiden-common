@@ -83,5 +83,8 @@ def is_supported_client(
             lowest_supported_version_string=LOWEST_SUPPORTED_GETH_VERSION,
         )
         return supported, EthClient.GETH, str(our_geth_version)
+    elif client_version.startswith("arb-rpc-node"):
+        our_version = client_version.split("/")[-1][1:]
+        return VersionSupport.SUPPORTED, EthClient.ARBITRUM, our_version
 
     return VersionSupport.UNSUPPORTED, None, None

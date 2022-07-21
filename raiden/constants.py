@@ -139,13 +139,14 @@ RECEIPT_FAILURE_CODE = 0
 class EthClient(Enum):
     GETH = "geth"
     PARITY = "parity"
+    ARBITRUM = "arbitrum"
 
 
 SNAPSHOT_STATE_CHANGES_COUNT = 500
 
 # An arbitrary limit for transaction size in Raiden, added in PR #1990
 TRANSACTION_GAS_LIMIT_UPPER_BOUND = int(0.4 * 3_141_592)
-TRANSACTION_INTRINSIC_GAS = 21_000
+TRANSACTION_INTRINSIC_GAS = 500_000
 
 # Used to add a 30% security margin to gas estimations in case the calculations are off
 GAS_FACTOR = 1.3
