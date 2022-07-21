@@ -89,8 +89,7 @@ from raiden_contracts.constants import (
     CONTRACT_SERVICE_REGISTRY,
     CONTRACT_TOKEN_NETWORK_REGISTRY,
     CONTRACT_USER_DEPOSIT,
-    TEST_SETTLE_TIMEOUT_MAX,
-    TEST_SETTLE_TIMEOUT_MIN,
+    TEST_SETTLE_TIMEOUT,
 )
 
 from raiden_contracts.contract_manager import ContractManager, contracts_precompiled_path
@@ -155,8 +154,8 @@ def deploy_smoketest_contracts(
         CONTRACT_TOKEN_NETWORK_REGISTRY,
         [
             to_checksum_address(secret_registry_address),
-            TEST_SETTLE_TIMEOUT_MIN,
-            TEST_SETTLE_TIMEOUT_MAX,
+            TEST_SETTLE_TIMEOUT,
+            TEST_SETTLE_TIMEOUT,
             UINT256_MAX,
         ],
     )

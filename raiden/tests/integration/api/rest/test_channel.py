@@ -24,7 +24,7 @@ from raiden.transfer import views
 from raiden.transfer.state import ChannelState
 from raiden.utils.typing import List, TokenAmount
 from raiden.waiting import wait_for_participant_deposit
-from raiden_contracts.constants import TEST_SETTLE_TIMEOUT_MAX, TEST_SETTLE_TIMEOUT_MIN
+from raiden_contracts.constants import TEST_SETTLE_TIMEOUT
 
 
 @raise_on_failure
@@ -505,7 +505,7 @@ def test_api_channel_open_channel_invalid_input(
 ):
     partner_address = "0x61C808D82A3Ac53231750daDc13c777b59310bD9"
     token_address = token_addresses[0]
-    settle_timeout = TEST_SETTLE_TIMEOUT_MIN - 1
+    settle_timeout = TEST_SETTLE_TIMEOUT - 1
     channel_data_obj = {
         "partner_address": partner_address,
         "token_address": to_checksum_address(token_address),
@@ -518,14 +518,14 @@ def test_api_channel_open_channel_invalid_input(
     response = request.send().response
     assert_response_with_error(response, status_code=HTTPStatus.CONFLICT)
 
-    channel_data_obj["settle_timeout"] = str(TEST_SETTLE_TIMEOUT_MAX + 1)
+    channel_data_obj["settle_timeout"] = str(TEST_SETTLE_TIMEOUT + 1)
     request = grequests.put(
         api_url_for(api_server_test_instance, "channelsresource"), json=channel_data_obj
     )
     response = request.send().response
     assert_response_with_error(response, status_code=HTTPStatus.CONFLICT)
 
-    channel_data_obj["settle_timeout"] = str(TEST_SETTLE_TIMEOUT_MAX - 1)
+    channel_data_obj["settle_timeout"] = str(TEST_SETTLE_TIMEOUT - 1)
     channel_data_obj["token_address"] = to_checksum_address(factories.make_address())
     request = grequests.put(
         api_url_for(api_server_test_instance, "channelsresource"), json=channel_data_obj

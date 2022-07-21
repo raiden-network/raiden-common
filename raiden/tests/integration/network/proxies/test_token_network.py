@@ -33,11 +33,7 @@ from raiden.tests.utils.smartcontracts import is_tx_hash_bytes
 from raiden.utils.formatting import to_hex_address
 from raiden.utils.signer import LocalSigner
 from raiden.utils.typing import Set, T_ChannelID
-from raiden_contracts.constants import (
-    TEST_SETTLE_TIMEOUT_MAX,
-    TEST_SETTLE_TIMEOUT_MIN,
-    MessageTypeId,
-)
+from raiden_contracts.constants import TEST_SETTLE_TIMEOUT, MessageTypeId
 
 SIGNATURE_SIZE_IN_BITS = 520
 
@@ -45,8 +41,8 @@ SIGNATURE_SIZE_IN_BITS = 520
 def test_token_network_deposit_race(
     token_network_proxy, private_keys, token_proxy, web3, contract_manager
 ):
-    assert token_network_proxy.settlement_timeout_min() == TEST_SETTLE_TIMEOUT_MIN
-    assert token_network_proxy.settlement_timeout_max() == TEST_SETTLE_TIMEOUT_MAX
+    # assert token_network_proxy.settlement_timeout_min() == TEST_SETTLE_TIMEOUT_MIN
+    # assert token_network_proxy.settlement_timeout_max() == TEST_SETTLE_TIMEOUT_MAX
 
     token_network_address = to_canonical_address(token_network_proxy.proxy.address)
 
@@ -68,7 +64,7 @@ def test_token_network_deposit_race(
     token_proxy.transfer(c1_client.address, 10)
     channel_details = c1_token_network_proxy.new_netting_channel(
         partner=c2_client.address,
-        settle_timeout=TEST_SETTLE_TIMEOUT_MIN,
+        settle_timeout=TEST_SETTLE_TIMEOUT,
         given_block_identifier=BLOCK_ID_LATEST,
     )
     assert is_tx_hash_bytes(channel_details.transaction_hash)
@@ -93,8 +89,8 @@ def test_token_network_deposit_race(
 def test_token_network_proxy(
     token_network_proxy, private_keys, token_proxy, chain_id, web3, contract_manager
 ):
-    assert token_network_proxy.settlement_timeout_min() == TEST_SETTLE_TIMEOUT_MIN
-    assert token_network_proxy.settlement_timeout_max() == TEST_SETTLE_TIMEOUT_MAX
+    # assert token_network_proxy.settlement_timeout_min() == TEST_SETTLE_TIMEOUT_MIN
+    # assert token_network_proxy.settlement_timeout_max() == TEST_SETTLE_TIMEOUT_MAX
 
     token_network_address = to_canonical_address(token_network_proxy.proxy.address)
 
@@ -181,7 +177,7 @@ def test_token_network_proxy(
     with pytest.raises(InvalidSettleTimeout):
         c1_token_network_proxy.new_netting_channel(
             partner=c2_client.address,
-            settle_timeout=TEST_SETTLE_TIMEOUT_MIN - 1,
+            settle_timeout=TEST_SETTLE_TIMEOUT - 1,
             given_block_identifier=BLOCK_ID_LATEST,
         )
         pytest.fail(msg)
@@ -189,7 +185,7 @@ def test_token_network_proxy(
     # Using exactly the minimal timeout must succeed
     channel_details = c1_token_network_proxy.new_netting_channel(
         partner=make_address(),
-        settle_timeout=TEST_SETTLE_TIMEOUT_MIN,
+        settle_timeout=TEST_SETTLE_TIMEOUT,
         given_block_identifier=BLOCK_ID_LATEST,
     )
     # Test for correct tx hash
@@ -203,7 +199,7 @@ def test_token_network_proxy(
     with pytest.raises(InvalidSettleTimeout):
         c1_token_network_proxy.new_netting_channel(
             partner=c2_client.address,
-            settle_timeout=TEST_SETTLE_TIMEOUT_MAX + 1,
+            settle_timeout=TEST_SETTLE_TIMEOUT + 1,
             given_block_identifier=BLOCK_ID_LATEST,
         )
         pytest.fail(msg)
@@ -211,7 +207,7 @@ def test_token_network_proxy(
     # Using exactly the maximal timeout must succeed
     c1_token_network_proxy.new_netting_channel(
         partner=make_address(),
-        settle_timeout=TEST_SETTLE_TIMEOUT_MAX,
+        settle_timeout=TEST_SETTLE_TIMEOUT,
         given_block_identifier=BLOCK_ID_LATEST,
     )
 
@@ -222,7 +218,7 @@ def test_token_network_proxy(
     with pytest.raises(SamePeerAddress):
         c1_token_network_proxy.new_netting_channel(
             partner=c1_client.address,
-            settle_timeout=TEST_SETTLE_TIMEOUT_MIN,
+            settle_timeout=TEST_SETTLE_TIMEOUT,
             given_block_identifier=BLOCK_ID_LATEST,
         )
         pytest.fail(msg)
@@ -266,7 +262,7 @@ def test_token_network_proxy(
 
     channel_details = c1_token_network_proxy.new_netting_channel(
         partner=c2_client.address,
-        settle_timeout=TEST_SETTLE_TIMEOUT_MIN,
+        settle_timeout=TEST_SETTLE_TIMEOUT,
         given_block_identifier=BLOCK_ID_LATEST,
     )
     channel_identifier = channel_details.channel_identifier
@@ -277,7 +273,7 @@ def test_token_network_proxy(
     with pytest.raises(BrokenPreconditionError):
         c1_token_network_proxy.new_netting_channel(
             partner=c2_client.address,
-            settle_timeout=TEST_SETTLE_TIMEOUT_MIN,
+            settle_timeout=TEST_SETTLE_TIMEOUT,
             given_block_identifier=BLOCK_ID_LATEST,
         )
         pytest.fail(msg)
@@ -458,9 +454,7 @@ def test_token_network_proxy(
         )
         pytest.fail(msg)
 
-    c1_client.wait_until_block(
-        target_block_number=c1_client.block_number() + TEST_SETTLE_TIMEOUT_MIN
-    )
+    c1_client.wait_until_block(target_block_number=c1_client.block_number() + TEST_SETTLE_TIMEOUT)
 
     invalid_transferred_amount = 1
     msg = "settle with invalid transferred_amount data must fail"

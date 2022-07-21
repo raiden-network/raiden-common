@@ -93,11 +93,12 @@ def pack_withdraw(
     Packs the given arguments in a byte array in the same configuration the
     contracts expect the signed data to have.
     """
-    return proofs.pack_withdraw_message(
-        token_network_address=to_hex_address(canonical_identifier.token_network_address),
-        chain_identifier=canonical_identifier.chain_identifier,
-        channel_identifier=canonical_identifier.channel_identifier,
-        participant=to_hex_address(participant),
-        amount_to_withdraw=TokenAmount(total_withdraw),
-        expiration_block=expiration_block,
-    )
+    raise NotImplementedError
+    # return proofs.pack_withdraw_message(
+    #     token_network_address=to_hex_address(canonical_identifier.token_network_address),
+    #     chain_identifier=canonical_identifier.chain_identifier,
+    #     channel_identifier=canonical_identifier.channel_identifier,
+    #     participant=to_hex_address(participant),
+    #     amount_to_withdraw=TokenAmount(total_withdraw),
+    #     expiration_block=expiration_block,
+    # )

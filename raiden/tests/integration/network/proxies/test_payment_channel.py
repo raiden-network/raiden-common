@@ -42,7 +42,7 @@ from raiden.utils.typing import (
     TokenAmount,
     TokenNetworkRegistryAddress,
 )
-from raiden_contracts.constants import TEST_SETTLE_TIMEOUT_MIN, MessageTypeId
+from raiden_contracts.constants import TEST_SETTLE_TIMEOUT, MessageTypeId
 from raiden_contracts.contract_manager import ContractManager
 
 
@@ -75,7 +75,7 @@ def test_payment_channel_proxy_basics(
 
     channel_details = token_network_proxy.new_netting_channel(
         partner=partner,
-        settle_timeout=TEST_SETTLE_TIMEOUT_MIN,
+        settle_timeout=TEST_SETTLE_TIMEOUT,
         given_block_identifier=BLOCK_ID_LATEST,
     )
     channel_identifier = channel_details.channel_identifier
@@ -90,7 +90,7 @@ def test_payment_channel_proxy_basics(
         token_address=token_network_proxy.token_address(),
         token_network_registry_address=token_network_registry_address,
         reveal_timeout=reveal_timeout,
-        settle_timeout=BlockTimeout(TEST_SETTLE_TIMEOUT_MIN),
+        settle_timeout=BlockTimeout(TEST_SETTLE_TIMEOUT),
         fee_schedule=FeeScheduleState(),
         our_state=NettingChannelEndState(
             address=token_network_proxy.client.address, contract_balance=Balance(0)
@@ -159,13 +159,13 @@ def test_payment_channel_proxy_basics(
     assert len(channel_events) == 3
 
     # check the settlement timeouts again
-    assert channel_proxy_1.settle_timeout() == TEST_SETTLE_TIMEOUT_MIN
+    assert channel_proxy_1.settle_timeout() == TEST_SETTLE_TIMEOUT
 
     # update transfer -- we need to wait on +1 since we use the latest block on parity for
     # estimate gas and at the time the latest block is the settle timeout block.
     # More info: https://github.com/raiden-network/raiden/pull/3699#discussion_r270477227
     rpc_client.wait_until_block(
-        target_block_number=BlockNumber(rpc_client.block_number() + TEST_SETTLE_TIMEOUT_MIN + 1)
+        target_block_number=BlockNumber(rpc_client.block_number() + TEST_SETTLE_TIMEOUT + 1)
     )
 
     transaction_hash = channel_proxy_1.token_network.settle(
@@ -194,7 +194,7 @@ def test_payment_channel_proxy_basics(
 
     channel_details = token_network_proxy.new_netting_channel(
         partner=partner,
-        settle_timeout=TEST_SETTLE_TIMEOUT_MIN,
+        settle_timeout=TEST_SETTLE_TIMEOUT,
         given_block_identifier=BLOCK_ID_LATEST,
     )
     new_channel_identifier = channel_details.channel_identifier
@@ -209,7 +209,7 @@ def test_payment_channel_proxy_basics(
         token_address=token_network_proxy.token_address(),
         token_network_registry_address=token_network_registry_address,
         reveal_timeout=reveal_timeout,
-        settle_timeout=BlockTimeout(TEST_SETTLE_TIMEOUT_MIN),
+        settle_timeout=BlockTimeout(TEST_SETTLE_TIMEOUT),
         fee_schedule=FeeScheduleState(),
         our_state=NettingChannelEndState(
             address=token_network_proxy.client.address, contract_balance=Balance(0)
