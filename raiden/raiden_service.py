@@ -109,7 +109,6 @@ from raiden.transfer.state_change import (
     ReceiveWithdrawExpired,
     ReceiveWithdrawRequest,
 )
-from raiden.ui.startup import RaidenBundle, ServicesBundle
 from raiden.utils.formatting import lpex, to_checksum_address
 from raiden.utils.gevent import spawn_named
 from raiden.utils.logging import redact_secret
@@ -313,8 +312,8 @@ class RaidenService(Runnable):
         rpc_client: JSONRPCClient,
         proxy_manager: ProxyManager,
         query_start_block: BlockNumber,
-        raiden_bundle: RaidenBundle,
-        services_bundle: Optional[ServicesBundle],
+        raiden_bundle: Any,
+        services_bundle: Any,
         transport: MatrixTransport,
         raiden_event_handler: EventHandler,
         message_handler: MessageHandler,

@@ -9,7 +9,6 @@ from eth_keyfile.keyfile import decode_keyfile_json
 from eth_utils import decode_hex, encode_hex
 
 from raiden.accounts import Account, AccountManager, KeystoreFileNotFound
-from raiden.ui.prompt import unlock_account_with_passwordfile
 from raiden.utils.keys import privatekey_to_address, privatekey_to_publickey
 from raiden.utils.system import get_project_root
 
@@ -112,19 +111,6 @@ def test_account_manager_invalid_directory(caplog):
                 break
         else:
             assert False, f"'{msg}' not in log messages"
-
-
-def test_unlock_account_with_passwordfile(keystore_mock):
-    account_manager = AccountManager(keystore_mock)
-    password_file_path = os.path.join(keystore_mock, "passwordfile.txt")
-
-    with open(password_file_path, "r") as password_file:
-        privkey = unlock_account_with_passwordfile(
-            account_manager=account_manager,
-            address_hex="0x0d5a0e4FECE4b84365b9B8DbA6e6D41348C73645",
-            password_file=password_file,
-        )
-    assert privkey
 
 
 KEYSTORE = {

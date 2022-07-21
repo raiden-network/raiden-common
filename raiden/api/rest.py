@@ -108,7 +108,6 @@ from raiden.transfer.events import (
     EventPaymentSentSuccess,
 )
 from raiden.transfer.state import ChannelState, NettingChannelState, RouteState
-from raiden.ui.sync import blocks_to_sync
 from raiden.utils.formatting import optional_address_to_string, to_checksum_address
 from raiden.utils.gevent import spawn_named
 from raiden.utils.http import split_endpoint
@@ -1486,11 +1485,7 @@ class RestAPI:  # pragma: no unittest
         if self.available:
             return api_response(result=dict(status="ready"))
         else:
-            to_sync = blocks_to_sync(self.rpc_client)
-            if to_sync > 0:
-                return api_response(result=dict(status="syncing", blocks_to_sync=to_sync))
-            else:
-                return api_response(result=dict(status="unavailable"))
+            return api_response(result=dict(status="unavailable"))
 
     def shutdown(self) -> Response:
         shutdown_greenlet = spawn_named("trigger shutdown", self.raiden_api.shutdown)
