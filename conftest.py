@@ -494,7 +494,7 @@ def pytest_runtest_teardown(item):
 
     def report():
         gevent.util.print_run_info()
-        raise RetryTestError(
+        raise Exception(
             f"Teardown timeout >{item.timeout_setup_and_call}s. This must not happen, when "
             f"the teardown times out not all finalizers got a chance to run. This "
             f"means not all fixtures are cleaned up, which can make subsequent "
