@@ -7,7 +7,7 @@ from setuptools import find_packages, setup
 from setuptools.command.egg_info import egg_info
 from setuptools.command.test import test as TestCommand
 
-REQ_REPLACE = {re.compile(r"git\+https://github.com/(\w|-)+/raiden.git@.*"): "raiden"}
+REQ_REPLACE = {re.compile(r"git\+https://github.com/(\w|-)+/raiden-common.git@.*"): "raiden-common"}
 
 
 class PyTest(TestCommand):
@@ -46,9 +46,6 @@ with open("README.md") as readme_file:
     readme = readme_file.read()
 
 
-history = ""
-
-
 def read_requirements(path: str) -> List[str]:
     """Read requirements, skip comments, modify git dependencies
 
@@ -75,12 +72,12 @@ def read_requirements(path: str) -> List[str]:
 test_requirements: List[str] = []
 
 setup(
-    name="raiden",
-    description="",
-    long_description=readme + "\n\n" + history,
+    name="raiden-common",
+    description="Common code between python-based Raiden projects ",
+    long_description=readme,
     author="Brainbot Labs Est.",
     author_email="contact@brainbot.li",
-    url="https://github.com/raiden-network/raiden",
+    url="https://github.com/raiden-network/raiden-common",
     packages=find_packages(include=("raiden", "raiden.*")),
     package_data={"raiden": ["py.typed"]},
     license="MIT",
@@ -103,5 +100,4 @@ setup(
     install_requires=read_requirements("requirements/requirements.txt"),
     tests_require=test_requirements,
     python_requires=">=3.8",
-    entry_points={"console_scripts": ["raiden = raiden.__main__:main"]},
 )
