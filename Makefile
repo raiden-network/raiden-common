@@ -1,4 +1,4 @@
-.PHONY: clean-pyc clean-build docs clean
+.PHONY: clean-pyc clean-build docs clean dist upload-pypi
 
 help:
 	@echo "clean - remove all build, test, coverage and Python artifacts"
@@ -149,3 +149,10 @@ check-venv:
 # Ensure pip-tools is installed
 check-pip-tools: check-venv
 	@command -v pip-compile > /dev/null 2>&1 || (echo "pip-tools is required. Installing." && python3 -m pip install $(shell grep pip-tools== requirements/requirements-dev.txt))
+
+dist:
+	python setup.py sdist
+	python setup.py bdist_wheel
+
+upload-pypi: dist
+	twine upload dist/*
