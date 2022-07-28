@@ -153,8 +153,6 @@ ipfshttpclient==0.8.0a2
     # via web3
 itsdangerous==2.0.1
     # via flask
-jaeger-client==4.8.0
-    # via -r requirements.in
 jinja2==3.0.3
     # via flask
 jsonschema==3.2.0
@@ -177,8 +175,6 @@ marshmallow-polyfield==5.10
     # via -r requirements.in
 matrix-client==0.3.2
     # via -r requirements.in
-mirakuru==2.1.2
-    # via -r requirements.in
 multiaddr==0.0.9
     # via ipfshttpclient
 multidict==5.1.0
@@ -199,7 +195,6 @@ opentracing==2.3.0
     # via
     #   dbapi-opentracing
     #   flask-opentracing
-    #   jaeger-client
     #   requests-opentracing
 packaging==21.3
     # via
@@ -210,9 +205,7 @@ parsimonious==0.8.1
 protobuf==3.15.0
     # via web3
 psutil==5.8.0
-    # via
-    #   -r requirements.in
-    #   mirakuru
+    # via -r requirements.in
 py-solc-x==1.1.0
     # via raiden-contracts
 pycparser==2.19
@@ -268,21 +261,12 @@ six==1.16.0
     #   parsimonious
     #   protobuf
     #   pyrsistent
-    #   thrift
 structlog==21.5.0
     # via -r requirements.in
-threadloop==1.0.2
-    # via jaeger-client
-thrift==0.15.0
-    # via jaeger-client
 toml==0.10.2
     # via -r requirements.in
 toolz==0.9.0
     # via cytoolz
-tornado==6.1
-    # via
-    #   jaeger-client
-    #   threadloop
 typeguard==2.11.1
     # via marshmallow-dataclass
 typing-extensions==4.2.0

@@ -18,7 +18,6 @@ from flask_restful import Api
 from gevent.event import Event
 from gevent.pywsgi import WSGIServer
 from hexbytes import HexBytes
-from raiden_webui import RAIDEN_WEBUI_PATH
 from werkzeug.exceptions import NotFound
 from werkzeug.routing import BaseConverter
 
@@ -296,7 +295,6 @@ class APIServer(Runnable):  # pragma: no unittest
         self.wsgiserver: Optional[WSGIServer] = None
 
         self.flask_app.register_blueprint(self.blueprint)
-        self.flask_app.config["WEBUI_PATH"] = RAIDEN_WEBUI_PATH
 
         self.flask_app.register_error_handler(HTTPStatus.NOT_FOUND, endpoint_not_found)
         self.flask_app.register_error_handler(Exception, self.unhandled_exception)

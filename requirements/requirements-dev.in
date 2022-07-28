@@ -40,6 +40,7 @@ raiden-api-client>=1.1.1
 responses
 flaky
 Faker
+mirakuru==2.1.2
 
 # Debugging
 ipython
@@ -53,6 +54,7 @@ coverage
 
 # Release
 bump2version
+twine
 
 # Test support
 matrix-synapse

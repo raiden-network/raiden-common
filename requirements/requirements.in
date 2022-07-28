@@ -21,7 +21,6 @@ marshmallow-polyfield
 marshmallow
 marshmallow_enum
 matrix-client==0.3.2
-mirakuru==2.1.2
 packaging
 psutil
 pysha3
@@ -34,7 +33,6 @@ web3
 typing_extensions>=3.10,<5.0
 objgraph
 ulid-py
-jaeger-client
 dbapi-opentracing
 Flask-Opentracing
 requests-opentracing
