@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ "*" ]
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      with:
+        path: |
+          ~/.cache/pip
+          ~/venv
+        key: ${{ runner.os }}-pip-${{ matrix.python-version }}-v3-${{ hashFiles('requirements/requirements-dev.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-${{ matrix.python-version }}-v3-
+    - name: Install dependencies
+      run: |
+        if [ ! -x venv ]; then python3 -m venv venv; fi
+        source ./venv/bin/activate
+        python -m pip install --upgrade pip wheel codecov setuptools
+        make install-dev
+    - name: Lint
+      run: |
+        source ./venv/bin/activate
+        make lint
+    - name: Test
+      run: |
+        source ./venv/bin/activate
+        pytest-gevent -v tests/ --cov=src --cov-report=xml --junitxml=test-reports/junit.xml
