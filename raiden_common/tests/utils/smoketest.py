@@ -52,7 +52,8 @@ from raiden_common.transfer import channel, views
 from raiden_common.transfer.state import ChannelState
 from raiden_common.ui.app import run_raiden_service
 from raiden_common.utils.formatting import to_checksum_address
-from raiden_common.utils.http import HTTPExecutor, split_endpoint
+from raiden_common.utils.http import split_endpoint
+from raiden_common.utils.http_executor import HTTPExecutor
 from raiden_common.utils.keys import privatekey_to_address
 from raiden_common.utils.typing import (
     TYPE_CHECKING,

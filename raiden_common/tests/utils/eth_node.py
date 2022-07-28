@@ -17,7 +17,7 @@ from raiden_common.tests.fixtures.constants import DEFAULT_PASSPHRASE
 from raiden_common.tests.utils.genesis import GENESIS_STUB, PARITY_CHAIN_SPEC_STUB
 from raiden_common.utils.ethereum_clients import parse_geth_version
 from raiden_common.utils.formatting import to_checksum_address
-from raiden_common.utils.http import JSONRPCExecutor
+from raiden_common.utils.http_executor import JSONRPCExecutor
 from raiden_common.utils.keys import privatekey_to_address, privatekey_to_publickey
 from raiden_common.utils.typing import (
     Address,

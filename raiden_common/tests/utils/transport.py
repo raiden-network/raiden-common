@@ -29,7 +29,7 @@ from raiden_common.network.transport.matrix.transport import MatrixTransport, Me
 from raiden_common.settings import MatrixTransportConfig
 from raiden_common.tests.utils.factories import make_signer
 from raiden_common.transfer.identifiers import QueueIdentifier
-from raiden_common.utils.http import EXECUTOR_IO, HTTPExecutor
+from raiden_common.utils.http_executor import EXECUTOR_IO, HTTPExecutor
 from raiden_common.utils.signer import recover
 from raiden_common.utils.typing import Iterable, Port
 from raiden_contracts.utils.type_aliases import Signature
