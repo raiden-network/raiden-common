@@ -39,4 +39,4 @@ jobs:
     - name: Test
       run: |
         source ./venv/bin/activate
-        pytest-gevent -v tests/ --cov=src --cov-report=xml --junitxml=test-reports/junit.xml
+        pytest raiden_common/tests/ -n 4 -x

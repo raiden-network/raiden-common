@@ -91,7 +91,6 @@ bleach==3.3.0
     # via
     #   -r requirements-dev.txt
     #   matrix-synapse
-    #   readme-renderer
 build==0.8.0
     # via
     #   -r requirements-dev.txt
@@ -143,10 +142,6 @@ colorama==0.4.4
     # via -r requirements-dev.txt
 colour==0.1.5
     # via -r requirements-dev.txt
-commonmark==0.9.1
-    # via
-    #   -r requirements-dev.txt
-    #   rich
 constantly==15.1.0
     # via
     #   -r requirements-dev.txt
@@ -159,7 +154,6 @@ cryptography==3.4.7
     #   aiortc
     #   matrix-synapse
     #   pyopenssl
-    #   secretstorage
     #   service-identity
 cytoolz==0.10.1
     # via
@@ -176,10 +170,6 @@ dnspython==2.1.0
     # via
     #   -r requirements-dev.txt
     #   aioice
-docutils==0.19
-    # via
-    #   -r requirements-dev.txt
-    #   readme-renderer
 eciespy==0.3.11
     # via -r requirements-dev.txt
 eth-abi==2.1.0
@@ -323,9 +313,7 @@ importlib-metadata==4.12.0
     # via
     #   -r requirements-dev.txt
     #   flask
-    #   keyring
     #   pluggy
-    #   twine
 incremental==17.5.0
     # via
     #   -r requirements-dev.txt
@@ -353,11 +341,6 @@ jedi==0.17.0
     # via
     #   -r requirements-dev.txt
     #   ipython
-jeepney==0.8.0
-    # via
-    #   -r requirements-dev.txt
-    #   keyring
-    #   secretstorage
 jinja2==3.0.3
     # via
     #   -r requirements-dev.txt
@@ -368,10 +351,6 @@ jsonschema==3.2.0
     #   -r requirements-dev.txt
     #   matrix-synapse
     #   web3
-keyring==23.7.0
-    # via
-    #   -r requirements-dev.txt
-    #   twine
 lazy-object-proxy==1.4.1
     # via
     #   -r requirements-dev.txt
@@ -497,10 +476,6 @@ pillow==9.0.1
     #   matrix-synapse
 pip-tools==6.8.0
     # via -r requirements-dev.txt
-pkginfo==1.8.3
-    # via
-    #   -r requirements-dev.txt
-    #   twine
 platformdirs==2.2.0
     # via
     #   -r requirements-dev.txt
@@ -582,8 +557,6 @@ pygments==2.7.4
     #   -r requirements-dev.txt
     #   ipython
     #   pdbpp
-    #   readme-renderer
-    #   rich
 pyinstaller==5.1
     # via -r requirements-ci.in
 pyinstaller-hooks-contrib==2022.5
@@ -657,10 +630,6 @@ raiden-contracts==0.50.1
     # via -r requirements-dev.txt
 raiden-webui==1.2.1
     # via -r requirements-dev.txt
-readme-renderer==35.0
-    # via
-    #   -r requirements-dev.txt
-    #   twine
 requests==2.27.1
     # via
     #   -r requirements-dev.txt
@@ -670,27 +639,13 @@ requests==2.27.1
     #   py-solc-x
     #   raiden-api-client
     #   requests-opentracing
-    #   requests-toolbelt
     #   responses
     #   treq
-    #   twine
     #   web3
 requests-opentracing==0.3.0
     # via -r requirements-dev.txt
-requests-toolbelt==0.9.1
-    # via
-    #   -r requirements-dev.txt
-    #   twine
 responses==0.20.0
     # via -r requirements-dev.txt
-rfc3986==2.0.0
-    # via
-    #   -r requirements-dev.txt
-    #   twine
-rich==12.5.1
-    # via
-    #   -r requirements-dev.txt
-    #   twine
 rlp==2.0.1
     # via
     #   -r requirements-dev.txt
@@ -699,10 +654,6 @@ rlp==2.0.1
     #   raiden-contracts
 s3cmd==2.2.0
     # via -r requirements-ci.in
-secretstorage==3.3.2
-    # via
-    #   -r requirements-dev.txt
-    #   keyring
 semantic-version==2.8.5
     # via
     #   -r requirements-dev.txt
@@ -777,8 +728,6 @@ treq==22.1.0
     # via
     #   -r requirements-dev.txt
     #   matrix-synapse
-twine==4.0.1
-    # via -r requirements-dev.txt
 twisted[tls]==21.2.0
     # via
     #   -r requirements-dev.txt
@@ -848,7 +797,6 @@ urllib3==1.26.5
     #   -r requirements-dev.txt
     #   requests
     #   responses
-    #   twine
 varint==1.0.2
     # via
     #   -r requirements-dev.txt

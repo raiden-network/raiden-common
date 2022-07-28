@@ -155,4 +155,5 @@ dist:
 	python setup.py bdist_wheel
 
 upload-pypi: dist
+	@command -v twine || pip install twine
 	twine upload dist/*

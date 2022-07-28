@@ -54,7 +54,6 @@ coverage
 
 # Release
 bump2version
-twine
 
 # Test support
 matrix-synapse
