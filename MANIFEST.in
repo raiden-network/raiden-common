@@ -1,4 +1,4 @@
 include README.rst
 include requirements.txt
 include requirements/requirements.txt
-include raiden/tests/utils/synapse_config.yaml.template
+include raiden_common/tests/utils/synapse_config.yaml.template
