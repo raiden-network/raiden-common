@@ -91,6 +91,10 @@ bleach==3.3.0
     # via
     #   -r requirements-dev.txt
     #   matrix-synapse
+build==0.8.0
+    # via
+    #   -r requirements-dev.txt
+    #   pip-tools
 bump2version==1.0.1
     # via -r requirements-dev.txt
 cachetools==4.2.4
@@ -308,6 +312,7 @@ idna==2.8
 importlib-metadata==4.12.0
     # via
     #   -r requirements-dev.txt
+    #   flask
     #   pluggy
 incremental==17.5.0
     # via
@@ -435,6 +440,7 @@ packaging==21.3
     # via
     #   -r requirements-dev.txt
     #   bleach
+    #   build
     #   marshmallow
     #   pytest
 parsimonious==0.8.1
@@ -454,7 +460,7 @@ pdbpp==0.10.3
 pep517==0.10.0
     # via
     #   -r requirements-dev.txt
-    #   pip-tools
+    #   build
 pexpect==4.8.0
     # via
     #   -r requirements-dev.txt
@@ -471,7 +477,7 @@ pillow==9.0.1
     # via
     #   -r requirements-dev.txt
     #   matrix-synapse
-pip-tools==6.6.0
+pip-tools==6.8.0
     # via -r requirements-dev.txt
 platformdirs==2.2.0
     # via
@@ -719,6 +725,7 @@ tomli==2.0.1
     # via
     #   -r requirements-dev.txt
     #   black
+    #   build
     #   mypy
 toolz==0.9.0
     # via
@@ -785,8 +792,11 @@ typing-extensions==4.2.0
     # via
     #   -r requirements-dev.txt
     #   aiohttp
+    #   astroid
+    #   black
     #   matrix-synapse
     #   mypy
+    #   pylint
     #   signedjson
 typing-inspect==0.4.0
     # via
