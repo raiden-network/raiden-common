@@ -75,14 +75,14 @@ repos:
     hooks:
       - id: mypy
         entry: tools/pre-commit/pre-commit-wrapper.py mypy
-        additional_dependencies: ["pip-tools==6.6.0"]
+        additional_dependencies: ["pip-tools==6.8.0"]
 
   - repo: https://github.com/PyCQA/pylint
     rev: v2.11.1
     hooks:
       - id: pylint
         entry: tools/pre-commit/pre-commit-wrapper.py pylint
-        additional_dependencies: ["pip-tools==6.6.0"]
+        additional_dependencies: ["pip-tools==6.8.0"]
 
   - repo: https://github.com/gruntwork-io/pre-commit
     rev: v0.1.5
