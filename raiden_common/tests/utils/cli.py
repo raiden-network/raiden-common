@@ -3,7 +3,7 @@ from unittest import mock
 
 from click.core import ParameterSource  # type: ignore
 
-from raiden.ui import cli
+from raiden_common.ui import cli
 
 
 def get_invoked_kwargs(cli_input, cli_runner, capture_function):

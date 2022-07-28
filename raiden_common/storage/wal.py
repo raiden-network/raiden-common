@@ -6,8 +6,8 @@ from dataclasses import dataclass
 import gevent.lock
 import structlog
 
-from raiden.storage.serialization import DictSerializer
-from raiden.storage.sqlite import (
+from raiden_common.storage.serialization import DictSerializer
+from raiden_common.storage.sqlite import (
     HIGH_STATECHANGE_ULID,
     LOW_STATECHANGE_ULID,
     EventID,
@@ -17,11 +17,11 @@ from raiden.storage.sqlite import (
     write_events,
     write_state_change,
 )
-from raiden.transfer.architecture import Event, State, StateChange, TransitionResult
-from raiden.utils.copy import deepcopy
-from raiden.utils.formatting import to_checksum_address
-from raiden.utils.logging import redact_secret
-from raiden.utils.typing import (
+from raiden_common.transfer.architecture import Event, State, StateChange, TransitionResult
+from raiden_common.utils.copy import deepcopy
+from raiden_common.utils.formatting import to_checksum_address
+from raiden_common.utils.logging import redact_secret
+from raiden_common.utils.typing import (
     Address,
     Callable,
     Generator,

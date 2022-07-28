@@ -12,7 +12,7 @@ import requests
 from requests import Response
 from structlog import get_logger
 
-from raiden.utils.typing import Any, Iterator, Optional, Port, Tuple
+from raiden_common.utils.typing import Any, Iterator, Optional, Port, Tuple
 
 LOOPBACK = "127.0.0.1"
 

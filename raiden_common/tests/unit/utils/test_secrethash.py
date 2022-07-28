@@ -1,5 +1,5 @@
-from raiden.utils.secrethash import sha256_secrethash
-from raiden.utils.typing import Secret
+from raiden_common.utils.secrethash import sha256_secrethash
+from raiden_common.utils.typing import Secret
 
 
 def test_sha256_secrethash():

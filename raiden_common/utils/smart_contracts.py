@@ -1,4 +1,4 @@
-from raiden import constants
+from raiden_common import constants
 
 
 def safe_gas_limit(*estimates: int) -> int:

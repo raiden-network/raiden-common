@@ -1,10 +1,10 @@
 from structlog import get_logger
 
-from raiden.messages.transfers import EnvelopeMessage, LockedTransferBase
-from raiden.transfer.identifiers import CanonicalIdentifier
-from raiden.transfer.mediated_transfer.state import LockedTransferSignedState, RouteState
-from raiden.transfer.state import BalanceProofSignedState, HashTimeLockState
-from raiden.utils.typing import AdditionalHash
+from raiden_common.messages.transfers import EnvelopeMessage, LockedTransferBase
+from raiden_common.transfer.identifiers import CanonicalIdentifier
+from raiden_common.transfer.mediated_transfer.state import LockedTransferSignedState, RouteState
+from raiden_common.transfer.state import BalanceProofSignedState, HashTimeLockState
+from raiden_common.utils.typing import AdditionalHash
 
 log = get_logger(__name__)
 

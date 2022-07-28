@@ -23,22 +23,22 @@ from eth_utils import (
 from gevent.lock import Semaphore
 from matrix_client.errors import MatrixError, MatrixRequestError
 
-from raiden.api.v1.encoding import CapabilitiesSchema
-from raiden.constants import DeviceIDs
-from raiden.exceptions import InvalidSignature, SerializationError, TransportError
-from raiden.messages.abstract import Message, RetrieableMessage, SignedMessage
-from raiden.messages.synchronization import Processed
-from raiden.network.transport.matrix.client import (
+from raiden_common.api.v1.encoding import CapabilitiesSchema
+from raiden_common.constants import DeviceIDs
+from raiden_common.exceptions import InvalidSignature, SerializationError, TransportError
+from raiden_common.messages.abstract import Message, RetrieableMessage, SignedMessage
+from raiden_common.messages.synchronization import Processed
+from raiden_common.network.transport.matrix.client import (
     GMatrixClient,
     MatrixMessage,
     User,
     node_address_from_userid,
 )
-from raiden.network.utils import get_average_http_response_time
-from raiden.storage.serialization.serializer import MessageSerializer
-from raiden.utils.gevent import spawn_named
-from raiden.utils.signer import Signer, recover
-from raiden.utils.typing import (
+from raiden_common.network.utils import get_average_http_response_time
+from raiden_common.storage.serialization.serializer import MessageSerializer
+from raiden_common.utils.gevent import spawn_named
+from raiden_common.utils.signer import Signer, recover
+from raiden_common.utils.typing import (
     Address,
     AddressMetadata,
     MessageID,

@@ -12,14 +12,23 @@ from eth_keyfile import create_keyfile_json
 from eth_utils import encode_hex, remove_0x_prefix, to_normalized_address
 from web3 import Web3
 
-from raiden.constants import BLOCK_ID_LATEST
-from raiden.tests.fixtures.constants import DEFAULT_PASSPHRASE
-from raiden.tests.utils.genesis import GENESIS_STUB, PARITY_CHAIN_SPEC_STUB
-from raiden.utils.ethereum_clients import parse_geth_version
-from raiden.utils.formatting import to_checksum_address
-from raiden.utils.http import JSONRPCExecutor
-from raiden.utils.keys import privatekey_to_address, privatekey_to_publickey
-from raiden.utils.typing import Address, Any, ChainID, Dict, List, NamedTuple, Port, TokenAmount
+from raiden_common.constants import BLOCK_ID_LATEST
+from raiden_common.tests.fixtures.constants import DEFAULT_PASSPHRASE
+from raiden_common.tests.utils.genesis import GENESIS_STUB, PARITY_CHAIN_SPEC_STUB
+from raiden_common.utils.ethereum_clients import parse_geth_version
+from raiden_common.utils.formatting import to_checksum_address
+from raiden_common.utils.http import JSONRPCExecutor
+from raiden_common.utils.keys import privatekey_to_address, privatekey_to_publickey
+from raiden_common.utils.typing import (
+    Address,
+    Any,
+    ChainID,
+    Dict,
+    List,
+    NamedTuple,
+    Port,
+    TokenAmount,
+)
 
 log = structlog.get_logger(__name__)
 

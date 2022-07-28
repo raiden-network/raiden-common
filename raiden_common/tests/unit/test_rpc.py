@@ -1,5 +1,5 @@
-from raiden.constants import EthClient
-from raiden.network.rpc.client import ClientErrorInspectResult, inspect_client_error
+from raiden_common.constants import EthClient
+from raiden_common.network.rpc.client import ClientErrorInspectResult, inspect_client_error
 
 
 def test_inspect_client_error():

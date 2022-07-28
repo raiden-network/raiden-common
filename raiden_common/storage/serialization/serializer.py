@@ -12,33 +12,33 @@ from typing import Optional
 
 from marshmallow import ValidationError
 
-from raiden.exceptions import SerializationError
-from raiden.storage.serialization.schemas import MESSAGE_DATA_KEY, BaseSchema, class_schema
-from raiden.utils.copy import deepcopy
-from raiden.utils.typing import Address, Any, Dict, List, Mapping
+from raiden_common.exceptions import SerializationError
+from raiden_common.storage.serialization.schemas import MESSAGE_DATA_KEY, BaseSchema, class_schema
+from raiden_common.utils.copy import deepcopy
+from raiden_common.utils.typing import Address, Any, Dict, List, Mapping
 
 MESSAGE_NAME_TO_QUALIFIED_NAME = {
-    "AuthenticatedMessage": "raiden.messages.abstract.AuthenticatedMessage",
-    "Delivered": "raiden.messages.synchronization.Delivered",
-    "EnvelopeMessage": "raiden.messages.transfers.EnvelopeMessage",
-    "LockedTransferBase": "raiden.messages.transfers.LockedTransferBase",
-    "LockedTransfer": "raiden.messages.transfers.LockedTransfer",
-    "LockExpired": "raiden.messages.transfers.LockExpired",
-    "PFSCapacityUpdate": "raiden.messages.path_finding_service.PFSCapacityUpdate",
-    "PFSFeeUpdate": "raiden.messages.path_finding_service.PFSFeeUpdate",
-    "Ping": "raiden.messages.healthcheck.Ping",
-    "Pong": "raiden.messages.healthcheck.Pong",
-    "Processed": "raiden.messages.synchronization.Processed",
-    "RefundTransfer": "raiden.messages.transfers.RefundTransfer",
-    "RequestMonitoring": "raiden.messages.monitoring_service.RequestMonitoring",
-    "RevealSecret": "raiden.messages.transfers.RevealSecret",
-    "SecretRequest": "raiden.messages.transfers.SecretRequest",
-    "SignedMessage": "raiden.messages.abstract.SignedMessage",
-    "SignedRetrieableMessage": "raiden.messages.abstract.SignedRetrieableMessage",
-    "Unlock": "raiden.messages.transfers.Unlock",
-    "WithdrawConfirmation": "raiden.messages.withdraw.WithdrawConfirmation",
-    "WithdrawExpired": "raiden.messages.withdraw.WithdrawExpired",
-    "WithdrawRequest": "raiden.messages.withdraw.WithdrawRequest",
+    "AuthenticatedMessage": "raiden_common.messages.abstract.AuthenticatedMessage",
+    "Delivered": "raiden_common.messages.synchronization.Delivered",
+    "EnvelopeMessage": "raiden_common.messages.transfers.EnvelopeMessage",
+    "LockedTransferBase": "raiden_common.messages.transfers.LockedTransferBase",
+    "LockedTransfer": "raiden_common.messages.transfers.LockedTransfer",
+    "LockExpired": "raiden_common.messages.transfers.LockExpired",
+    "PFSCapacityUpdate": "raiden_common.messages.path_finding_service.PFSCapacityUpdate",
+    "PFSFeeUpdate": "raiden_common.messages.path_finding_service.PFSFeeUpdate",
+    "Ping": "raiden_common.messages.healthcheck.Ping",
+    "Pong": "raiden_common.messages.healthcheck.Pong",
+    "Processed": "raiden_common.messages.synchronization.Processed",
+    "RefundTransfer": "raiden_common.messages.transfers.RefundTransfer",
+    "RequestMonitoring": "raiden_common.messages.monitoring_service.RequestMonitoring",
+    "RevealSecret": "raiden_common.messages.transfers.RevealSecret",
+    "SecretRequest": "raiden_common.messages.transfers.SecretRequest",
+    "SignedMessage": "raiden_common.messages.abstract.SignedMessage",
+    "SignedRetrieableMessage": "raiden_common.messages.abstract.SignedRetrieableMessage",
+    "Unlock": "raiden_common.messages.transfers.Unlock",
+    "WithdrawConfirmation": "raiden_common.messages.withdraw.WithdrawConfirmation",
+    "WithdrawExpired": "raiden_common.messages.withdraw.WithdrawExpired",
+    "WithdrawRequest": "raiden_common.messages.withdraw.WithdrawRequest",
 }
 
 

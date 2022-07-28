@@ -1,12 +1,12 @@
 from typing import Tuple
 
-from raiden.exceptions import UndefinedMediationFee
-from raiden.transfer.channel import get_balance
-from raiden.transfer.mediated_transfer.initiator import calculate_safe_amount_with_fee
-from raiden.transfer.mediated_transfer.mediation_fee import FeeScheduleState
-from raiden.transfer.mediated_transfer.mediator import find_intersection
-from raiden.transfer.state import NettingChannelState
-from raiden.utils.typing import (
+from raiden_common.exceptions import UndefinedMediationFee
+from raiden_common.transfer.channel import get_balance
+from raiden_common.transfer.mediated_transfer.initiator import calculate_safe_amount_with_fee
+from raiden_common.transfer.mediated_transfer.mediation_fee import FeeScheduleState
+from raiden_common.transfer.mediated_transfer.mediator import find_intersection
+from raiden_common.transfer.state import NettingChannelState
+from raiden_common.utils.typing import (
     Balance,
     FeeAmount,
     List,

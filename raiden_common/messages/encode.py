@@ -1,21 +1,21 @@
-from raiden.messages.abstract import Message
-from raiden.messages.synchronization import Processed
-from raiden.messages.transfers import (
+from raiden_common.messages.abstract import Message
+from raiden_common.messages.synchronization import Processed
+from raiden_common.messages.transfers import (
     LockedTransfer,
     LockExpired,
     RevealSecret,
     SecretRequest,
     Unlock,
 )
-from raiden.messages.withdraw import WithdrawConfirmation, WithdrawExpired, WithdrawRequest
-from raiden.transfer.architecture import SendMessageEvent
-from raiden.transfer.events import (
+from raiden_common.messages.withdraw import WithdrawConfirmation, WithdrawExpired, WithdrawRequest
+from raiden_common.transfer.architecture import SendMessageEvent
+from raiden_common.transfer.events import (
     SendProcessed,
     SendWithdrawConfirmation,
     SendWithdrawExpired,
     SendWithdrawRequest,
 )
-from raiden.transfer.mediated_transfer.events import (
+from raiden_common.transfer.mediated_transfer.events import (
     SendLockedTransfer,
     SendLockExpired,
     SendSecretRequest,

@@ -47,7 +47,7 @@ JOBS_ARG=
 ifdef CIRCLECI
 JOBS_ARG=--jobs=8
 endif
-LINT_PATHS = raiden/ tools/ setup.py conftest.py
+LINT_PATHS = raiden_common/ tools/ setup.py conftest.py
 ISORT_PARAMS = --ignore-whitespace --settings-path ./ --skip-glob '*/node_modules/*' $(LINT_PATHS)
 
 lint: ISORT_CHECK_PARAMS := --diff --check-only
@@ -55,12 +55,12 @@ lint: BLACK_CHECK_PARAMS := --check --diff
 lint: format flake8 mypy pylint shellcheck check-pre-commit
 
 mypy:
-	mypy raiden tools
+	mypy raiden_common tools
 
 mypy-all:
 	# Be aware, that we currently ignore all mypy errors in `raiden.tests.*` through `setup.cfg`.
 	# Remaining errors in tests:
-	mypy --config-file /dev/null raiden --ignore-missing-imports | grep error | wc -l
+	mypy --config-file /dev/null raiden_common --ignore-missing-imports | grep error | wc -l
 
 flake8:
 	flake8 $(JOBS_ARG) $(LINT_PATHS)

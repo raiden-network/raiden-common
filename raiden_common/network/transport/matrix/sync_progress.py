@@ -3,8 +3,8 @@ from uuid import UUID
 
 from gevent.event import Event
 
-from raiden.utils.notifying_queue import NotifyingQueue
-from raiden.utils.typing import Any, Dict, List, Optional, Tuple
+from raiden_common.utils.notifying_queue import NotifyingQueue
+from raiden_common.utils.typing import Any, Dict, List, Optional, Tuple
 
 JSONResponse = Dict[str, Any]
 

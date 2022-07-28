@@ -1,7 +1,7 @@
 import os
 from typing import Optional
 
-from raiden.utils.formatting import pex
+from raiden_common.utils.formatting import pex
 
 
 def get_artifacts_storage() -> Optional[str]:

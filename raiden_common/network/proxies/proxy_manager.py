@@ -3,20 +3,20 @@ from dataclasses import dataclass
 from eth_utils import is_binary_address
 from gevent.lock import Semaphore
 
-from raiden.network.proxies.custom_token import CustomToken
-from raiden.network.proxies.metadata import SmartContractMetadata
-from raiden.network.proxies.monitoring_service import MonitoringService
-from raiden.network.proxies.one_to_n import OneToN
-from raiden.network.proxies.payment_channel import PaymentChannel
-from raiden.network.proxies.secret_registry import SecretRegistry
-from raiden.network.proxies.service_registry import ServiceRegistry
-from raiden.network.proxies.token import Token
-from raiden.network.proxies.token_network import TokenNetwork, TokenNetworkMetadata
-from raiden.network.proxies.token_network_registry import TokenNetworkRegistry
-from raiden.network.proxies.user_deposit import UserDeposit
-from raiden.network.rpc.client import JSONRPCClient
-from raiden.transfer.state import NettingChannelState
-from raiden.utils.typing import (
+from raiden_common.network.proxies.custom_token import CustomToken
+from raiden_common.network.proxies.metadata import SmartContractMetadata
+from raiden_common.network.proxies.monitoring_service import MonitoringService
+from raiden_common.network.proxies.one_to_n import OneToN
+from raiden_common.network.proxies.payment_channel import PaymentChannel
+from raiden_common.network.proxies.secret_registry import SecretRegistry
+from raiden_common.network.proxies.service_registry import ServiceRegistry
+from raiden_common.network.proxies.token import Token
+from raiden_common.network.proxies.token_network import TokenNetwork, TokenNetworkMetadata
+from raiden_common.network.proxies.token_network_registry import TokenNetworkRegistry
+from raiden_common.network.proxies.user_deposit import UserDeposit
+from raiden_common.network.rpc.client import JSONRPCClient
+from raiden_common.transfer.state import NettingChannelState
+from raiden_common.utils.typing import (
     Address,
     BlockIdentifier,
     BlockNumber,

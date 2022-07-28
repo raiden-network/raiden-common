@@ -1,4 +1,4 @@
-from raiden.exceptions import RaidenRecoverableError, RaidenUnrecoverableError
+from raiden_common.exceptions import RaidenRecoverableError, RaidenUnrecoverableError
 
 
 class UnknownRaidenEventType(RaidenUnrecoverableError):

@@ -4,7 +4,7 @@ from http import HTTPStatus
 import structlog
 from flask import Response, make_response
 
-from raiden.utils.typing import Any, Callable
+from raiden_common.utils.typing import Any, Callable
 
 log = structlog.get_logger(__name__)
 

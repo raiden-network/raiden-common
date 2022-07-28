@@ -4,12 +4,17 @@ import random
 from fractions import Fraction
 from typing import Callable
 
-from raiden.exceptions import UndefinedMediationFee
-from raiden.transfer import channel, routes, secret_registry
-from raiden.transfer.architecture import Event, StateChange, SuccessOrError, TransitionResult
-from raiden.transfer.channel import get_balance
-from raiden.transfer.identifiers import CANONICAL_IDENTIFIER_UNORDERED_QUEUE
-from raiden.transfer.mediated_transfer.events import (
+from raiden_common.exceptions import UndefinedMediationFee
+from raiden_common.transfer import channel, routes, secret_registry
+from raiden_common.transfer.architecture import (
+    Event,
+    StateChange,
+    SuccessOrError,
+    TransitionResult,
+)
+from raiden_common.transfer.channel import get_balance
+from raiden_common.transfer.identifiers import CANONICAL_IDENTIFIER_UNORDERED_QUEUE
+from raiden_common.transfer.mediated_transfer.events import (
     EventUnexpectedSecretReveal,
     EventUnlockClaimFailed,
     EventUnlockClaimSuccess,
@@ -18,29 +23,29 @@ from raiden.transfer.mediated_transfer.events import (
     SendLockedTransfer,
     SendSecretReveal,
 )
-from raiden.transfer.mediated_transfer.mediation_fee import FeeScheduleState, Interpolate
-from raiden.transfer.mediated_transfer.state import (
+from raiden_common.transfer.mediated_transfer.mediation_fee import FeeScheduleState, Interpolate
+from raiden_common.transfer.mediated_transfer.state import (
     LockedTransferSignedState,
     LockedTransferUnsignedState,
     MediationPairState,
     MediatorTransferState,
     WaitingTransferState,
 )
-from raiden.transfer.mediated_transfer.state_change import (
+from raiden_common.transfer.mediated_transfer.state_change import (
     ActionInitMediator,
     ReceiveLockExpired,
     ReceiveSecretReveal,
     ReceiveTransferRefund,
 )
-from raiden.transfer.state import (
+from raiden_common.transfer.state import (
     ChannelState,
     NettingChannelState,
     get_address_metadata,
     message_identifier_from_prng,
 )
-from raiden.transfer.state_change import Block, ContractReceiveSecretReveal, ReceiveUnlock
-from raiden.transfer.utils import is_valid_secret_reveal
-from raiden.utils.typing import (
+from raiden_common.transfer.state_change import Block, ContractReceiveSecretReveal, ReceiveUnlock
+from raiden_common.transfer.utils import is_valid_secret_reveal
+from raiden_common.utils.typing import (
     MYPY_ANNOTATION,
     Address,
     BlockExpiration,

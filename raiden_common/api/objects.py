@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from raiden.utils.typing import List, TokenAddress
+from raiden_common.utils.typing import List, TokenAddress
 
 
 class FlatList(list):

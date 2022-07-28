@@ -1,9 +1,9 @@
 from typing import cast
 
-from raiden.api.python import transfer_tasks_view
-from raiden.tests.utils import factories
-from raiden.transfer.architecture import TransferTask
-from raiden.transfer.mediated_transfer.state import (
+from raiden_common.api.python import transfer_tasks_view
+from raiden_common.tests.utils import factories
+from raiden_common.transfer.architecture import TransferTask
+from raiden_common.transfer.mediated_transfer.state import (
     InitiatorPaymentState,
     InitiatorTransferState,
     MediationPairState,
@@ -12,11 +12,11 @@ from raiden.transfer.mediated_transfer.state import (
     TransferDescriptionWithSecretState,
     WaitingTransferState,
 )
-from raiden.transfer.mediated_transfer.tasks import InitiatorTask, MediatorTask, TargetTask
-from raiden.transfer.state import HopState, RouteState
-from raiden.transfer.views import list_channelstate_for_tokennetwork
-from raiden.utils.secrethash import sha256_secrethash
-from raiden.utils.typing import PaymentID, TokenAmount
+from raiden_common.transfer.mediated_transfer.tasks import InitiatorTask, MediatorTask, TargetTask
+from raiden_common.transfer.state import HopState, RouteState
+from raiden_common.transfer.views import list_channelstate_for_tokennetwork
+from raiden_common.utils.secrethash import sha256_secrethash
+from raiden_common.utils.typing import PaymentID, TokenAmount
 
 
 def test_list_channelstate_for_tokennetwork(chain_state, token_network_registry_address, token_id):

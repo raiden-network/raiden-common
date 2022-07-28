@@ -2,23 +2,29 @@ import datetime
 
 import pytest
 
-from raiden.api.python import event_filter_for_payments
-from raiden.api.v1.encoding import EventPaymentSentFailedSchema
-from raiden.blockchain.events import get_contract_events
-from raiden.exceptions import InvalidBlockNumberInput
-from raiden.storage.utils import TimestampedEvent
-from raiden.tests.utils import factories
-from raiden.tests.utils.factories import (
+from raiden_common.api.python import event_filter_for_payments
+from raiden_common.api.v1.encoding import EventPaymentSentFailedSchema
+from raiden_common.blockchain.events import get_contract_events
+from raiden_common.exceptions import InvalidBlockNumberInput
+from raiden_common.storage.utils import TimestampedEvent
+from raiden_common.tests.utils import factories
+from raiden_common.tests.utils.factories import (
     ADDR,
     UNIT_TOKEN_NETWORK_ADDRESS,
     UNIT_TOKEN_NETWORK_REGISTRY_ADDRESS,
 )
-from raiden.transfer.events import (
+from raiden_common.transfer.events import (
     EventPaymentReceivedSuccess,
     EventPaymentSentFailed,
     EventPaymentSentSuccess,
 )
-from raiden.utils.typing import Address, InitiatorAddress, PaymentAmount, PaymentID, TargetAddress
+from raiden_common.utils.typing import (
+    Address,
+    InitiatorAddress,
+    PaymentAmount,
+    PaymentID,
+    TargetAddress,
+)
 
 
 def test_get_contract_events_invalid_blocknumber():

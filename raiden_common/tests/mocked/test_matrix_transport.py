@@ -8,22 +8,25 @@ from gevent.event import Event
 from matrix_client.errors import MatrixRequestError
 from matrix_client.user import User
 
-from raiden.constants import Environment, MatrixMessageType
-from raiden.messages.transfers import SecretRequest
-from raiden.network.transport import MatrixTransport
-from raiden.network.transport.matrix.client import GMatrixHttpApi
-from raiden.network.transport.matrix.rtc.web_rtc import WebRTCManager
-from raiden.network.transport.matrix.transport import RETRY_QUEUE_IDLE_AFTER, _RetryQueue
-from raiden.settings import MatrixTransportConfig
-from raiden.storage.serialization.serializer import MessageSerializer
-from raiden.tests.utils import factories
-from raiden.tests.utils.factories import make_message_identifier, make_signer
-from raiden.tests.utils.mocks import MockRaidenService
-from raiden.transfer.identifiers import CANONICAL_IDENTIFIER_UNORDERED_QUEUE, QueueIdentifier
-from raiden.transfer.mediated_transfer.events import SendSecretRequest
-from raiden.utils.formatting import to_hex_address
-from raiden.utils.signer import LocalSigner
-from raiden.utils.typing import (
+from raiden_common.constants import Environment, MatrixMessageType
+from raiden_common.messages.transfers import SecretRequest
+from raiden_common.network.transport import MatrixTransport
+from raiden_common.network.transport.matrix.client import GMatrixHttpApi
+from raiden_common.network.transport.matrix.rtc.web_rtc import WebRTCManager
+from raiden_common.network.transport.matrix.transport import RETRY_QUEUE_IDLE_AFTER, _RetryQueue
+from raiden_common.settings import MatrixTransportConfig
+from raiden_common.storage.serialization.serializer import MessageSerializer
+from raiden_common.tests.utils import factories
+from raiden_common.tests.utils.factories import make_message_identifier, make_signer
+from raiden_common.tests.utils.mocks import MockRaidenService
+from raiden_common.transfer.identifiers import (
+    CANONICAL_IDENTIFIER_UNORDERED_QUEUE,
+    QueueIdentifier,
+)
+from raiden_common.transfer.mediated_transfer.events import SendSecretRequest
+from raiden_common.utils.formatting import to_hex_address
+from raiden_common.utils.signer import LocalSigner
+from raiden_common.utils.typing import (
     Address,
     AddressMetadata,
     Any,
@@ -40,24 +43,24 @@ USERID1 = UserID(f"@{to_hex_address(factories.HOP1)}:Wonderland")  # pylint: dis
 
 @pytest.fixture()
 def skip_userid_validation(monkeypatch):
-    import raiden.network.transport.matrix
-    import raiden.network.transport.matrix.utils
+    import raiden_common.network.transport.matrix
+    import raiden_common.network.transport.matrix.utils
 
     def mock_validate_userid_signature(user):  # pylint: disable=unused-argument
         return factories.HOP1
 
     monkeypatch.setattr(
-        raiden.network.transport.matrix,
+        raiden_common.network.transport.matrix,
         "validate_userid_signature",
         mock_validate_userid_signature,
     )
     monkeypatch.setattr(
-        raiden.network.transport.matrix.transport,
+        raiden_common.network.transport.matrix.transport,
         "validate_userid_signature",
         mock_validate_userid_signature,
     )
     monkeypatch.setattr(
-        raiden.network.transport.matrix.utils,
+        raiden_common.network.transport.matrix.utils,
         "validate_userid_signature",
         mock_validate_userid_signature,
     )
@@ -77,9 +80,9 @@ def mock_matrix(
     retries_before_backoff,
 ):
 
-    from raiden.network.transport.matrix import transport as transport_module
-    from raiden.network.transport.matrix.client import GMatrixClient
-    from raiden.network.transport.matrix.utils import UserPresence
+    from raiden_common.network.transport.matrix import transport as transport_module
+    from raiden_common.network.transport.matrix.client import GMatrixClient
+    from raiden_common.network.transport.matrix.utils import UserPresence
 
     def make_client_monkey(
         handle_messages_callback, servers, *args, **kwargs

@@ -4,18 +4,18 @@ from typing import TYPE_CHECKING
 
 from eth_utils import to_hex
 
-from raiden.constants import UINT256_MAX
-from raiden.transfer.architecture import (
+from raiden_common.constants import UINT256_MAX
+from raiden_common.transfer.architecture import (
     ContractSendEvent,
     ContractSendExpirableEvent,
     Event,
     SendMessageEvent,
 )
-from raiden.transfer.identifiers import CanonicalIdentifier
-from raiden.transfer.state import BalanceProofSignedState
-from raiden.utils.formatting import to_checksum_address
-from raiden.utils.secrethash import sha256_secrethash
-from raiden.utils.typing import (
+from raiden_common.transfer.identifiers import CanonicalIdentifier
+from raiden_common.transfer.state import BalanceProofSignedState
+from raiden_common.utils.formatting import to_checksum_address
+from raiden_common.utils.secrethash import sha256_secrethash
+from raiden_common.utils.typing import (
     Address,
     BlockExpiration,
     BlockTimeout,
@@ -38,7 +38,7 @@ from raiden.utils.typing import (
 )
 
 if TYPE_CHECKING:
-    from raiden.transfer.state_change import UpdateServicesAddressesStateChange
+    from raiden_common.transfer.state_change import UpdateServicesAddressesStateChange
 
 # pylint: disable=too-many-arguments,too-few-public-methods
 

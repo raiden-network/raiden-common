@@ -1,8 +1,15 @@
-from raiden.transfer.architecture import Event
-from raiden.transfer.channel import get_status
-from raiden.transfer.events import ContractSendSecretReveal
-from raiden.transfer.state import CHANNEL_STATES_UP_TO_CLOSED, NettingChannelState
-from raiden.utils.typing import BlockExpiration, BlockHash, List, Secret, T_Secret, typecheck
+from raiden_common.transfer.architecture import Event
+from raiden_common.transfer.channel import get_status
+from raiden_common.transfer.events import ContractSendSecretReveal
+from raiden_common.transfer.state import CHANNEL_STATES_UP_TO_CLOSED, NettingChannelState
+from raiden_common.utils.typing import (
+    BlockExpiration,
+    BlockHash,
+    List,
+    Secret,
+    T_Secret,
+    typecheck,
+)
 
 
 def events_for_onchain_secretreveal(

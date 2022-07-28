@@ -22,8 +22,8 @@ from typing_extensions import Protocol
 from web3 import HTTPProvider, Web3
 from web3.contract import Contract
 
-from raiden.accounts import AccountManager
-from raiden.constants import (
+from raiden_common.accounts import AccountManager
+from raiden_common.constants import (
     BLOCK_ID_LATEST,
     EMPTY_ADDRESS,
     GENESIS_BLOCK_NUMBER,
@@ -32,12 +32,12 @@ from raiden.constants import (
     Environment,
     EthClient,
 )
-from raiden.network.proxies.proxy_manager import ProxyManager, ProxyManagerMetadata
-from raiden.network.proxies.user_deposit import UserDeposit
-from raiden.network.rpc.client import JSONRPCClient, make_sane_poa_middleware
-from raiden.settings import DEFAULT_NUMBER_OF_BLOCK_CONFIRMATIONS, RAIDEN_CONTRACT_VERSION
-from raiden.tests.fixtures.constants import DEFAULT_BALANCE, DEFAULT_PASSPHRASE
-from raiden.tests.utils.eth_node import (
+from raiden_common.network.proxies.proxy_manager import ProxyManager, ProxyManagerMetadata
+from raiden_common.network.proxies.user_deposit import UserDeposit
+from raiden_common.network.rpc.client import JSONRPCClient, make_sane_poa_middleware
+from raiden_common.settings import DEFAULT_NUMBER_OF_BLOCK_CONFIRMATIONS, RAIDEN_CONTRACT_VERSION
+from raiden_common.tests.fixtures.constants import DEFAULT_BALANCE, DEFAULT_PASSPHRASE
+from raiden_common.tests.utils.eth_node import (
     AccountDescription,
     EthNodeDescription,
     GenesisDescription,
@@ -46,15 +46,15 @@ from raiden.tests.utils.eth_node import (
     parity_keystore,
     run_private_blockchain,
 )
-from raiden.tests.utils.smartcontracts import deploy_token, is_tx_hash_bytes
-from raiden.tests.utils.transport import make_requests_insecure
-from raiden.transfer import channel, views
-from raiden.transfer.state import ChannelState
-from raiden.ui.app import run_raiden_service
-from raiden.utils.formatting import to_checksum_address
-from raiden.utils.http import HTTPExecutor, split_endpoint
-from raiden.utils.keys import privatekey_to_address
-from raiden.utils.typing import (
+from raiden_common.tests.utils.smartcontracts import deploy_token, is_tx_hash_bytes
+from raiden_common.tests.utils.transport import make_requests_insecure
+from raiden_common.transfer import channel, views
+from raiden_common.transfer.state import ChannelState
+from raiden_common.ui.app import run_raiden_service
+from raiden_common.utils.formatting import to_checksum_address
+from raiden_common.utils.http import HTTPExecutor, split_endpoint
+from raiden_common.utils.keys import privatekey_to_address
+from raiden_common.utils.typing import (
     TYPE_CHECKING,
     Address,
     AddressHex,
@@ -79,7 +79,7 @@ from raiden.utils.typing import (
     Tuple,
     UserDepositAddress,
 )
-from raiden.waiting import wait_for_block
+from raiden_common.waiting import wait_for_block
 from raiden_contracts.constants import (
     CHAINNAME_TO_ID,
     CONTRACT_CUSTOM_TOKEN,
@@ -98,7 +98,7 @@ from raiden_contracts.deploy.contract_deployer import ContractDeployer
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import
-    from raiden.tests.utils.transport import ParsedURL  # noqa: F401
+    from raiden_common.tests.utils.transport import ParsedURL  # noqa: F401
 
 # the smoketest will assert that a different endpoint got successfully registered
 TEST_DEPOSIT_AMOUNT = TokenAmount(5)
@@ -314,7 +314,7 @@ def setup_matrix_for_smoketest(
     print_step: StepPrinter,
     free_port_generator: Iterable[Port],
 ) -> Iterator[List[Tuple["ParsedURL", HTTPExecutor]]]:
-    from raiden.tests.utils.transport import matrix_server_starter
+    from raiden_common.tests.utils.transport import matrix_server_starter
 
     print_step("Starting Matrix transport")
 

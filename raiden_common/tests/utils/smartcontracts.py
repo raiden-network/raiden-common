@@ -4,12 +4,12 @@ from solcx import compile_files
 from web3.contract import Contract
 from web3.types import TxReceipt
 
-from raiden.constants import BLOCK_ID_LATEST
-from raiden.network.pathfinding import get_random_pfs
-from raiden.network.proxies.custom_token import CustomToken
-from raiden.network.proxies.service_registry import ServiceRegistry
-from raiden.network.rpc.client import JSONRPCClient
-from raiden.utils.typing import Any, Dict, List, T_TransactionHash, TokenAmount, Tuple
+from raiden_common.constants import BLOCK_ID_LATEST
+from raiden_common.network.pathfinding import get_random_pfs
+from raiden_common.network.proxies.custom_token import CustomToken
+from raiden_common.network.proxies.service_registry import ServiceRegistry
+from raiden_common.network.rpc.client import JSONRPCClient
+from raiden_common.utils.typing import Any, Dict, List, T_TransactionHash, TokenAmount, Tuple
 from raiden_contracts.contract_manager import ContractManager
 
 

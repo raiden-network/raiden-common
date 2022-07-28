@@ -11,13 +11,13 @@ import ulid
 from eth_utils import to_normalized_address
 from ulid import MAX_ULID, MIN_ULID, ULID
 
-from raiden.constants import RAIDEN_DB_VERSION, SQLITE_MIN_REQUIRED_VERSION
-from raiden.exceptions import InvalidDBData, InvalidNumberInput
-from raiden.storage.serialization import SerializationBase
-from raiden.storage.utils import DB_SCRIPT_CREATE_TABLES, TimestampedEvent
-from raiden.transfer.architecture import Event, State, StateChange
-from raiden.utils.system import get_system_spec
-from raiden.utils.typing import (
+from raiden_common.constants import RAIDEN_DB_VERSION, SQLITE_MIN_REQUIRED_VERSION
+from raiden_common.exceptions import InvalidDBData, InvalidNumberInput
+from raiden_common.storage.serialization import SerializationBase
+from raiden_common.storage.utils import DB_SCRIPT_CREATE_TABLES, TimestampedEvent
+from raiden_common.transfer.architecture import Event, State, StateChange
+from raiden_common.utils.system import get_system_spec
+from raiden_common.utils.typing import (
     Address,
     Any,
     DatabasePath,

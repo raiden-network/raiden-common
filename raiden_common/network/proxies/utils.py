@@ -1,6 +1,6 @@
-from raiden.exceptions import RaidenUnrecoverableError
-from raiden.utils.formatting import format_block_id
-from raiden.utils.typing import BlockIdentifier, NoReturn
+from raiden_common.exceptions import RaidenUnrecoverableError
+from raiden_common.utils.formatting import format_block_id
+from raiden_common.utils.typing import BlockIdentifier, NoReturn
 
 
 def raise_on_call_returned_empty(given_block_identifier: BlockIdentifier) -> NoReturn:

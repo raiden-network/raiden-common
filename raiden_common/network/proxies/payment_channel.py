@@ -1,7 +1,10 @@
-from raiden.blockchain.filters import decode_event, get_filter_args_for_specific_event_from_channel
-from raiden.network.proxies.token_network import ChannelDetails, TokenNetwork, WithdrawInput
-from raiden.transfer.state import NettingChannelState
-from raiden.utils.typing import (
+from raiden_common.blockchain.filters import (
+    decode_event,
+    get_filter_args_for_specific_event_from_channel,
+)
+from raiden_common.network.proxies.token_network import ChannelDetails, TokenNetwork, WithdrawInput
+from raiden_common.transfer.state import NettingChannelState
+from raiden_common.utils.typing import (
     AdditionalHash,
     BalanceHash,
     BlockExpiration,

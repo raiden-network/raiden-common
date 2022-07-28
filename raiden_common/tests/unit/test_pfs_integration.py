@@ -9,11 +9,11 @@ import pytest
 import requests
 from eth_utils import encode_hex, is_checksum_address, is_hex, is_hex_address
 
-from raiden.api.v1.encoding import CapabilitiesSchema
-from raiden.constants import RoutingMode
-from raiden.exceptions import ServiceRequestFailed, ServiceRequestIOURejected
-from raiden.network import pathfinding
-from raiden.network.pathfinding import (
+from raiden_common.api.v1.encoding import CapabilitiesSchema
+from raiden_common.constants import RoutingMode
+from raiden_common.exceptions import ServiceRequestFailed, ServiceRequestIOURejected
+from raiden_common.network import pathfinding
+from raiden_common.network.pathfinding import (
     IOU,
     MAX_PATHS_QUERY_ATTEMPTS,
     PFSConfig,
@@ -26,23 +26,23 @@ from raiden.network.pathfinding import (
     session,
     update_iou,
 )
-from raiden.network.transport.matrix.utils import make_user_id
-from raiden.routing import get_best_routes, make_route_state
-from raiden.settings import CapabilitiesConfig
-from raiden.tests.utils import factories
-from raiden.tests.utils.mocks import mocked_failed_response, mocked_json_response
-from raiden.transfer.state import (
+from raiden_common.network.transport.matrix.utils import make_user_id
+from raiden_common.routing import get_best_routes, make_route_state
+from raiden_common.settings import CapabilitiesConfig
+from raiden_common.tests.utils import factories
+from raiden_common.tests.utils.mocks import mocked_failed_response, mocked_json_response
+from raiden_common.transfer.state import (
     ChannelState,
     NettingChannelState,
     NetworkState,
     TokenNetworkState,
 )
-from raiden.utils import typing
-from raiden.utils.capabilities import capconfig_to_dict
-from raiden.utils.formatting import to_checksum_address
-from raiden.utils.keys import privatekey_to_address
-from raiden.utils.signer import Signer
-from raiden.utils.typing import (
+from raiden_common.utils import typing
+from raiden_common.utils.capabilities import capconfig_to_dict
+from raiden_common.utils.formatting import to_checksum_address
+from raiden_common.utils.keys import privatekey_to_address
+from raiden_common.utils.signer import Signer
+from raiden_common.utils.typing import (
     Address,
     AddressMetadata,
     Any,
@@ -682,7 +682,7 @@ def assert_failed_pfs_request(
     ]
 
     pfs_proxy = PFSProxy(PFS_CONFIG)
-    with patch("raiden.network.pathfinding.get_pfs_info") as mocked_pfs_info:
+    with patch("raiden_common.network.pathfinding.get_pfs_info") as mocked_pfs_info:
         mocked_pfs_info.return_value = PFS_CONFIG.info
         with patch.object(session, "get", return_value=mocked_json_response()) as get_iou:
             with patch.object(session, "post", side_effect=path_mocks) as post_paths:
@@ -703,7 +703,7 @@ def test_routing_in_direct_channel(happy_path_fixture, our_signer, one_to_n_addr
     pfs_proxy = PFSProxy(PFS_CONFIG)
     # with the transfer of 50 the direct channel should be returned,
     # so there must be not a route request to the pfs
-    with patch("raiden.routing.get_best_routes_pfs") as pfs_route_request, patch.object(
+    with patch("raiden_common.routing.get_best_routes_pfs") as pfs_route_request, patch.object(
         pfs_proxy, "query_address_metadata"
     ) as pfs_user_request:
         pfs_route_request.return_value = None, [], "feedback_token"
@@ -726,7 +726,7 @@ def test_routing_in_direct_channel(happy_path_fixture, our_signer, one_to_n_addr
 
     # with the transfer of 51 the direct channel should not be returned,
     # so there must be a pfs call
-    with patch("raiden.routing.get_best_routes_pfs") as pfs_request:
+    with patch("raiden_common.routing.get_best_routes_pfs") as pfs_request:
         pfs_request.return_value = None, [], "feedback_token"
         get_best_routes(
             chain_state=chain_state,
@@ -836,7 +836,7 @@ def test_insufficient_payment(query_paths_args, valid_response_json):
     # PFS has increased fees
     increased_fee = PFS_CONFIG.info.price + 1
     new_pfs_info = replace(PFS_CONFIG.info, price=increased_fee)
-    with patch("raiden.network.pathfinding.get_pfs_info", Mock(return_value=new_pfs_info)):
+    with patch("raiden_common.network.pathfinding.get_pfs_info", Mock(return_value=new_pfs_info)):
         assert_failed_pfs_request(
             query_paths_args,
             [insufficient_response, valid_response_json],
@@ -849,7 +849,7 @@ def test_insufficient_payment(query_paths_args, valid_response_json):
     # PFS demands higher fees than allowed by client
     too_high_fee = PFS_CONFIG.maximum_fee + 1
     new_pfs_info = replace(PFS_CONFIG.info, price=too_high_fee)
-    with patch("raiden.network.pathfinding.get_pfs_info", Mock(return_value=new_pfs_info)):
+    with patch("raiden_common.network.pathfinding.get_pfs_info", Mock(return_value=new_pfs_info)):
         assert_failed_pfs_request(
             query_paths_args,
             [insufficient_response],
@@ -949,7 +949,7 @@ def test_no_iou_when_pfs_price_0(query_paths_args):
         max_paths=5,
     )
     pfs_proxy = PFSProxy(pfs_config)
-    with patch("raiden.network.pathfinding.get_pfs_info") as mocked_pfs_info:
+    with patch("raiden_common.network.pathfinding.get_pfs_info") as mocked_pfs_info:
         mocked_pfs_info.return_value = PFS_CONFIG.info
 
         with patch.object(
@@ -989,7 +989,7 @@ def test_two_parallel_queries(query_paths_args):
 
     pfs_proxy = PFSProxy(PFS_CONFIG)
     # Now we start two function calls - query_path - in parallel
-    with patch("raiden.network.pathfinding.get_pfs_info") as mocked_pfs_info:
+    with patch("raiden_common.network.pathfinding.get_pfs_info") as mocked_pfs_info:
         mocked_pfs_info.return_value = PFS_CONFIG.info
 
         with patch.object(pathfinding, "create_current_iou"):
@@ -1006,7 +1006,7 @@ def test_two_parallel_queries(query_paths_args):
                 duration = time.monotonic() - before
 
                 # We expect the calls to happen sequentially, so one greenlet must wait for
-                # the other. If semaphore in raiden.network.pathfinding is bound to 2,
+                # the other. If semaphore in raiden_common.network.pathfinding is bound to 2,
                 # the test fails
                 assert duration >= 0.4
 
@@ -1020,8 +1020,8 @@ def test_make_route_state_address_to_metadata_serialization_regression():
         path=addresses, address_metadata={address: {} for address in addresses}, estimated_fee=None
     )
     with patch(
-        "raiden.transfer.views.get_channelstate_by_token_network_and_partner"
-    ) as mocked_get_channelstate, patch("raiden.transfer.channel.get_status") as get_status:
+        "raiden_common.transfer.views.get_channelstate_by_token_network_and_partner"
+    ) as mocked_get_channelstate, patch("raiden_common.transfer.channel.get_status") as get_status:
         get_status.return_value = ChannelState.STATE_OPENED
         mocked_get_channelstate.return_value = 1
         route_state = make_route_state(

@@ -23,18 +23,18 @@ from dataclasses import dataclass
 import structlog
 from eth_utils import to_hex
 
-from raiden.blockchain.events import DecodedEvent
-from raiden.exceptions import RaidenUnrecoverableError
-from raiden.storage.restore import (
+from raiden_common.blockchain.events import DecodedEvent
+from raiden_common.exceptions import RaidenUnrecoverableError
+from raiden_common.storage.restore import (
     get_event_with_balance_proof_by_locksroot,
     get_state_change_with_balance_proof_by_locksroot,
 )
-from raiden.storage.sqlite import SerializedSQLiteStorage
-from raiden.transfer import views
-from raiden.transfer.identifiers import CanonicalIdentifier
-from raiden.transfer.state import ChainState, NettingChannelState
-from raiden.utils.formatting import to_checksum_address
-from raiden.utils.typing import (
+from raiden_common.storage.sqlite import SerializedSQLiteStorage
+from raiden_common.transfer import views
+from raiden_common.transfer.identifiers import CanonicalIdentifier
+from raiden_common.transfer.state import ChainState, NettingChannelState
+from raiden_common.utils.formatting import to_checksum_address
+from raiden_common.utils.typing import (
     Address,
     ChainID,
     Locksroot,

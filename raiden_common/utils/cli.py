@@ -21,10 +21,10 @@ from toml import TomlDecodeError, load
 from web3.gas_strategies.rpc import rpc_gas_price_strategy
 from web3.gas_strategies.time_based import fast_gas_price_strategy
 
-from raiden.constants import ServerListType
-from raiden.exceptions import ConfigurationError, InvalidChecksummedAddress
-from raiden.network.rpc.middleware import faster_gas_price_strategy
-from raiden.utils.formatting import address_checksum_and_decode
+from raiden_common.constants import ServerListType
+from raiden_common.exceptions import ConfigurationError, InvalidChecksummedAddress
+from raiden_common.network.rpc.middleware import faster_gas_price_strategy
+from raiden_common.utils.formatting import address_checksum_and_decode
 from raiden_contracts.constants import CHAINNAME_TO_ID
 
 log = structlog.get_logger(__name__)

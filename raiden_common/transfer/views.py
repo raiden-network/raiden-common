@@ -1,10 +1,10 @@
 import opentracing
 
-from raiden.transfer import channel
-from raiden.transfer.architecture import ContractSendEvent, TransferTask
-from raiden.transfer.identifiers import CanonicalIdentifier
-from raiden.transfer.mediated_transfer.tasks import InitiatorTask, TransferRole
-from raiden.transfer.state import (
+from raiden_common.transfer import channel
+from raiden_common.transfer.architecture import ContractSendEvent, TransferTask
+from raiden_common.transfer.identifiers import CanonicalIdentifier
+from raiden_common.transfer.mediated_transfer.tasks import InitiatorTask, TransferRole
+from raiden_common.transfer.state import (
     ChainState,
     ChannelState,
     NettingChannelState,
@@ -13,7 +13,7 @@ from raiden.transfer.state import (
     TokenNetworkRegistryState,
     TokenNetworkState,
 )
-from raiden.utils.typing import (
+from raiden_common.utils.typing import (
     MYPY_ANNOTATION,
     TYPE_CHECKING,
     Address,
@@ -33,7 +33,7 @@ from raiden.utils.typing import (
 )
 
 if TYPE_CHECKING:
-    from raiden.raiden_service import RaidenService  # pylint: disable=unused-import
+    from raiden_common.raiden_service import RaidenService  # pylint: disable=unused-import
 
 # TODO: Either enforce immutability or make a copy of the values returned by
 #     the view functions

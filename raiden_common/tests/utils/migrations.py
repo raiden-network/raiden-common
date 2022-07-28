@@ -1,7 +1,7 @@
 from hexbytes import HexBytes
 
-from raiden.tests.utils.factories import make_block_hash
-from raiden.utils.typing import Any, Dict, Tuple
+from raiden_common.tests.utils.factories import make_block_hash
+from raiden_common.utils.typing import Any, Dict, Tuple
 
 
 class FakeEth:

@@ -6,10 +6,15 @@ from typing import TYPE_CHECKING
 
 from eth_utils import encode_hex, keccak, to_hex
 
-from raiden.constants import LOCKSROOT_OF_NO_LOCKS, MAXIMUM_PENDING_TRANSFERS, UINT256_MAX
-from raiden.settings import DEFAULT_NUMBER_OF_BLOCK_CONFIRMATIONS, MediationFeeConfig
-from raiden.transfer.architecture import Event, StateChange, SuccessOrError, TransitionResult
-from raiden.transfer.events import (
+from raiden_common.constants import LOCKSROOT_OF_NO_LOCKS, MAXIMUM_PENDING_TRANSFERS, UINT256_MAX
+from raiden_common.settings import DEFAULT_NUMBER_OF_BLOCK_CONFIRMATIONS, MediationFeeConfig
+from raiden_common.transfer.architecture import (
+    Event,
+    StateChange,
+    SuccessOrError,
+    TransitionResult,
+)
+from raiden_common.transfer.events import (
     ContractSendChannelBatchUnlock,
     ContractSendChannelClose,
     ContractSendChannelCoopSettle,
@@ -31,25 +36,28 @@ from raiden.transfer.events import (
     SendWithdrawExpired,
     SendWithdrawRequest,
 )
-from raiden.transfer.identifiers import CANONICAL_IDENTIFIER_UNORDERED_QUEUE, CanonicalIdentifier
-from raiden.transfer.mediated_transfer.events import (
+from raiden_common.transfer.identifiers import (
+    CANONICAL_IDENTIFIER_UNORDERED_QUEUE,
+    CanonicalIdentifier,
+)
+from raiden_common.transfer.mediated_transfer.events import (
     SendLockedTransfer,
     SendLockExpired,
     SendUnlock,
 )
-from raiden.transfer.mediated_transfer.mediation_fee import (
+from raiden_common.transfer.mediated_transfer.mediation_fee import (
     FeeScheduleState,
     calculate_imbalance_fees,
 )
-from raiden.transfer.mediated_transfer.state import (
+from raiden_common.transfer.mediated_transfer.state import (
     LockedTransferSignedState,
     LockedTransferUnsignedState,
 )
-from raiden.transfer.mediated_transfer.state_change import (
+from raiden_common.transfer.mediated_transfer.state_change import (
     ReceiveLockExpired,
     ReceiveTransferRefund,
 )
-from raiden.transfer.state import (
+from raiden_common.transfer.state import (
     CHANNEL_STATES_PRIOR_TO_CLOSED,
     BalanceProofSignedState,
     BalanceProofUnsignedState,
@@ -67,7 +75,7 @@ from raiden.transfer.state import (
     get_address_metadata,
     message_identifier_from_prng,
 )
-from raiden.transfer.state_change import (
+from raiden_common.transfer.state_change import (
     ActionChannelClose,
     ActionChannelCoopSettle,
     ActionChannelSetRevealTimeout,
@@ -84,11 +92,11 @@ from raiden.transfer.state_change import (
     ReceiveWithdrawExpired,
     ReceiveWithdrawRequest,
 )
-from raiden.transfer.utils import hash_balance_data
-from raiden.utils.formatting import to_checksum_address
-from raiden.utils.packing import pack_balance_proof, pack_withdraw
-from raiden.utils.signer import recover
-from raiden.utils.typing import (
+from raiden_common.transfer.utils import hash_balance_data
+from raiden_common.utils.formatting import to_checksum_address
+from raiden_common.utils.packing import pack_balance_proof, pack_withdraw
+from raiden_common.utils.signer import recover
+from raiden_common.utils.typing import (
     MYPY_ANNOTATION,
     Address,
     AddressMetadata,
@@ -128,7 +136,7 @@ from raiden.utils.typing import (
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import
-    from raiden.raiden_service import RaidenService  # noqa: F401
+    from raiden_common.raiden_service import RaidenService  # noqa: F401
 
 # This should be changed to `Union[str, PendingLocksState]`
 PendingLocksStateOrError = Tuple[bool, Optional[str], Optional[PendingLocksState]]

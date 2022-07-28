@@ -1,6 +1,6 @@
-from raiden.transfer.identifiers import CanonicalIdentifier
-from raiden.utils.formatting import to_hex_address
-from raiden.utils.typing import (
+from raiden_common.transfer.identifiers import CanonicalIdentifier
+from raiden_common.utils.formatting import to_hex_address
+from raiden_common.utils.typing import (
     AdditionalHash,
     Address,
     BalanceHash,

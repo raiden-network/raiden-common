@@ -4,26 +4,29 @@ from hashlib import sha256
 import pytest
 from eth_utils import keccak
 
-from raiden.constants import LOCKSROOT_OF_NO_LOCKS
-from raiden.tests.utils import factories
-from raiden.tests.utils.transfer import make_receive_transfer_mediated
-from raiden.transfer import node, token_network, views
-from raiden.transfer.channel import compute_locksroot
-from raiden.transfer.mediated_transfer.state_change import ActionInitMediator, ActionInitTarget
-from raiden.transfer.state import (
+from raiden_common.constants import LOCKSROOT_OF_NO_LOCKS
+from raiden_common.tests.utils import factories
+from raiden_common.tests.utils.transfer import make_receive_transfer_mediated
+from raiden_common.transfer import node, token_network, views
+from raiden_common.transfer.channel import compute_locksroot
+from raiden_common.transfer.mediated_transfer.state_change import (
+    ActionInitMediator,
+    ActionInitTarget,
+)
+from raiden_common.transfer.state import (
     HashTimeLockState,
     PendingLocksState,
     RouteState,
     TokenNetworkState,
 )
-from raiden.transfer.state_change import (
+from raiden_common.transfer.state_change import (
     Block,
     ContractReceiveChannelBatchUnlock,
     ContractReceiveChannelClosed,
     ContractReceiveChannelNew,
     ContractReceiveChannelSettled,
 )
-from raiden.utils.copy import deepcopy
+from raiden_common.utils.copy import deepcopy
 
 
 @pytest.fixture

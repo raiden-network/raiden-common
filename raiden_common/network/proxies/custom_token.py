@@ -2,10 +2,10 @@ from typing import Any, Dict
 
 import structlog
 
-from raiden.network.proxies.exceptions import MintFailed
-from raiden.network.proxies.token import Token
-from raiden.network.rpc.client import was_transaction_successfully_mined
-from raiden.utils.typing import ABI, Address, TokenAmount, TransactionHash
+from raiden_common.network.proxies.exceptions import MintFailed
+from raiden_common.network.proxies.token import Token
+from raiden_common.network.rpc.client import was_transaction_successfully_mined
+from raiden_common.utils.typing import ABI, Address, TokenAmount, TransactionHash
 from raiden_contracts.constants import CONTRACT_CUSTOM_TOKEN
 from raiden_contracts.contract_manager import ContractManager
 

@@ -1,7 +1,7 @@
 import os
 import os.path
 
-from raiden.constants import RAIDEN_DB_VERSION
+from raiden_common.constants import RAIDEN_DB_VERSION
 
 
 def database_from_privatekey(base_dir, app_number):

@@ -9,8 +9,8 @@ from eth_utils import (
     to_canonical_address,
 )
 
-from raiden.exceptions import InvalidChecksummedAddress
-from raiden.utils.typing import (
+from raiden_common.exceptions import InvalidChecksummedAddress
+from raiden_common.utils.typing import (
     Address,
     AddressHex,
     AddressTypes,

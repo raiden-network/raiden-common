@@ -6,24 +6,24 @@ from unittest.mock import Mock, PropertyMock
 
 import click
 
-from raiden.api.objects import Notification
-from raiden.constants import Environment, RoutingMode
-from raiden.exceptions import PFSReturnedError
-from raiden.network.pathfinding import PFSConfig, PFSInfo, PFSProxy
-from raiden.raiden_service import RaidenService
-from raiden.settings import RaidenConfig
-from raiden.storage.serialization import JSONSerializer
-from raiden.storage.sqlite import SerializedSQLiteStorage
-from raiden.storage.wal import WriteAheadLog
-from raiden.tests.utils import factories
-from raiden.tests.utils.factories import UNIT_CHAIN_ID, make_token_network_registry_address
-from raiden.tests.utils.transfer import create_route_state_for_route
-from raiden.transfer import node, views
-from raiden.transfer.state import ChainState, NettingChannelState
-from raiden.transfer.state_change import Block
-from raiden.utils.keys import privatekey_to_address
-from raiden.utils.signer import LocalSigner
-from raiden.utils.typing import (
+from raiden_common.api.objects import Notification
+from raiden_common.constants import Environment, RoutingMode
+from raiden_common.exceptions import PFSReturnedError
+from raiden_common.network.pathfinding import PFSConfig, PFSInfo, PFSProxy
+from raiden_common.raiden_service import RaidenService
+from raiden_common.settings import RaidenConfig
+from raiden_common.storage.serialization import JSONSerializer
+from raiden_common.storage.sqlite import SerializedSQLiteStorage
+from raiden_common.storage.wal import WriteAheadLog
+from raiden_common.tests.utils import factories
+from raiden_common.tests.utils.factories import UNIT_CHAIN_ID, make_token_network_registry_address
+from raiden_common.tests.utils.transfer import create_route_state_for_route
+from raiden_common.transfer import node, views
+from raiden_common.transfer.state import ChainState, NettingChannelState
+from raiden_common.transfer.state_change import Block
+from raiden_common.utils.keys import privatekey_to_address
+from raiden_common.utils.signer import LocalSigner
+from raiden_common.utils.typing import (
     Address,
     AddressMetadata,
     BlockIdentifier,

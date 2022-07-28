@@ -5,9 +5,9 @@ import gevent
 import structlog
 from gevent.timeout import Timeout
 
-from raiden.exceptions import RaidenUnrecoverableError
-from raiden.network.transport.matrix.rtc import aiogevent
-from raiden.utils.typing import Type
+from raiden_common.exceptions import RaidenUnrecoverableError
+from raiden_common.network.transport.matrix.rtc import aiogevent
+from raiden_common.utils.typing import Type
 
 ASYNCIO_LOOP_RUNNING_TIMEOUT = 10
 

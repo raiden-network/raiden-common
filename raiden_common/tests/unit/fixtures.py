@@ -4,10 +4,10 @@ import typing
 import pytest
 import responses
 
-from raiden.tests.utils import factories
-from raiden.tests.utils.factories import UNIT_CHAIN_ID
-from raiden.transfer.state import ChainState, TokenNetworkRegistryState, TokenNetworkState
-from raiden.utils.typing import BlockNumber, TokenAmount
+from raiden_common.tests.utils import factories
+from raiden_common.tests.utils.factories import UNIT_CHAIN_ID
+from raiden_common.transfer.state import ChainState, TokenNetworkRegistryState, TokenNetworkState
+from raiden_common.utils.typing import BlockNumber, TokenAmount
 
 # pylint: disable=redefined-outer-name
 

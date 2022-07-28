@@ -4,7 +4,7 @@ from typing import Any, Callable, Optional, TypeVar
 from astroid import Module
 from astroid.node_classes import NodeNG
 
-RAIDEN_TESTS_MODULE = "raiden.tests"
+RAIDEN_TESTS_MODULE = "raiden_common.tests"
 
 T_NODE = TypeVar("T_NODE", bound=NodeNG)
 
@@ -18,7 +18,7 @@ def find_parent(node: NodeNG, scope_type: T_NODE) -> Optional[T_NODE]:
 
 
 def ignore_tests(func: Callable) -> Callable:
-    """Decorator that ignores nodes below the raiden.tests module."""
+    """Decorator that ignores nodes below the raiden_common.tests module."""
 
     @wraps(func)
     def decorator(self, node: NodeNG) -> Any:

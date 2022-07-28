@@ -4,8 +4,8 @@ import marshmallow
 from flask import Blueprint, Response, abort, jsonify, make_response, request
 from flask_restful import Resource
 
-from raiden.api.rest_utils import if_api_available
-from raiden.api.v1.encoding import (
+from raiden_common.api.rest_utils import if_api_available
+from raiden_common.api.v1.encoding import (
     ChannelPatchSchema,
     ChannelPutSchema,
     ConnectionsConnectSchema,
@@ -14,10 +14,10 @@ from raiden.api.v1.encoding import (
     RaidenEventsRequestSchema,
     UserDepositPostSchema,
 )
-from raiden.utils.typing import TYPE_CHECKING, Address, Any, TargetAddress, TokenAddress
+from raiden_common.utils.typing import TYPE_CHECKING, Address, Any, TargetAddress, TokenAddress
 
 if TYPE_CHECKING:
-    from raiden.api.rest import RestAPI
+    from raiden_common.api.rest import RestAPI
 
 
 def _validate(  # pylint: disable=inconsistent-return-statements

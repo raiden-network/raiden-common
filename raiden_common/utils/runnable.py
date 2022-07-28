@@ -3,7 +3,7 @@ from typing import Any, Sequence
 import structlog
 from gevent import Greenlet, GreenletExit
 
-from raiden.utils.typing import Callable, List
+from raiden_common.utils.typing import Callable, List
 
 log = structlog.get_logger(__name__)
 

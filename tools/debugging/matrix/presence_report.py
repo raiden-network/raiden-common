@@ -14,9 +14,9 @@ import structlog
 from eth_account import Account
 from eth_utils import decode_hex
 
-from raiden.constants import DeviceIDs
-from raiden.network.transport.matrix.rtc.utils import setup_asyncio_event_loop
-from raiden.utils.signer import LocalSigner
+from raiden_common.constants import DeviceIDs
+from raiden_common.network.transport.matrix.rtc.utils import setup_asyncio_event_loop
+from raiden_common.utils.signer import LocalSigner
 
 setup_asyncio_event_loop()
 
@@ -25,8 +25,8 @@ log = structlog.get_logger(__name__)
 if True:
     import sys
 
-    from raiden.network.transport.matrix.client import GMatrixClient
-    from raiden.network.transport.matrix.utils import login
+    from raiden_common.network.transport.matrix.client import GMatrixClient
+    from raiden_common.network.transport.matrix.utils import login
 
 
 def callback(event: Any) -> None:

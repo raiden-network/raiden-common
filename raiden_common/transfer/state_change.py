@@ -1,23 +1,23 @@
 # pylint: disable=too-few-public-methods,too-many-arguments,too-many-instance-attributes
 from dataclasses import dataclass, field
 
-from raiden.constants import EMPTY_SECRETHASH
-from raiden.settings import MediationFeeConfig
-from raiden.transfer.architecture import (
+from raiden_common.constants import EMPTY_SECRETHASH
+from raiden_common.settings import MediationFeeConfig
+from raiden_common.transfer.architecture import (
     AuthenticatedSenderStateChange,
     ContractReceiveStateChange,
     StateChange,
 )
-from raiden.transfer.identifiers import CanonicalIdentifier
-from raiden.transfer.state import (
+from raiden_common.transfer.identifiers import CanonicalIdentifier
+from raiden_common.transfer.state import (
     BalanceProofSignedState,
     NettingChannelState,
     TokenNetworkRegistryState,
     TokenNetworkState,
     TransactionChannelDeposit,
 )
-from raiden.utils.secrethash import sha256_secrethash
-from raiden.utils.typing import (
+from raiden_common.utils.secrethash import sha256_secrethash
+from raiden_common.utils.typing import (
     Address,
     AddressMetadata,
     BlockExpiration,

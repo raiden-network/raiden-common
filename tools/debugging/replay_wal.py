@@ -18,18 +18,18 @@ from typing import NoReturn, TextIO
 import click
 from eth_utils import encode_hex, is_address, to_canonical_address, to_checksum_address
 
-from raiden.storage.serialization import JSONSerializer
-from raiden.storage.sqlite import (
+from raiden_common.storage.serialization import JSONSerializer
+from raiden_common.storage.sqlite import (
     LOW_STATECHANGE_ULID,
     RANGE_ALL_STATE_CHANGES,
     SerializedSQLiteStorage,
 )
-from raiden.storage.wal import WriteAheadLog, dispatch
-from raiden.transfer import channel, node, views
-from raiden.transfer.architecture import Event, StateChange
-from raiden.transfer.state import NetworkState
-from raiden.utils.formatting import pex
-from raiden.utils.typing import (
+from raiden_common.storage.wal import WriteAheadLog, dispatch
+from raiden_common.transfer import channel, node, views
+from raiden_common.transfer.architecture import Event, StateChange
+from raiden_common.transfer.state import NetworkState
+from raiden_common.utils.formatting import pex
+from raiden_common.utils.typing import (
     Address,
     Any,
     Balance,

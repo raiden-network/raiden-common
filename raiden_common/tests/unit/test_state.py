@@ -1,4 +1,4 @@
-from raiden.transfer.state import TransactionChannelDeposit
+from raiden_common.transfer.state import TransactionChannelDeposit
 
 
 def test_transaction_channel_new_balance_ordering():

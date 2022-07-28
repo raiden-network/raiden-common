@@ -1,17 +1,21 @@
 import pytest
 from eth_utils import keccak
 
-from raiden.constants import EMPTY_SIGNATURE, UINT64_MAX, UINT256_MAX
-from raiden.messages.healthcheck import Ping
-from raiden.messages.monitoring_service import RequestMonitoring, SignedBlindedBalanceProof
-from raiden.messages.path_finding_service import PFSCapacityUpdate, PFSFeeUpdate
-from raiden.storage.serialization import DictSerializer
-from raiden.tests.utils import factories
-from raiden.tests.utils.tests import fixture_all_combinations
-from raiden.transfer.mediated_transfer.mediation_fee import FeeScheduleState
-from raiden.utils.packing import pack_balance_proof, pack_reward_proof, pack_signed_balance_proof
-from raiden.utils.signer import LocalSigner, recover
-from raiden.utils.typing import MonitoringServiceAddress, TokenAmount
+from raiden_common.constants import EMPTY_SIGNATURE, UINT64_MAX, UINT256_MAX
+from raiden_common.messages.healthcheck import Ping
+from raiden_common.messages.monitoring_service import RequestMonitoring, SignedBlindedBalanceProof
+from raiden_common.messages.path_finding_service import PFSCapacityUpdate, PFSFeeUpdate
+from raiden_common.storage.serialization import DictSerializer
+from raiden_common.tests.utils import factories
+from raiden_common.tests.utils.tests import fixture_all_combinations
+from raiden_common.transfer.mediated_transfer.mediation_fee import FeeScheduleState
+from raiden_common.utils.packing import (
+    pack_balance_proof,
+    pack_reward_proof,
+    pack_signed_balance_proof,
+)
+from raiden_common.utils.signer import LocalSigner, recover
+from raiden_common.utils.typing import MonitoringServiceAddress, TokenAmount
 from raiden_contracts.constants import MessageTypeId
 
 MSC_ADDRESS = MonitoringServiceAddress(bytes([1] * 20))

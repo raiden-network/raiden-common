@@ -1,8 +1,8 @@
 from fractions import Fraction
 
-from raiden.constants import DAI_TOKEN_ADDRESS, WETH_TOKEN_ADDRESS
-from raiden.settings import DEFAULT_DAI_FLAT_FEE, DEFAULT_WETH_FLAT_FEE, MediationFeeConfig
-from raiden.utils.typing import Dict, FeeAmount, ProportionalFeeAmount, TokenAddress, Tuple
+from raiden_common.constants import DAI_TOKEN_ADDRESS, WETH_TOKEN_ADDRESS
+from raiden_common.settings import DEFAULT_DAI_FLAT_FEE, DEFAULT_WETH_FLAT_FEE, MediationFeeConfig
+from raiden_common.utils.typing import Dict, FeeAmount, ProportionalFeeAmount, TokenAddress, Tuple
 
 
 def ppm_fee_per_channel(per_hop_fee: ProportionalFeeAmount) -> ProportionalFeeAmount:

@@ -1,7 +1,7 @@
 import gevent
 import pytest
 
-from raiden.utils.nursery import Janitor
+from raiden_common.utils.nursery import Janitor
 
 
 class NurseryException(Exception):

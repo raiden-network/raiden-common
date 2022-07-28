@@ -4,8 +4,8 @@ from unittest.mock import patch
 
 import pytest
 
-from raiden.storage.sqlite import RAIDEN_DB_VERSION, SQLiteStorage
-from raiden.utils.upgrades import UpgradeManager, UpgradeRecord
+from raiden_common.storage.sqlite import RAIDEN_DB_VERSION, SQLiteStorage
+from raiden_common.utils.upgrades import UpgradeManager, UpgradeRecord
 
 
 def test_transaction_commit(tmp_path):
@@ -13,7 +13,7 @@ def test_transaction_commit(tmp_path):
     storage = SQLiteStorage(Path(f"{tmp_path}/{filename}"))
 
     with storage.transaction():
-        with patch("raiden.storage.sqlite.RAIDEN_DB_VERSION", new=1000):
+        with patch("raiden_common.storage.sqlite.RAIDEN_DB_VERSION", new=1000):
             storage.update_version()
 
     assert storage.get_version() == 1000
@@ -29,7 +29,7 @@ def test_transaction_rollback(tmp_path):
 
     with pytest.raises(RuntimeError):
         with storage.transaction():
-            with patch("raiden.storage.sqlite.RAIDEN_DB_VERSION", new=1000):
+            with patch("raiden_common.storage.sqlite.RAIDEN_DB_VERSION", new=1000):
                 storage.update_version()
                 raise RuntimeError()
 
@@ -44,7 +44,7 @@ def test_upgrade_manager_transaction_rollback(tmp_path, monkeypatch):
 
     # Create the db to be upgraded
     with monkeypatch.context() as m:
-        m.setattr("raiden.storage.sqlite.RAIDEN_DB_VERSION", 1)
+        m.setattr("raiden_common.storage.sqlite.RAIDEN_DB_VERSION", 1)
         storage = SQLiteStorage(Path(FORMAT.format(1)))
         storage.update_version()
         del storage
@@ -52,9 +52,9 @@ def test_upgrade_manager_transaction_rollback(tmp_path, monkeypatch):
     # This should not fail with 'OperationalError'
     with pytest.raises(RuntimeError):
         with monkeypatch.context() as m:
-            m.setattr("raiden.storage.sqlite.RAIDEN_DB_VERSION", 2)
+            m.setattr("raiden_common.storage.sqlite.RAIDEN_DB_VERSION", 2)
             upgrade_list = [UpgradeRecord(from_version=1, function=failure)]
-            m.setattr("raiden.utils.upgrades.UPGRADES_LIST", upgrade_list)
+            m.setattr("raiden_common.utils.upgrades.UPGRADES_LIST", upgrade_list)
             manager = UpgradeManager(Path(FORMAT.format(2)))
             manager.run()
 
@@ -70,7 +70,7 @@ def test_regression_delete_should_not_commit_the_upgrade_transaction(tmp_path, m
 
     # Create the db to be upgraded
     with monkeypatch.context() as m:
-        m.setattr("raiden.storage.sqlite.RAIDEN_DB_VERSION", 1)
+        m.setattr("raiden_common.storage.sqlite.RAIDEN_DB_VERSION", 1)
         storage = SQLiteStorage(Path(FORMAT.format(1)))
         storage.update_version()
         del storage
@@ -78,9 +78,9 @@ def test_regression_delete_should_not_commit_the_upgrade_transaction(tmp_path, m
     with pytest.raises(ValueError):
         # This should not fail with 'OperationalError'
         with monkeypatch.context() as m:
-            m.setattr("raiden.storage.sqlite.RAIDEN_DB_VERSION", 2)
+            m.setattr("raiden_common.storage.sqlite.RAIDEN_DB_VERSION", 2)
             upgrade_list = [UpgradeRecord(from_version=1, function=failure)]
-            m.setattr("raiden.utils.upgrades.UPGRADES_LIST", upgrade_list)
+            m.setattr("raiden_common.utils.upgrades.UPGRADES_LIST", upgrade_list)
             manager = UpgradeManager(Path(FORMAT.format(2)))
             manager.run()
 

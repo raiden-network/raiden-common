@@ -11,12 +11,21 @@ from aiortc.sdp import candidate_from_sdp, candidate_to_sdp
 from gevent.event import Event as GEvent
 from gevent.lock import Semaphore
 
-from raiden.network.transport.matrix.client import ReceivedRaidenMessage
-from raiden.network.transport.matrix.rtc.aiogevent import wrap_greenlet, yield_future
-from raiden.network.transport.matrix.utils import validate_and_parse_message
-from raiden.utils.formatting import to_checksum_address
-from raiden.utils.runnable import Runnable
-from raiden.utils.typing import Address, Any, Callable, Coroutine, Dict, List, Optional, Union
+from raiden_common.network.transport.matrix.client import ReceivedRaidenMessage
+from raiden_common.network.transport.matrix.rtc.aiogevent import wrap_greenlet, yield_future
+from raiden_common.network.transport.matrix.utils import validate_and_parse_message
+from raiden_common.utils.formatting import to_checksum_address
+from raiden_common.utils.runnable import Runnable
+from raiden_common.utils.typing import (
+    Address,
+    Any,
+    Callable,
+    Coroutine,
+    Dict,
+    List,
+    Optional,
+    Union,
+)
 
 log = structlog.get_logger(__name__)
 

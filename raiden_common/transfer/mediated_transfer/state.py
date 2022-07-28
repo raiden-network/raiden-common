@@ -1,9 +1,9 @@
 # pylint: disable=too-few-public-methods,too-many-arguments,too-many-instance-attributes
 from dataclasses import dataclass, field
 
-from raiden.constants import EMPTY_SECRETHASH, LOCKSROOT_OF_NO_LOCKS
-from raiden.transfer.architecture import State
-from raiden.transfer.state import (
+from raiden_common.constants import EMPTY_SECRETHASH, LOCKSROOT_OF_NO_LOCKS
+from raiden_common.transfer.architecture import State
+from raiden_common.transfer.state import (
     BalanceProofSignedState,
     BalanceProofUnsignedState,
     HashTimeLockState,
@@ -11,8 +11,8 @@ from raiden.transfer.state import (
     RouteState,
     get_address_metadata,
 )
-from raiden.utils.secrethash import sha256_secrethash
-from raiden.utils.typing import (
+from raiden_common.utils.secrethash import sha256_secrethash
+from raiden_common.utils.typing import (
     TYPE_CHECKING,
     Address,
     AddressMetadata,
@@ -38,7 +38,7 @@ from raiden.utils.typing import (
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import
-    from raiden.transfer.mediated_transfer.events import SendSecretReveal  # noqa
+    from raiden_common.transfer.mediated_transfer.events import SendSecretReveal  # noqa
 
 
 @dataclass

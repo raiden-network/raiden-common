@@ -42,14 +42,17 @@ else:
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import
-    from raiden.exceptions import RaidenRecoverableError, RaidenUnrecoverableError  # noqa: F401
-    from raiden.messages.monitoring_service import SignedBlindedBalanceProof  # noqa: F401
-    from raiden.transfer.mediated_transfer.state import (  # noqa: F401
+    from raiden_common.exceptions import (  # noqa: F401
+        RaidenRecoverableError,
+        RaidenUnrecoverableError,
+    )
+    from raiden_common.messages.monitoring_service import SignedBlindedBalanceProof  # noqa: F401
+    from raiden_common.transfer.mediated_transfer.state import (  # noqa: F401
         InitiatorTransferState,
         LockedTransferSignedState,
         LockedTransferUnsignedState,
     )
-    from raiden.transfer.state import (  # noqa: F401
+    from raiden_common.transfer.state import (  # noqa: F401
         HashTimeLockState,
         NettingChannelState,
         NetworkState,

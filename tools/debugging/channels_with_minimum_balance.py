@@ -15,7 +15,7 @@ import gevent
 import requests
 import structlog
 
-from raiden.network.transport.matrix.rtc.utils import setup_asyncio_event_loop
+from raiden_common.network.transport.matrix.rtc.utils import setup_asyncio_event_loop
 
 setup_asyncio_event_loop()
 

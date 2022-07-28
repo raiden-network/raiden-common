@@ -16,14 +16,14 @@ from gevent import Greenlet
 from gevent.event import AsyncResult, Event
 from web3.types import BlockData
 
-from raiden import routing
-from raiden.api.objects import Notification
-from raiden.api.python import RaidenAPI
-from raiden.api.rest import APIServer, RestAPI
-from raiden.blockchain.decode import blockchainevent_to_statechange
-from raiden.blockchain.events import BlockchainEvents, DecodedEvent
-from raiden.blockchain.filters import RaidenContractFilter
-from raiden.constants import (
+from raiden_common import routing
+from raiden_common.api.objects import Notification
+from raiden_common.api.python import RaidenAPI
+from raiden_common.api.rest import APIServer, RestAPI
+from raiden_common.blockchain.decode import blockchainevent_to_statechange
+from raiden_common.blockchain.events import BlockchainEvents, DecodedEvent
+from raiden_common.blockchain.filters import RaidenContractFilter
+from raiden_common.constants import (
     ABSENT_SECRET,
     BLOCK_ID_LATEST,
     GENESIS_BLOCK_NUMBER,
@@ -32,7 +32,7 @@ from raiden.constants import (
     Environment,
     RoutingMode,
 )
-from raiden.exceptions import (
+from raiden_common.exceptions import (
     BrokenPreconditionError,
     InvalidDBData,
     InvalidSecret,
@@ -43,35 +43,35 @@ from raiden.exceptions import (
     RaidenUnrecoverableError,
     SerializationError,
 )
-from raiden.message_handler import MessageHandler
-from raiden.messages.abstract import Message, SignedMessage
-from raiden.messages.encode import message_from_sendevent
-from raiden.network.pathfinding import PFSProxy
-from raiden.network.proxies.proxy_manager import ProxyManager
-from raiden.network.proxies.secret_registry import SecretRegistry
-from raiden.network.proxies.service_registry import ServiceRegistry
-from raiden.network.proxies.token_network_registry import TokenNetworkRegistry
-from raiden.network.proxies.user_deposit import UserDeposit
-from raiden.network.rpc.client import JSONRPCClient
-from raiden.network.transport import populate_services_addresses
-from raiden.network.transport.matrix.transport import MatrixTransport, MessagesQueue
-from raiden.raiden_event_handler import EventHandler
-from raiden.services import send_pfs_update, update_monitoring_service_from_balance_proof
-from raiden.settings import RaidenConfig
-from raiden.storage import sqlite, wal
-from raiden.storage.serialization import DictSerializer, JSONSerializer
-from raiden.storage.sqlite import HIGH_STATECHANGE_ULID, Range
-from raiden.storage.wal import WriteAheadLog
-from raiden.tasks import AlarmTask
-from raiden.transfer import node, views
-from raiden.transfer.architecture import (
+from raiden_common.message_handler import MessageHandler
+from raiden_common.messages.abstract import Message, SignedMessage
+from raiden_common.messages.encode import message_from_sendevent
+from raiden_common.network.pathfinding import PFSProxy
+from raiden_common.network.proxies.proxy_manager import ProxyManager
+from raiden_common.network.proxies.secret_registry import SecretRegistry
+from raiden_common.network.proxies.service_registry import ServiceRegistry
+from raiden_common.network.proxies.token_network_registry import TokenNetworkRegistry
+from raiden_common.network.proxies.user_deposit import UserDeposit
+from raiden_common.network.rpc.client import JSONRPCClient
+from raiden_common.network.transport import populate_services_addresses
+from raiden_common.network.transport.matrix.transport import MatrixTransport, MessagesQueue
+from raiden_common.raiden_event_handler import EventHandler
+from raiden_common.services import send_pfs_update, update_monitoring_service_from_balance_proof
+from raiden_common.settings import RaidenConfig
+from raiden_common.storage import sqlite, wal
+from raiden_common.storage.serialization import DictSerializer, JSONSerializer
+from raiden_common.storage.sqlite import HIGH_STATECHANGE_ULID, Range
+from raiden_common.storage.wal import WriteAheadLog
+from raiden_common.tasks import AlarmTask
+from raiden_common.transfer import node, views
+from raiden_common.transfer.architecture import (
     BalanceProofSignedState,
     ContractSendEvent,
     Event as RaidenEvent,
     StateChange,
 )
-from raiden.transfer.channel import get_capacity
-from raiden.transfer.events import (
+from raiden_common.transfer.channel import get_capacity
+from raiden_common.transfer.events import (
     EventPaymentSentFailed,
     EventPaymentSentSuccess,
     EventWrapper,
@@ -79,27 +79,27 @@ from raiden.transfer.events import (
     SendWithdrawExpired,
     SendWithdrawRequest,
 )
-from raiden.transfer.identifiers import CanonicalIdentifier
-from raiden.transfer.mediated_transfer.events import (
+from raiden_common.transfer.identifiers import CanonicalIdentifier
+from raiden_common.transfer.mediated_transfer.events import (
     EventRouteFailed,
     SendLockedTransfer,
     SendSecretRequest,
     SendUnlock,
 )
-from raiden.transfer.mediated_transfer.mediation_fee import (
+from raiden_common.transfer.mediated_transfer.mediation_fee import (
     FeeScheduleState,
     calculate_imbalance_fees,
 )
-from raiden.transfer.mediated_transfer.state import TransferDescriptionWithSecretState
-from raiden.transfer.mediated_transfer.state_change import (
+from raiden_common.transfer.mediated_transfer.state import TransferDescriptionWithSecretState
+from raiden_common.transfer.mediated_transfer.state_change import (
     ActionInitInitiator,
     ReceiveLockExpired,
     ReceiveTransferCancelRoute,
     ReceiveTransferRefund,
 )
-from raiden.transfer.mediated_transfer.tasks import InitiatorTask
-from raiden.transfer.state import ChainState, RouteState, TokenNetworkRegistryState
-from raiden.transfer.state_change import (
+from raiden_common.transfer.mediated_transfer.tasks import InitiatorTask
+from raiden_common.transfer.state import ChainState, RouteState, TokenNetworkRegistryState
+from raiden_common.transfer.state_change import (
     ActionChannelSetRevealTimeout,
     ActionChannelWithdraw,
     BalanceProofStateChange,
@@ -109,14 +109,14 @@ from raiden.transfer.state_change import (
     ReceiveWithdrawExpired,
     ReceiveWithdrawRequest,
 )
-from raiden.utils.formatting import lpex, to_checksum_address
-from raiden.utils.gevent import spawn_named
-from raiden.utils.logging import redact_secret
-from raiden.utils.runnable import Runnable
-from raiden.utils.secrethash import sha256_secrethash
-from raiden.utils.signer import LocalSigner, Signer
-from raiden.utils.transfers import random_secret
-from raiden.utils.typing import (
+from raiden_common.utils.formatting import lpex, to_checksum_address
+from raiden_common.utils.gevent import spawn_named
+from raiden_common.utils.logging import redact_secret
+from raiden_common.utils.runnable import Runnable
+from raiden_common.utils.secrethash import sha256_secrethash
+from raiden_common.utils.signer import LocalSigner, Signer
+from raiden_common.utils.transfers import random_secret
+from raiden_common.utils.typing import (
     MYPY_ANNOTATION,
     Address,
     AddressMetadata,
@@ -137,7 +137,7 @@ from raiden.utils.typing import (
     WithdrawAmount,
     typecheck,
 )
-from raiden.utils.upgrades import UpgradeManager
+from raiden_common.utils.upgrades import UpgradeManager
 from raiden_contracts.constants import ChannelEvent
 from raiden_contracts.contract_manager import ContractManager
 

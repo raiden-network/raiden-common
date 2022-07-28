@@ -1,12 +1,12 @@
 # pylint: disable=too-many-arguments,too-few-public-methods
 from dataclasses import dataclass, field
 
-from raiden.constants import EMPTY_SECRETHASH
-from raiden.transfer.architecture import Event, SendMessageEvent
-from raiden.transfer.mediated_transfer.state import LockedTransferUnsignedState
-from raiden.transfer.state import BalanceProofUnsignedState
-from raiden.utils.secrethash import sha256_secrethash
-from raiden.utils.typing import (
+from raiden_common.constants import EMPTY_SECRETHASH
+from raiden_common.transfer.architecture import Event, SendMessageEvent
+from raiden_common.transfer.mediated_transfer.state import LockedTransferUnsignedState
+from raiden_common.transfer.state import BalanceProofUnsignedState
+from raiden_common.utils.secrethash import sha256_secrethash
+from raiden_common.utils.typing import (
     Address,
     BlockExpiration,
     List,

@@ -7,19 +7,19 @@ from datetime import datetime
 import pytest
 import ulid
 
-from raiden.constants import RAIDEN_DB_VERSION
-from raiden.exceptions import InvalidDBData
-from raiden.storage.serialization import JSONSerializer
-from raiden.storage.sqlite import (
+from raiden_common.constants import RAIDEN_DB_VERSION
+from raiden_common.exceptions import InvalidDBData
+from raiden_common.storage.serialization import JSONSerializer
+from raiden_common.storage.sqlite import (
     HIGH_STATECHANGE_ULID,
     LOW_STATECHANGE_ULID,
     RANGE_ALL_STATE_CHANGES,
     SerializedSQLiteStorage,
     StateChangeID,
 )
-from raiden.storage.utils import TimestampedEvent
-from raiden.storage.wal import WriteAheadLog, restore_state
-from raiden.tests.utils.factories import (
+from raiden_common.storage.utils import TimestampedEvent
+from raiden_common.storage.wal import WriteAheadLog, restore_state
+from raiden_common.tests.utils.factories import (
     make_address,
     make_block_hash,
     make_canonical_identifier,
@@ -27,10 +27,10 @@ from raiden.tests.utils.factories import (
     make_token_network_registry_address,
     make_transaction_hash,
 )
-from raiden.transfer.architecture import State, StateChange, TransitionResult
-from raiden.transfer.events import EventPaymentSentFailed
-from raiden.transfer.state_change import Block, ContractReceiveChannelBatchUnlock
-from raiden.utils.typing import BlockGasLimit, BlockNumber, Callable, List, TokenAmount
+from raiden_common.transfer.architecture import State, StateChange, TransitionResult
+from raiden_common.transfer.events import EventPaymentSentFailed
+from raiden_common.transfer.state_change import Block, ContractReceiveChannelBatchUnlock
+from raiden_common.utils.typing import BlockGasLimit, BlockNumber, Callable, List, TokenAmount
 
 
 class Empty(State):

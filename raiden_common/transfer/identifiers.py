@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 
-from raiden.constants import EMPTY_ADDRESS, UINT256_MAX
-from raiden.utils.formatting import to_checksum_address
-from raiden.utils.typing import (
+from raiden_common.constants import EMPTY_ADDRESS, UINT256_MAX
+from raiden_common.utils.formatting import to_checksum_address
+from raiden_common.utils.typing import (
     Address,
     ChainID,
     ChannelID,

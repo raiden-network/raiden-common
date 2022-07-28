@@ -2,9 +2,9 @@ from enum import Enum
 
 from eth_utils import keccak, to_canonical_address
 
-from raiden.utils.formatting import to_checksum_address, to_hex_address
-from raiden.utils.secrethash import sha256_secrethash
-from raiden.utils.typing import (
+from raiden_common.utils.formatting import to_checksum_address, to_hex_address
+from raiden_common.utils.secrethash import sha256_secrethash
+from raiden_common.utils.typing import (
     AdditionalHash,
     Address,
     BalanceHash,

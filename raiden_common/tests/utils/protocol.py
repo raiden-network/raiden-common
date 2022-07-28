@@ -4,20 +4,20 @@ from unittest.mock import patch
 import structlog
 from gevent.event import AsyncResult
 
-from raiden.message_handler import MessageHandler
-from raiden.messages.abstract import Message
-from raiden.raiden_event_handler import EventHandler
-from raiden.raiden_service import RaidenService
-from raiden.tests.utils.events import check_nested_attrs
-from raiden.transfer.architecture import Event as RaidenEvent
-from raiden.transfer.mediated_transfer.events import (
+from raiden_common.message_handler import MessageHandler
+from raiden_common.messages.abstract import Message
+from raiden_common.raiden_event_handler import EventHandler
+from raiden_common.raiden_service import RaidenService
+from raiden_common.tests.utils.events import check_nested_attrs
+from raiden_common.transfer.architecture import Event as RaidenEvent
+from raiden_common.transfer.mediated_transfer.events import (
     SendSecretRequest,
     SendSecretReveal,
     SendUnlock,
 )
-from raiden.transfer.state import ChainState
-from raiden.utils.formatting import to_checksum_address
-from raiden.utils.typing import Callable, Dict, List, NamedTuple, SecretHash, Set
+from raiden_common.transfer.state import ChainState
+from raiden_common.utils.formatting import to_checksum_address
+from raiden_common.utils.typing import Callable, Dict, List, NamedTuple, SecretHash, Set
 
 log = structlog.get_logger(__name__)
 

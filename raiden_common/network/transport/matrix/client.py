@@ -22,13 +22,13 @@ from matrix_client.user import User
 from requests import Response
 from requests.adapters import HTTPAdapter
 
-from raiden.constants import Environment
-from raiden.exceptions import MatrixSyncMaxTimeoutReached, TransportError
-from raiden.messages.abstract import Message
-from raiden.network.transport.matrix.sync_progress import SyncProgress
-from raiden.utils.debugging import IDLE
-from raiden.utils.notifying_queue import NotifyingQueue
-from raiden.utils.typing import Address, AddressHex, AddressMetadata
+from raiden_common.constants import Environment
+from raiden_common.exceptions import MatrixSyncMaxTimeoutReached, TransportError
+from raiden_common.messages.abstract import Message
+from raiden_common.network.transport.matrix.sync_progress import SyncProgress
+from raiden_common.utils.debugging import IDLE
+from raiden_common.utils.notifying_queue import NotifyingQueue
+from raiden_common.utils.typing import Address, AddressHex, AddressMetadata
 
 log = structlog.get_logger(__name__)
 

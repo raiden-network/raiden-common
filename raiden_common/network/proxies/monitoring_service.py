@@ -1,8 +1,11 @@
 import structlog
 from eth_utils import is_binary_address, to_canonical_address
 
-from raiden.network.rpc.client import JSONRPCClient, check_address_has_code_handle_pruned_block
-from raiden.utils.typing import (
+from raiden_common.network.rpc.client import (
+    JSONRPCClient,
+    check_address_has_code_handle_pruned_block,
+)
+from raiden_common.utils.typing import (
     Address,
     BlockIdentifier,
     MonitoringServiceAddress,

@@ -8,8 +8,8 @@ import time
 from dataclasses import dataclass
 from typing import Iterator, List
 
-from raiden.network.transport.matrix.rtc.utils import setup_asyncio_event_loop
-from raiden.utils.nursery import Janitor, Nursery
+from raiden_common.network.transport.matrix.rtc.utils import setup_asyncio_event_loop
+from raiden_common.utils.nursery import Janitor, Nursery
 
 setup_asyncio_event_loop()
 

@@ -7,37 +7,37 @@ from unittest.mock import patch
 import pytest
 from eth_utils import keccak
 
-from raiden.messages.transfers import Lock
-from raiden.storage.restore import (
+from raiden_common.messages.transfers import Lock
+from raiden_common.storage.restore import (
     get_event_with_balance_proof_by_balance_hash,
     get_event_with_balance_proof_by_locksroot,
     get_state_change_with_balance_proof_by_balance_hash,
     get_state_change_with_balance_proof_by_locksroot,
     get_state_change_with_transfer_by_secrethash,
 )
-from raiden.storage.serialization import JSONSerializer
-from raiden.storage.sqlite import (
+from raiden_common.storage.serialization import JSONSerializer
+from raiden_common.storage.sqlite import (
     RANGE_ALL_STATE_CHANGES,
     Range,
     SerializedSQLiteStorage,
     SQLiteStorage,
 )
-from raiden.tests.utils import factories
-from raiden.transfer.mediated_transfer.events import (
+from raiden_common.tests.utils import factories
+from raiden_common.transfer.mediated_transfer.events import (
     SendLockedTransfer,
     SendLockExpired,
     SendUnlock,
 )
-from raiden.transfer.mediated_transfer.state_change import (
+from raiden_common.transfer.mediated_transfer.state_change import (
     ActionInitMediator,
     ActionInitTarget,
     ActionTransferReroute,
     ReceiveLockExpired,
     ReceiveTransferRefund,
 )
-from raiden.transfer.state import BalanceProofUnsignedState, HopState, RouteState
-from raiden.transfer.state_change import Block, ReceiveUnlock
-from raiden.utils.typing import (
+from raiden_common.transfer.state import BalanceProofUnsignedState, HopState, RouteState
+from raiden_common.transfer.state_change import Block, ReceiveUnlock
+from raiden_common.utils.typing import (
     AdditionalHash,
     BlockExpiration,
     BlockGasLimit,
@@ -409,7 +409,7 @@ def test_get_state_change_with_transfer_by_secrethash():
 
 
 def test_log_run():
-    with patch("raiden.storage.sqlite.get_system_spec") as get_speck_mock:
+    with patch("raiden_common.storage.sqlite.get_system_spec") as get_speck_mock:
         get_speck_mock.return_value = dict(raiden="1.2.3")
         serializer = JSONSerializer()
         store = SerializedSQLiteStorage(":memory:", serializer)

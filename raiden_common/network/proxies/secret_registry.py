@@ -6,24 +6,24 @@ from eth_utils import encode_hex, is_binary_address
 from gevent.event import AsyncResult
 from gevent.lock import Semaphore
 
-from raiden.constants import (
+from raiden_common.constants import (
     BLOCK_ID_PENDING,
     GAS_REQUIRED_PER_SECRET_IN_BATCH,
     GAS_REQUIRED_REGISTER_SECRET_BATCH_BASE,
 )
-from raiden.exceptions import (
+from raiden_common.exceptions import (
     NoStateForBlockIdentifier,
     RaidenRecoverableError,
     RaidenUnrecoverableError,
 )
-from raiden.network.rpc.client import (
+from raiden_common.network.rpc.client import (
     JSONRPCClient,
     check_address_has_code_handle_pruned_block,
     was_transaction_successfully_mined,
 )
-from raiden.utils.secrethash import sha256_secrethash
-from raiden.utils.smart_contracts import safe_gas_limit
-from raiden.utils.typing import (
+from raiden_common.utils.secrethash import sha256_secrethash
+from raiden_common.utils.smart_contracts import safe_gas_limit
+from raiden_common.utils.typing import (
     MYPY_ANNOTATION,
     Address,
     BlockIdentifier,

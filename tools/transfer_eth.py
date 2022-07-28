@@ -4,10 +4,10 @@ import json
 import click
 from web3 import HTTPProvider, Web3
 
-from raiden.accounts import Account
-from raiden.network.rpc.client import EthTransfer, JSONRPCClient
-from raiden.settings import DEFAULT_NUMBER_OF_BLOCK_CONFIRMATIONS
-from raiden.utils.formatting import to_canonical_address, to_checksum_address
+from raiden_common.accounts import Account
+from raiden_common.network.rpc.client import EthTransfer, JSONRPCClient
+from raiden_common.settings import DEFAULT_NUMBER_OF_BLOCK_CONFIRMATIONS
+from raiden_common.utils.formatting import to_canonical_address, to_checksum_address
 
 WEI_TO_ETH = 10**18
 

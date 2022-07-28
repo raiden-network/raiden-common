@@ -25,12 +25,12 @@ from gevent.pool import Pool
 from gevent.subprocess import DEVNULL, STDOUT, Popen
 from greenlet import greenlet
 
-from raiden.network.transport.matrix.rtc.utils import setup_asyncio_event_loop
-from raiden.network.utils import get_free_port
-from raiden.transfer.state import NetworkState
-from raiden.utils.formatting import pex
-from raiden.utils.nursery import Janitor, Nursery
-from raiden.utils.typing import Address, Host, Port, TokenAmount
+from raiden_common.network.transport.matrix.rtc.utils import setup_asyncio_event_loop
+from raiden_common.network.utils import get_free_port
+from raiden_common.transfer.state import NetworkState
+from raiden_common.utils.formatting import pex
+from raiden_common.utils.nursery import Janitor, Nursery
+from raiden_common.utils.typing import Address, Host, Port, TokenAmount
 
 setup_asyncio_event_loop()
 

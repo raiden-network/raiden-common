@@ -8,7 +8,7 @@ from typing import Dict, List, Optional, Tuple
 
 import greenlet
 
-from raiden.utils.profiling.stack import get_trace_from_frame, get_trace_info
+from raiden_common.utils.profiling.stack import get_trace_from_frame, get_trace_info
 
 # TODO:
 #  - sys.callstats()

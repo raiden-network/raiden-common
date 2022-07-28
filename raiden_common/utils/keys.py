@@ -1,7 +1,7 @@
 from eth_keys import keys
 
-from raiden.utils.predicates import ishash
-from raiden.utils.typing import Address, PublicKey
+from raiden_common.utils.predicates import ishash
+from raiden_common.utils.typing import Address, PublicKey
 
 
 def privatekey_to_publickey(private_key_bin: bytes) -> PublicKey:

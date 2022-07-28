@@ -1,4 +1,4 @@
-from raiden.utils.notifying_queue import NotifyingQueue
+from raiden_common.utils.notifying_queue import NotifyingQueue
 
 
 def add_element_to_queue(queue, element):

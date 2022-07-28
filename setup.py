@@ -7,7 +7,9 @@ from setuptools import find_packages, setup
 from setuptools.command.egg_info import egg_info
 from setuptools.command.test import test as TestCommand
 
-REQ_REPLACE = {re.compile(r"git\+https://github.com/(\w|-)+/raiden-common.git@.*"): "raiden-common"}
+REQ_REPLACE = {
+    re.compile(r"git\+https://github.com/(\w|-)+/raiden-common.git@.*"): "raiden-common"
+}
 
 
 class PyTest(TestCommand):

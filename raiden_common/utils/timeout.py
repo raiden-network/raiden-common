@@ -1,9 +1,9 @@
 import gevent
 from gevent import Greenlet
 
-from raiden.raiden_service import RaidenService
-from raiden.utils.typing import Any, BlockNumber, Callable, Optional
-from raiden.waiting import wait_for_block
+from raiden_common.raiden_service import RaidenService
+from raiden_common.utils.typing import Any, BlockNumber, Callable, Optional
+from raiden_common.waiting import wait_for_block
 
 
 def _timeout_task(  # pragma: no unittest

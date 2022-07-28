@@ -5,8 +5,8 @@ from unittest.mock import patch
 import requests
 from packaging.version import parse as parse_version
 
-from raiden.tasks import SECURITY_EXPRESSION, _do_check_version
-from raiden.tests.utils.mocks import MockRaidenService
+from raiden_common.tasks import SECURITY_EXPRESSION, _do_check_version
+from raiden_common.tests.utils.mocks import MockRaidenService
 
 raiden_service = MockRaidenService()
 

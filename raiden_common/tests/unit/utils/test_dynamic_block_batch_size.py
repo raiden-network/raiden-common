@@ -1,9 +1,9 @@
 import pytest
 from eth_typing import BlockNumber
 
-from raiden.blockchain.exceptions import BlockBatchSizeTooSmall
-from raiden.blockchain.utils import BlockBatchSizeAdjuster
-from raiden.settings import BlockBatchSizeConfig
+from raiden_common.blockchain.exceptions import BlockBatchSizeTooSmall
+from raiden_common.blockchain.utils import BlockBatchSizeAdjuster
+from raiden_common.settings import BlockBatchSizeConfig
 
 
 def test_dynamic_block_batch_size_adjuster():

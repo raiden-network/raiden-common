@@ -7,10 +7,10 @@ import structlog
 from eth_keyfile import decode_keyfile_json
 from eth_utils import decode_hex, encode_hex, to_canonical_address
 
-from raiden.exceptions import RaidenError
-from raiden.utils.formatting import to_checksum_address
-from raiden.utils.keys import privatekey_to_address, privatekey_to_publickey
-from raiden.utils.typing import Address, AddressHex, PrivateKey, PublicKey
+from raiden_common.exceptions import RaidenError
+from raiden_common.utils.formatting import to_checksum_address
+from raiden_common.utils.keys import privatekey_to_address, privatekey_to_publickey
+from raiden_common.utils.typing import Address, AddressHex, PrivateKey, PublicKey
 
 log = structlog.get_logger(__name__)
 

@@ -7,13 +7,13 @@ from eth_tester import EthereumTester, PyEVMBackend
 from eth_utils import encode_hex
 from web3 import EthereumTesterProvider, Web3
 
-from raiden.constants import TRANSACTION_GAS_LIMIT_UPPER_BOUND
-from raiden.settings import RAIDEN_CONTRACT_VERSION
-from raiden.transfer.identifiers import CanonicalIdentifier
-from raiden.transfer.utils import hash_balance_data
-from raiden.utils.packing import pack_balance_proof
-from raiden.utils.signer import LocalSigner
-from raiden.utils.typing import (
+from raiden_common.constants import TRANSACTION_GAS_LIMIT_UPPER_BOUND
+from raiden_common.settings import RAIDEN_CONTRACT_VERSION
+from raiden_common.transfer.identifiers import CanonicalIdentifier
+from raiden_common.transfer.utils import hash_balance_data
+from raiden_common.utils.packing import pack_balance_proof
+from raiden_common.utils.signer import LocalSigner
+from raiden_common.utils.typing import (
     AdditionalHash,
     ChainID,
     ChannelID,

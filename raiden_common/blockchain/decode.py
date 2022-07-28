@@ -9,8 +9,8 @@ from dataclasses import dataclass
 
 import structlog
 
-from raiden.blockchain.events import DecodedEvent
-from raiden.blockchain.state import (
+from raiden_common.blockchain.events import DecodedEvent
+from raiden_common.blockchain.state import (
     ChannelSettleState,
     NewChannelDetails,
     get_contractreceivechannelbatchunlock_data_from_event,
@@ -19,12 +19,12 @@ from raiden.blockchain.state import (
     get_contractreceivechannelsettled_data_from_event,
     get_contractreceiveupdatetransfer_data_from_event,
 )
-from raiden.constants import EMPTY_LOCKSROOT, LOCKSROOT_OF_NO_LOCKS
-from raiden.settings import MediationFeeConfig, RaidenConfig
-from raiden.storage.sqlite import SerializedSQLiteStorage
-from raiden.transfer.architecture import StateChange
-from raiden.transfer.identifiers import CanonicalIdentifier
-from raiden.transfer.state import (
+from raiden_common.constants import EMPTY_LOCKSROOT, LOCKSROOT_OF_NO_LOCKS
+from raiden_common.settings import MediationFeeConfig, RaidenConfig
+from raiden_common.storage.sqlite import SerializedSQLiteStorage
+from raiden_common.transfer.architecture import StateChange
+from raiden_common.transfer.identifiers import CanonicalIdentifier
+from raiden_common.transfer.state import (
     ChainState,
     FeeScheduleState,
     NettingChannelEndState,
@@ -34,7 +34,7 @@ from raiden.transfer.state import (
     TransactionChannelDeposit,
     TransactionExecutionStatus,
 )
-from raiden.transfer.state_change import (
+from raiden_common.transfer.state_change import (
     ContractReceiveChannelBatchUnlock,
     ContractReceiveChannelClosed,
     ContractReceiveChannelDeposit,
@@ -47,7 +47,7 @@ from raiden.transfer.state_change import (
     ContractReceiveUpdateTransfer,
     UpdateServicesAddressesStateChange,
 )
-from raiden.utils.typing import (
+from raiden_common.utils.typing import (
     Balance,
     BlockTimeout,
     Optional,

@@ -2,12 +2,12 @@ import random
 
 import pytest
 
-from raiden import constants
-from raiden.exceptions import InvalidSignature
-from raiden.messages.healthcheck import Ping
-from raiden.messages.synchronization import Processed
-from raiden.tests.utils import factories
-from raiden.utils.signer import LocalSigner, recover
+from raiden_common import constants
+from raiden_common.exceptions import InvalidSignature
+from raiden_common.messages.healthcheck import Ping
+from raiden_common.messages.synchronization import Processed
+from raiden_common.tests.utils import factories
+from raiden_common.utils.signer import LocalSigner, recover
 
 PRIVKEY, ADDRESS = factories.make_privkey_address()
 signer = LocalSigner(PRIVKEY)

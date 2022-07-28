@@ -3,7 +3,7 @@ from typing import List
 
 import pytest
 
-from raiden.storage.versions import filter_db_names, latest_db_file
+from raiden_common.storage.versions import filter_db_names, latest_db_file
 
 
 def test_latest_db_file():

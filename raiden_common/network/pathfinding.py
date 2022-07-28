@@ -15,29 +15,29 @@ from requests.exceptions import RequestException
 from requests.sessions import Session
 from web3 import Web3
 
-from raiden.constants import (
+from raiden_common.constants import (
     DEFAULT_HTTP_REQUEST_TIMEOUT,
     MATRIX_AUTO_SELECT_SERVER,
     PFS_PATHS_REQUEST_TIMEOUT,
     ZERO_TOKENS,
     RoutingMode,
 )
-from raiden.exceptions import (
+from raiden_common.exceptions import (
     PFSError,
     PFSReturnedError,
     RaidenError,
     ServiceRequestFailed,
     ServiceRequestIOURejected,
 )
-from raiden.messages.metadata import RouteMetadata
-from raiden.network.proxies.service_registry import ServiceRegistry
-from raiden.network.utils import get_response_json
-from raiden.utils.formatting import to_checksum_address
-from raiden.utils.http import TimeoutHTTPAdapter
-from raiden.utils.signer import LocalSigner
-from raiden.utils.system import get_system_spec
-from raiden.utils.transfers import to_rdn
-from raiden.utils.typing import (
+from raiden_common.messages.metadata import RouteMetadata
+from raiden_common.network.proxies.service_registry import ServiceRegistry
+from raiden_common.network.utils import get_response_json
+from raiden_common.utils.formatting import to_checksum_address
+from raiden_common.utils.http import TimeoutHTTPAdapter
+from raiden_common.utils.signer import LocalSigner
+from raiden_common.utils.system import get_system_spec
+from raiden_common.utils.transfers import to_rdn
+from raiden_common.utils.typing import (
     Address,
     AddressMetadata,
     Any,

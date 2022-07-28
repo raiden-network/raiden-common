@@ -1,10 +1,10 @@
 from dataclasses import dataclass
 
-from raiden.constants import EMPTY_SIGNATURE
-from raiden.messages.abstract import SignedMessage, SignedRetrieableMessage
-from raiden.messages.cmdid import CmdId
-from raiden.transfer.architecture import SendMessageEvent
-from raiden.utils.typing import ClassVar, MessageID
+from raiden_common.constants import EMPTY_SIGNATURE
+from raiden_common.messages.abstract import SignedMessage, SignedRetrieableMessage
+from raiden_common.messages.cmdid import CmdId
+from raiden_common.transfer.architecture import SendMessageEvent
+from raiden_common.utils.typing import ClassVar, MessageID
 
 
 @dataclass(repr=False, eq=False)

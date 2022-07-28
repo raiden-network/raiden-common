@@ -1,14 +1,14 @@
 import pytest
 from eth_utils import to_int
 
-from raiden.blockchain.filters import (
+from raiden_common.blockchain.filters import (
     get_filter_args_for_all_events_from_channel,
     get_filter_args_for_specific_event_from_channel,
 )
-from raiden.constants import BLOCK_ID_LATEST
-from raiden.tests.utils import factories
-from raiden.utils.formatting import to_checksum_address
-from raiden.utils.typing import BlockNumber
+from raiden_common.constants import BLOCK_ID_LATEST
+from raiden_common.tests.utils import factories
+from raiden_common.utils.formatting import to_checksum_address
+from raiden_common.utils.typing import BlockNumber
 
 
 @pytest.mark.skip(reason="Broken by arbitrum changes")

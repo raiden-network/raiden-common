@@ -7,13 +7,13 @@ from marshmallow import EXCLUDE, Schema, SchemaOpts, post_dump, pre_load
 from marshmallow_dataclass import class_schema
 from marshmallow_polyfield import PolyField
 
-from raiden.transfer.architecture import (
+from raiden_common.transfer.architecture import (
     BalanceProofSignedState,
     BalanceProofUnsignedState,
     ContractSendEvent,
     TransferTask,
 )
-from raiden.transfer.events import (
+from raiden_common.transfer.events import (
     ContractSendChannelBatchUnlock,
     ContractSendChannelClose,
     ContractSendChannelSettle,
@@ -26,17 +26,17 @@ from raiden.transfer.events import (
     SendWithdrawExpired,
     SendWithdrawRequest,
 )
-from raiden.transfer.identifiers import CanonicalIdentifier, QueueIdentifier
-from raiden.transfer.mediated_transfer.events import (
+from raiden_common.transfer.identifiers import CanonicalIdentifier, QueueIdentifier
+from raiden_common.transfer.mediated_transfer.events import (
     SendLockedTransfer,
     SendLockExpired,
     SendSecretRequest,
     SendSecretReveal,
     SendUnlock,
 )
-from raiden.transfer.mediated_transfer.tasks import InitiatorTask, MediatorTask, TargetTask
-from raiden.utils.formatting import to_hex_address
-from raiden.utils.typing import (
+from raiden_common.transfer.mediated_transfer.tasks import InitiatorTask, MediatorTask, TargetTask
+from raiden_common.utils.formatting import to_hex_address
+from raiden_common.utils.typing import (
     AdditionalHash,
     Address,
     Any,

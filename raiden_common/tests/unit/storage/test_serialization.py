@@ -3,25 +3,25 @@ from pathlib import Path
 import marshmallow
 import pytest
 
-from raiden.storage.serialization import JSONSerializer
-from raiden.storage.serialization.schemas import (
+from raiden_common.storage.serialization import JSONSerializer
+from raiden_common.storage.serialization.schemas import (
     AddressField,
     BytesField,
     IntegerToStringField,
     OptionalIntegerToStringField,
     QueueIdentifierField,
 )
-from raiden.storage.sqlite import RAIDEN_DB_VERSION, SerializedSQLiteStorage
-from raiden.tests.utils import factories
-from raiden.transfer.events import (
+from raiden_common.storage.sqlite import RAIDEN_DB_VERSION, SerializedSQLiteStorage
+from raiden_common.tests.utils import factories
+from raiden_common.transfer.events import (
     ContractSendChannelClose,
     SendWithdrawConfirmation,
     SendWithdrawExpired,
     SendWithdrawRequest,
 )
-from raiden.transfer.identifiers import CanonicalIdentifier, QueueIdentifier
-from raiden.transfer.state_change import Block
-from raiden.utils.typing import (
+from raiden_common.transfer.identifiers import CanonicalIdentifier, QueueIdentifier
+from raiden_common.transfer.state_change import Block
+from raiden_common.utils.typing import (
     BlockExpiration,
     BlockGasLimit,
     BlockNumber,

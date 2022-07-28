@@ -6,7 +6,7 @@ from typing import Dict, List, Optional
 
 from eth_typing import Address
 
-from raiden.utils.typing import AddressMetadata, UserID
+from raiden_common.utils.typing import AddressMetadata, UserID
 
 
 class MetadataValidationError(Flag):
@@ -35,7 +35,7 @@ class MetadataValidation:
         """
 
         # Circular imports
-        from raiden.network.transport.matrix.utils import validate_user_id_signature
+        from raiden_common.network.transport.matrix.utils import validate_user_id_signature
 
         errors: Dict[Address, MetadataValidationError] = {}
 

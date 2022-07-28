@@ -1,4 +1,4 @@
-from raiden.exceptions import RaidenValidationError
+from raiden_common.exceptions import RaidenValidationError
 
 
 class ChannelNotFound(RaidenValidationError):

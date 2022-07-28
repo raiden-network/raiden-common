@@ -1,9 +1,9 @@
 import random
 
-from raiden.transfer import channel
-from raiden.transfer.architecture import Event, StateChange, TransitionResult
-from raiden.transfer.state import TokenNetworkState
-from raiden.transfer.state_change import (
+from raiden_common.transfer import channel
+from raiden_common.transfer.architecture import Event, StateChange, TransitionResult
+from raiden_common.transfer.state import TokenNetworkState
+from raiden_common.transfer.state_change import (
     ActionChannelClose,
     ActionChannelCoopSettle,
     ActionChannelSetRevealTimeout,
@@ -19,7 +19,7 @@ from raiden.transfer.state_change import (
     ReceiveWithdrawExpired,
     ReceiveWithdrawRequest,
 )
-from raiden.utils.typing import MYPY_ANNOTATION, BlockHash, BlockNumber, List, Union
+from raiden_common.utils.typing import MYPY_ANNOTATION, BlockHash, BlockNumber, List, Union
 
 # TODO: The proper solution would be to introduce a marker for state changes
 # that contains channel IDs and other specific channel attributes

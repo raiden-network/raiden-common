@@ -45,7 +45,7 @@ from web3.types import (
     Wei,
 )
 
-from raiden.constants import (
+from raiden_common.constants import (
     BLOCK_ID_LATEST,
     BLOCK_ID_PENDING,
     GENESIS_BLOCK_NUMBER,
@@ -56,7 +56,7 @@ from raiden.constants import (
     WEB3_BLOCK_NOT_FOUND_RETRY_COUNT,
     EthClient,
 )
-from raiden.exceptions import (
+from raiden_common.exceptions import (
     AddressWithoutCode,
     EthereumNonceTooLow,
     EthNodeInterfaceError,
@@ -65,12 +65,12 @@ from raiden.exceptions import (
     RaidenUnrecoverableError,
     ReplacementTransactionUnderpriced,
 )
-from raiden.network.rpc.middleware import block_hash_cache_middleware
-from raiden.utils.ethereum_clients import VersionSupport, is_supported_client
-from raiden.utils.formatting import to_checksum_address
-from raiden.utils.keys import privatekey_to_address
-from raiden.utils.smart_contracts import safe_gas_limit
-from raiden.utils.typing import (
+from raiden_common.network.rpc.middleware import block_hash_cache_middleware
+from raiden_common.utils.ethereum_clients import VersionSupport, is_supported_client
+from raiden_common.utils.formatting import to_checksum_address
+from raiden_common.utils.keys import privatekey_to_address
+from raiden_common.utils.smart_contracts import safe_gas_limit
+from raiden_common.utils.typing import (
     ABI,
     MYPY_ANNOTATION,
     Address,

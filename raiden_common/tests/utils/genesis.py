@@ -2,7 +2,7 @@ from typing import Dict
 
 from eth_utils import encode_hex
 
-from raiden.settings import GAS_LIMIT_HEX
+from raiden_common.settings import GAS_LIMIT_HEX
 
 GENESIS_STUB: Dict = {
     "config": {

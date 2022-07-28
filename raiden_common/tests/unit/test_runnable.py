@@ -3,7 +3,7 @@ from typing import Any
 import gevent
 from gevent.event import AsyncResult
 
-from raiden.utils.runnable import Runnable
+from raiden_common.utils.runnable import Runnable
 
 
 class RunnableTest(Runnable):

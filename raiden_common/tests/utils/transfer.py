@@ -7,49 +7,52 @@ from enum import Enum
 import gevent
 from gevent.timeout import Timeout
 
-from raiden.constants import EMPTY_SIGNATURE
-from raiden.message_handler import MessageHandler
-from raiden.messages.abstract import SignedMessage
-from raiden.messages.decode import balanceproof_from_envelope
-from raiden.messages.metadata import Metadata, RouteMetadata
-from raiden.messages.transfers import Lock, LockedTransfer, LockExpired, Unlock
-from raiden.raiden_service import RaidenService
-from raiden.settings import (
+from raiden_common.constants import EMPTY_SIGNATURE
+from raiden_common.message_handler import MessageHandler
+from raiden_common.messages.abstract import SignedMessage
+from raiden_common.messages.decode import balanceproof_from_envelope
+from raiden_common.messages.metadata import Metadata, RouteMetadata
+from raiden_common.messages.transfers import Lock, LockedTransfer, LockExpired, Unlock
+from raiden_common.raiden_service import RaidenService
+from raiden_common.settings import (
     DEFAULT_MEDIATION_FEE_MARGIN,
     DEFAULT_RETRY_TIMEOUT,
     INTERNAL_ROUTING_DEFAULT_FEE_PERC,
 )
-from raiden.storage.restore import (
+from raiden_common.storage.restore import (
     get_event_with_balance_proof_by_balance_hash,
     get_state_change_with_balance_proof_by_locksroot,
     get_state_change_with_transfer_by_secrethash,
 )
-from raiden.storage.wal import SavedState, WriteAheadLog
-from raiden.tests.utils.events import has_unlock_failure, raiden_state_changes_search_for_item
-from raiden.tests.utils.factories import (
+from raiden_common.storage.wal import SavedState, WriteAheadLog
+from raiden_common.tests.utils.events import (
+    has_unlock_failure,
+    raiden_state_changes_search_for_item,
+)
+from raiden_common.tests.utils.factories import (
     create_route_states_from_routes,
     make_initiator_address,
     make_message_identifier,
     make_secret_with_hash,
     make_target_address,
 )
-from raiden.tests.utils.protocol import HoldRaidenEventHandler, WaitForMessage
-from raiden.transfer import channel, views
-from raiden.transfer.architecture import TransitionResult
-from raiden.transfer.channel import compute_locksroot
-from raiden.transfer.mediated_transfer.events import (
+from raiden_common.tests.utils.protocol import HoldRaidenEventHandler, WaitForMessage
+from raiden_common.transfer import channel, views
+from raiden_common.transfer.architecture import TransitionResult
+from raiden_common.transfer.channel import compute_locksroot
+from raiden_common.transfer.mediated_transfer.events import (
     EventUnlockClaimFailed,
     EventUnlockFailed,
     SendSecretRequest,
 )
-from raiden.transfer.mediated_transfer.state import LockedTransferSignedState
-from raiden.transfer.mediated_transfer.state_change import (
+from raiden_common.transfer.mediated_transfer.state import LockedTransferSignedState
+from raiden_common.transfer.mediated_transfer.state_change import (
     ActionInitMediator,
     ActionInitTarget,
     ReceiveLockExpired,
     ReceiveTransferRefund,
 )
-from raiden.transfer.state import (
+from raiden_common.transfer.state import (
     BalanceProofSignedState,
     BalanceProofUnsignedState,
     ChannelState,
@@ -59,11 +62,11 @@ from raiden.transfer.state import (
     RouteState,
     make_empty_pending_locks_state,
 )
-from raiden.transfer.state_change import ContractReceiveChannelDeposit, ReceiveUnlock
-from raiden.utils.formatting import to_checksum_address
-from raiden.utils.signer import LocalSigner, Signer
-from raiden.utils.timeout import BlockTimeout
-from raiden.utils.typing import (
+from raiden_common.transfer.state_change import ContractReceiveChannelDeposit, ReceiveUnlock
+from raiden_common.utils.formatting import to_checksum_address
+from raiden_common.utils.signer import LocalSigner, Signer
+from raiden_common.utils.timeout import BlockTimeout
+from raiden_common.utils.typing import (
     MYPY_ANNOTATION,
     Address,
     Any,

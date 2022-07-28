@@ -1,6 +1,13 @@
 from dataclasses import dataclass
 
-from raiden.utils.typing import ABI, Address, BlockNumber, GasMeasurements, Optional, TypeVar
+from raiden_common.utils.typing import (
+    ABI,
+    Address,
+    BlockNumber,
+    GasMeasurements,
+    Optional,
+    TypeVar,
+)
 
 T = TypeVar("T")
 

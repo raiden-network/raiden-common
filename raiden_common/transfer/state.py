@@ -8,14 +8,14 @@ from random import Random
 import marshmallow
 from eth_utils import to_hex
 
-from raiden.constants import (
+from raiden_common.constants import (
     EMPTY_SECRETHASH,
     LOCKSROOT_OF_NO_LOCKS,
     NULL_ADDRESS_BYTES,
     UINT64_MAX,
     UINT256_MAX,
 )
-from raiden.transfer.architecture import (
+from raiden_common.transfer.architecture import (
     BalanceProofSignedState,
     BalanceProofUnsignedState,
     ContractSendEvent,
@@ -23,10 +23,10 @@ from raiden.transfer.architecture import (
     State,
     TransferTask,
 )
-from raiden.transfer.identifiers import CanonicalIdentifier, QueueIdentifier
-from raiden.transfer.mediated_transfer.mediation_fee import FeeScheduleState
-from raiden.utils.formatting import lpex, to_checksum_address
-from raiden.utils.typing import (
+from raiden_common.transfer.identifiers import CanonicalIdentifier, QueueIdentifier
+from raiden_common.transfer.mediated_transfer.mediation_fee import FeeScheduleState
+from raiden_common.utils.formatting import lpex, to_checksum_address
+from raiden_common.utils.typing import (
     Address,
     AddressMetadata,
     Any,
@@ -66,7 +66,7 @@ from raiden.utils.typing import (
     WithdrawAmount,
     typecheck,
 )
-from raiden.utils.validation import MetadataValidation
+from raiden_common.utils.validation import MetadataValidation
 
 QueueIdsToQueues = Dict[QueueIdentifier, List[SendMessageEvent]]
 
@@ -189,7 +189,7 @@ class HashTimeLockState(State):
         typecheck(self.expiration, T_BlockNumber)
         typecheck(self.secrethash, T_Secret)
 
-        from raiden.messages.transfers import Lock  # put here to avoid cyclic dependencies
+        from raiden_common.messages.transfers import Lock  # put here to avoid cyclic dependencies
 
         lock = Lock(amount=self.amount, expiration=self.expiration, secrethash=self.secrethash)
         self.encoded = EncodedData(lock.as_bytes)

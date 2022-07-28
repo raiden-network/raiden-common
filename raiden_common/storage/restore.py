@@ -1,7 +1,7 @@
 from eth_utils import to_hex
 
-from raiden.exceptions import RaidenUnrecoverableError
-from raiden.storage.sqlite import (
+from raiden_common.exceptions import RaidenUnrecoverableError
+from raiden_common.storage.sqlite import (
     EventRecord,
     FilteredDBQuery,
     Operator,
@@ -9,12 +9,12 @@ from raiden.storage.sqlite import (
     StateChangeID,
     StateChangeRecord,
 )
-from raiden.storage.wal import restore_state
-from raiden.transfer import node, views
-from raiden.transfer.identifiers import CanonicalIdentifier
-from raiden.transfer.state import ChainState, NettingChannelState
-from raiden.utils.formatting import to_hex_address
-from raiden.utils.typing import (
+from raiden_common.storage.wal import restore_state
+from raiden_common.transfer import node, views
+from raiden_common.transfer.identifiers import CanonicalIdentifier
+from raiden_common.transfer.state import ChainState, NettingChannelState
+from raiden_common.utils.formatting import to_hex_address
+from raiden_common.utils.typing import (
     TYPE_CHECKING,
     Address,
     Any,
@@ -27,7 +27,7 @@ from raiden.utils.typing import (
 )
 
 if TYPE_CHECKING:
-    from raiden.raiden_service import RaidenService
+    from raiden_common.raiden_service import RaidenService
 
 
 def channel_state_until_state_change(

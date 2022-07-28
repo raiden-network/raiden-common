@@ -5,15 +5,15 @@ import responses
 from eth_keys.exceptions import BadSignature, ValidationError
 from eth_utils import decode_hex, keccak, to_canonical_address
 
-from raiden.api.v1.encoding import CapabilitiesSchema
-from raiden.exceptions import InvalidSignature
-from raiden.network.utils import get_average_http_response_time
-from raiden.settings import CapabilitiesConfig
-from raiden.transfer.utils.secret import decrypt_secret, encrypt_secret
-from raiden.utils.capabilities import capconfig_to_dict, capdict_to_config
-from raiden.utils.keys import privatekey_to_publickey
-from raiden.utils.signer import LocalSigner, Signer, recover
-from raiden.utils.typing import UserID
+from raiden_common.api.v1.encoding import CapabilitiesSchema
+from raiden_common.exceptions import InvalidSignature
+from raiden_common.network.utils import get_average_http_response_time
+from raiden_common.settings import CapabilitiesConfig
+from raiden_common.transfer.utils.secret import decrypt_secret, encrypt_secret
+from raiden_common.utils.capabilities import capconfig_to_dict, capdict_to_config
+from raiden_common.utils.keys import privatekey_to_publickey
+from raiden_common.utils.signer import LocalSigner, Signer, recover
+from raiden_common.utils.typing import UserID
 
 
 def test_privatekey_to_publickey():

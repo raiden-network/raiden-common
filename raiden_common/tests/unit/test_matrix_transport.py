@@ -12,13 +12,13 @@ from flask_restful.representations import json
 from matrix_client.errors import MatrixRequestError
 from matrix_client.user import User
 
-import raiden.network.transport.matrix.client
-import raiden.network.transport.matrix.utils
-from raiden.constants import DeviceIDs, ServerListType
-from raiden.exceptions import TransportError
-from raiden.messages.synchronization import Processed
-from raiden.messages.transfers import RevealSecret
-from raiden.network.transport.matrix.utils import (
+import raiden_common.network.transport.matrix.client
+import raiden_common.network.transport.matrix.utils
+from raiden_common.constants import DeviceIDs, ServerListType
+from raiden_common.exceptions import TransportError
+from raiden_common.messages.synchronization import Processed
+from raiden_common.messages.transfers import RevealSecret
+from raiden_common.network.transport.matrix.utils import (
     MessageAckTimingKeeper,
     login,
     make_client,
@@ -27,11 +27,11 @@ from raiden.network.transport.matrix.utils import (
     sort_servers_closest,
     validate_userid_signature,
 )
-from raiden.tests.utils.factories import make_secret, make_signature, make_signer
-from raiden.tests.utils.transport import ignore_messages
-from raiden.utils.cli import get_matrix_servers
-from raiden.utils.signer import recover
-from raiden.utils.typing import MessageID
+from raiden_common.tests.utils.factories import make_secret, make_signature, make_signer
+from raiden_common.tests.utils.transport import ignore_messages
+from raiden_common.utils.cli import get_matrix_servers
+from raiden_common.utils.signer import recover
+from raiden_common.utils.typing import MessageID
 
 
 def test_login_for_the_first_time_must_set_display_name_and_avatar_url():
@@ -196,12 +196,12 @@ def test_make_client(monkeypatch):
     # valid but unreachable servers
     with pytest.raises(TransportError), monkeypatch.context() as m:
         mock_get_http_rtt = Mock(
-            spec=raiden.network.transport.matrix.utils.get_average_http_response_time,
+            spec=raiden_common.network.transport.matrix.utils.get_average_http_response_time,
             side_effect=lambda url, samples=None, method=None, sample_delay=None: None,
         )
 
         m.setattr(
-            raiden.network.transport.matrix.utils,
+            raiden_common.network.transport.matrix.utils,
             "get_average_http_response_time",
             mock_get_http_rtt,
         )
@@ -215,11 +215,11 @@ def test_make_client(monkeypatch):
 
     # successful server contact with single (no-auto) server
     with monkeypatch.context() as m:
-        m.setattr(raiden.network.transport.matrix.client.GMatrixHttpApi, "_send", mock_send)
+        m.setattr(raiden_common.network.transport.matrix.client.GMatrixHttpApi, "_send", mock_send)
 
         url = "https://server1.xyz"
         client = make_client(ignore_messages, [url])
-        assert isinstance(client, raiden.network.transport.matrix.client.GMatrixClient)
+        assert isinstance(client, raiden_common.network.transport.matrix.client.GMatrixClient)
         assert client.api.base_url == url
 
 

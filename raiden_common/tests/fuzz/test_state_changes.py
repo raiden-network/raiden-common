@@ -16,22 +16,25 @@ from hypothesis.stateful import (
 )
 from hypothesis.strategies import binary, builds, composite, integers, random_module, randoms
 
-from raiden.constants import GENESIS_BLOCK_NUMBER, LOCKSROOT_OF_NO_LOCKS, UINT64_MAX
-from raiden.settings import DEFAULT_NUMBER_OF_BLOCK_CONFIRMATIONS, DEFAULT_WAIT_BEFORE_LOCK_REMOVAL
-from raiden.tests.fuzz import utils
-from raiden.tests.utils import factories
-from raiden.tests.utils.factories import make_block_hash
-from raiden.transfer import channel, node
-from raiden.transfer.architecture import StateChange
-from raiden.transfer.channel import compute_locksroot
-from raiden.transfer.events import (
+from raiden_common.constants import GENESIS_BLOCK_NUMBER, LOCKSROOT_OF_NO_LOCKS, UINT64_MAX
+from raiden_common.settings import (
+    DEFAULT_NUMBER_OF_BLOCK_CONFIRMATIONS,
+    DEFAULT_WAIT_BEFORE_LOCK_REMOVAL,
+)
+from raiden_common.tests.fuzz import utils
+from raiden_common.tests.utils import factories
+from raiden_common.tests.utils.factories import make_block_hash
+from raiden_common.transfer import channel, node
+from raiden_common.transfer.architecture import StateChange
+from raiden_common.transfer.channel import compute_locksroot
+from raiden_common.transfer.events import (
     EventInvalidReceivedLockedTransfer,
     EventPaymentReceivedSuccess,
     EventPaymentSentFailed,
     EventPaymentSentSuccess,
     SendProcessed,
 )
-from raiden.transfer.mediated_transfer.events import (
+from raiden_common.transfer.mediated_transfer.events import (
     EventUnlockClaimFailed,
     EventUnlockClaimSuccess,
     EventUnlockSuccess,
@@ -40,14 +43,14 @@ from raiden.transfer.mediated_transfer.events import (
     SendSecretReveal,
     SendUnlock,
 )
-from raiden.transfer.mediated_transfer.state import LockedTransferSignedState
-from raiden.transfer.mediated_transfer.state_change import (
+from raiden_common.transfer.mediated_transfer.state import LockedTransferSignedState
+from raiden_common.transfer.mediated_transfer.state_change import (
     ActionInitInitiator,
     ActionInitMediator,
     ReceiveSecretReveal,
     TransferDescriptionWithSecretState,
 )
-from raiden.transfer.state import (
+from raiden_common.transfer.state import (
     ChainState,
     ChannelState,
     HashTimeLockState,
@@ -56,15 +59,15 @@ from raiden.transfer.state import (
     TokenNetworkState,
     make_empty_pending_locks_state,
 )
-from raiden.transfer.state_change import (
+from raiden_common.transfer.state_change import (
     Block,
     ContractReceiveChannelNew,
     ContractReceiveChannelSettled,
 )
-from raiden.utils.copy import deepcopy
-from raiden.utils.secrethash import sha256_secrethash
-from raiden.utils.transfers import random_secret
-from raiden.utils.typing import (
+from raiden_common.utils.copy import deepcopy
+from raiden_common.utils.secrethash import sha256_secrethash
+from raiden_common.utils.transfers import random_secret
+from raiden_common.utils.typing import (
     Address,
     BlockExpiration,
     BlockGasLimit,

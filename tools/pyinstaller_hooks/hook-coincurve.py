@@ -3,7 +3,7 @@ import sys
 
 from PyInstaller.utils.hooks import get_module_file_attribute
 
-from raiden.utils.typing import List, Tuple
+from raiden_common.utils.typing import List, Tuple
 
 binaries: List[Tuple[str, str]] = []
 

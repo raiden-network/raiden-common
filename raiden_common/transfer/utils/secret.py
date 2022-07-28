@@ -8,11 +8,11 @@ from eth_utils import decode_hex
 from marshmallow import ValidationError
 from marshmallow_dataclass import class_schema
 
-from raiden.exceptions import InvalidSecret, SerializationError
-from raiden.storage.serialization.schemas import BaseSchema
-from raiden.storage.serialization.serializer import SerializationBase
-from raiden.utils.signer import get_public_key
-from raiden.utils.typing import (
+from raiden_common.exceptions import InvalidSecret, SerializationError
+from raiden_common.storage.serialization.schemas import BaseSchema
+from raiden_common.storage.serialization.serializer import SerializationBase
+from raiden_common.utils.signer import get_public_key
+from raiden_common.utils.typing import (
     AddressMetadata,
     EncryptedSecret,
     Optional,

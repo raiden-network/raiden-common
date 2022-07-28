@@ -4,8 +4,8 @@ from typing import TYPE_CHECKING
 
 from eth_hash.auto import keccak
 
-from raiden.constants import EMPTY_HASH, LOCKSROOT_OF_NO_LOCKS
-from raiden.utils.typing import (
+from raiden_common.constants import EMPTY_HASH, LOCKSROOT_OF_NO_LOCKS
+from raiden_common.utils.typing import (
     Any,
     BalanceHash,
     LockedAmount,
@@ -15,11 +15,12 @@ from raiden.utils.typing import (
     Union,
 )
 
-
 if TYPE_CHECKING:
     # pylint: disable=unused-import
-    from raiden.transfer.mediated_transfer.state_change import ReceiveSecretReveal  # noqa: F401
-    from raiden.transfer.state_change import ContractReceiveSecretReveal  # noqa: F401
+    from raiden_common.transfer.mediated_transfer.state_change import (  # noqa: F401
+        ReceiveSecretReveal,
+    )
+    from raiden_common.transfer.state_change import ContractReceiveSecretReveal  # noqa: F401
 
 
 def hash_balance_data(

@@ -1,21 +1,21 @@
 import random
 from typing import Tuple
 
-from raiden.transfer import channel, routes
-from raiden.transfer.architecture import Event, StateChange, TransitionResult
-from raiden.transfer.events import EventPaymentSentFailed
-from raiden.transfer.mediated_transfer import initiator
-from raiden.transfer.mediated_transfer.events import (
+from raiden_common.transfer import channel, routes
+from raiden_common.transfer.architecture import Event, StateChange, TransitionResult
+from raiden_common.transfer.events import EventPaymentSentFailed
+from raiden_common.transfer.mediated_transfer import initiator
+from raiden_common.transfer.mediated_transfer.events import (
     EventRouteFailed,
     EventUnlockClaimFailed,
     EventUnlockFailed,
 )
-from raiden.transfer.mediated_transfer.state import (
+from raiden_common.transfer.mediated_transfer.state import (
     InitiatorPaymentState,
     InitiatorTransferState,
     TransferDescriptionWithSecretState,
 )
-from raiden.transfer.mediated_transfer.state_change import (
+from raiden_common.transfer.mediated_transfer.state_change import (
     ActionInitInitiator,
     ActionTransferReroute,
     ReceiveLockExpired,
@@ -23,9 +23,13 @@ from raiden.transfer.mediated_transfer.state_change import (
     ReceiveSecretReveal,
     ReceiveTransferCancelRoute,
 )
-from raiden.transfer.state import NettingChannelState, RouteState, get_address_metadata
-from raiden.transfer.state_change import ActionCancelPayment, Block, ContractReceiveSecretReveal
-from raiden.utils.typing import (
+from raiden_common.transfer.state import NettingChannelState, RouteState, get_address_metadata
+from raiden_common.transfer.state_change import (
+    ActionCancelPayment,
+    Block,
+    ContractReceiveSecretReveal,
+)
+from raiden_common.utils.typing import (
     MYPY_ANNOTATION,
     Address,
     BlockNumber,

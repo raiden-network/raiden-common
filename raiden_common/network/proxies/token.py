@@ -2,15 +2,15 @@ import structlog
 from eth_utils import encode_hex, is_binary_address
 from gevent.lock import RLock
 
-from raiden.constants import BLOCK_ID_LATEST, GAS_LIMIT_FOR_TOKEN_CONTRACT_CALL
-from raiden.exceptions import RaidenRecoverableError
-from raiden.network.rpc.client import (
+from raiden_common.constants import BLOCK_ID_LATEST, GAS_LIMIT_FOR_TOKEN_CONTRACT_CALL
+from raiden_common.exceptions import RaidenRecoverableError
+from raiden_common.network.rpc.client import (
     JSONRPCClient,
     check_address_has_code_handle_pruned_block,
     check_transaction_failure,
     was_transaction_successfully_mined,
 )
-from raiden.utils.typing import (
+from raiden_common.utils.typing import (
     ABI,
     Address,
     Any,

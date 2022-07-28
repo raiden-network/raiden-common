@@ -3,12 +3,12 @@ from uuid import UUID
 import structlog
 from eth_utils import to_canonical_address
 
-from raiden.exceptions import ServiceRequestFailed
-from raiden.network.pathfinding import PFSProxy
-from raiden.transfer import channel, views
-from raiden.transfer.state import ChainState, ChannelState, RouteState
-from raiden.utils.formatting import to_checksum_address
-from raiden.utils.typing import (
+from raiden_common.exceptions import ServiceRequestFailed
+from raiden_common.network.pathfinding import PFSProxy
+from raiden_common.transfer import channel, views
+from raiden_common.transfer.state import ChainState, ChannelState, RouteState
+from raiden_common.utils.formatting import to_checksum_address
+from raiden_common.utils.typing import (
     Address,
     AddressMetadata,
     Any,

@@ -1,9 +1,9 @@
 import pytest
 
-from raiden.constants import UINT64_MAX, UINT256_MAX
-from raiden.storage.serialization import JSONSerializer
-from raiden.tests.utils import factories
-from raiden.utils.signer import LocalSigner
+from raiden_common.constants import UINT64_MAX, UINT256_MAX
+from raiden_common.storage.serialization import JSONSerializer
+from raiden_common.tests.utils import factories
+from raiden_common.utils.signer import LocalSigner
 
 PRIVKEY, ADDRESS = factories.make_privkey_address()
 signer = LocalSigner(PRIVKEY)

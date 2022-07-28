@@ -7,26 +7,29 @@ from typing import TYPE_CHECKING, List
 import gevent
 import structlog
 
-from raiden.storage.restore import get_state_change_with_transfer_by_secrethash
-from raiden.transfer import channel, views
-from raiden.transfer.events import EventPaymentReceivedSuccess
-from raiden.transfer.identifiers import CanonicalIdentifier
-from raiden.transfer.mediated_transfer.events import EventUnlockClaimFailed
-from raiden.transfer.mediated_transfer.state_change import ActionInitMediator, ActionInitTarget
-from raiden.transfer.state import (
+from raiden_common.storage.restore import get_state_change_with_transfer_by_secrethash
+from raiden_common.transfer import channel, views
+from raiden_common.transfer.events import EventPaymentReceivedSuccess
+from raiden_common.transfer.identifiers import CanonicalIdentifier
+from raiden_common.transfer.mediated_transfer.events import EventUnlockClaimFailed
+from raiden_common.transfer.mediated_transfer.state_change import (
+    ActionInitMediator,
+    ActionInitTarget,
+)
+from raiden_common.transfer.state import (
     CHANNEL_AFTER_CLOSE_STATES,
     ChainState,
     ChannelState,
     NettingChannelEndState,
     NettingChannelState,
 )
-from raiden.transfer.state_change import (
+from raiden_common.transfer.state_change import (
     ContractReceiveChannelSettled,
     ContractReceiveChannelWithdraw,
     ContractReceiveSecretReveal,
 )
-from raiden.utils.formatting import to_checksum_address
-from raiden.utils.typing import (
+from raiden_common.utils.formatting import to_checksum_address
+from raiden_common.utils.typing import (
     Address,
     Any,
     BlockNumber,
@@ -46,7 +49,7 @@ from raiden.utils.typing import (
 )
 
 if TYPE_CHECKING:
-    from raiden.raiden_service import RaidenService  # pylint: disable=unused-import
+    from raiden_common.raiden_service import RaidenService  # pylint: disable=unused-import
 
 log = structlog.get_logger(__name__)
 

@@ -1,5 +1,5 @@
-from raiden.transfer import channel, token_network, views
-from raiden.transfer.architecture import (
+from raiden_common.transfer import channel, token_network, views
+from raiden_common.transfer.architecture import (
     ContractReceiveStateChange,
     ContractSendEvent,
     Event,
@@ -7,7 +7,7 @@ from raiden.transfer.architecture import (
     StateChange,
     TransitionResult,
 )
-from raiden.transfer.events import (
+from raiden_common.transfer.events import (
     ContractSendChannelBatchUnlock,
     ContractSendChannelClose,
     ContractSendChannelSettle,
@@ -17,18 +17,18 @@ from raiden.transfer.events import (
     SendWithdrawRequest,
     UpdateServicesAddresses,
 )
-from raiden.transfer.identifiers import (
+from raiden_common.transfer.identifiers import (
     CANONICAL_IDENTIFIER_UNORDERED_QUEUE,
     CanonicalIdentifier,
     QueueIdentifier,
 )
-from raiden.transfer.mediated_transfer import initiator_manager, mediator, target
-from raiden.transfer.mediated_transfer.state import (
+from raiden_common.transfer.mediated_transfer import initiator_manager, mediator, target
+from raiden_common.transfer.mediated_transfer.state import (
     InitiatorPaymentState,
     MediatorTransferState,
     TargetTransferState,
 )
-from raiden.transfer.mediated_transfer.state_change import (
+from raiden_common.transfer.mediated_transfer.state_change import (
     ActionInitInitiator,
     ActionInitMediator,
     ActionInitTarget,
@@ -39,9 +39,9 @@ from raiden.transfer.mediated_transfer.state_change import (
     ReceiveTransferCancelRoute,
     ReceiveTransferRefund,
 )
-from raiden.transfer.mediated_transfer.tasks import InitiatorTask, MediatorTask, TargetTask
-from raiden.transfer.state import ChainState, TokenNetworkRegistryState, TokenNetworkState
-from raiden.transfer.state_change import (
+from raiden_common.transfer.mediated_transfer.tasks import InitiatorTask, MediatorTask, TargetTask
+from raiden_common.transfer.state import ChainState, TokenNetworkRegistryState, TokenNetworkState
+from raiden_common.transfer.state_change import (
     ActionChannelClose,
     ActionChannelCoopSettle,
     ActionChannelSetRevealTimeout,
@@ -65,8 +65,8 @@ from raiden.transfer.state_change import (
     ReceiveWithdrawRequest,
     UpdateServicesAddressesStateChange,
 )
-from raiden.utils.copy import deepcopy
-from raiden.utils.typing import (
+from raiden_common.utils.copy import deepcopy
+from raiden_common.utils.typing import (
     MYPY_ANNOTATION,
     Any,
     BlockHash,

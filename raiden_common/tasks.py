@@ -11,8 +11,8 @@ from packaging.version import LegacyVersion, Version, parse as parse_version
 from web3 import Web3
 from web3.types import BlockData
 
-from raiden.api.objects import Notification
-from raiden.constants import (
+from raiden_common.api.objects import Notification
+from raiden_common.constants import (
     BLOCK_ID_LATEST,
     CHECK_CHAIN_ID_INTERVAL,
     CHECK_GAS_RESERVE_INTERVAL,
@@ -23,17 +23,17 @@ from raiden.constants import (
     SECURITY_EXPRESSION,
     NotificationIDs,
 )
-from raiden.network.proxies.proxy_manager import ProxyManager
-from raiden.network.proxies.user_deposit import UserDeposit
-from raiden.settings import MIN_REI_THRESHOLD
-from raiden.utils import gas_reserve
-from raiden.utils.formatting import to_checksum_address
-from raiden.utils.runnable import Runnable
-from raiden.utils.transfers import to_rdn
-from raiden.utils.typing import Any, BlockNumber, Callable, ChainID, List, Optional
+from raiden_common.network.proxies.proxy_manager import ProxyManager
+from raiden_common.network.proxies.user_deposit import UserDeposit
+from raiden_common.settings import MIN_REI_THRESHOLD
+from raiden_common.utils import gas_reserve
+from raiden_common.utils.formatting import to_checksum_address
+from raiden_common.utils.runnable import Runnable
+from raiden_common.utils.transfers import to_rdn
+from raiden_common.utils.typing import Any, BlockNumber, Callable, ChainID, List, Optional
 
 if TYPE_CHECKING:
-    from raiden.raiden_service import RaidenService
+    from raiden_common.raiden_service import RaidenService
 
 REMOVE_CALLBACK = object()
 log = structlog.get_logger(__name__)

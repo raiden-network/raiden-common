@@ -1,8 +1,11 @@
 import structlog
 from eth_utils import is_binary_address
 
-from raiden.network.rpc.client import JSONRPCClient, check_address_has_code_handle_pruned_block
-from raiden.utils.typing import Address, BlockIdentifier, OneToNAddress
+from raiden_common.network.rpc.client import (
+    JSONRPCClient,
+    check_address_has_code_handle_pruned_block,
+)
+from raiden_common.utils.typing import Address, BlockIdentifier, OneToNAddress
 from raiden_contracts.constants import CONTRACT_ONE_TO_N
 from raiden_contracts.contract_manager import ContractManager
 

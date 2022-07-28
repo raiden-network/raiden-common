@@ -4,14 +4,14 @@ from typing import Union
 
 from packaging.version import LegacyVersion, Version, parse as parse_version
 
-from raiden.constants import (
+from raiden_common.constants import (
     HIGHEST_SUPPORTED_GETH_VERSION,
     HIGHEST_SUPPORTED_PARITY_VERSION,
     LOWEST_SUPPORTED_GETH_VERSION,
     LOWEST_SUPPORTED_PARITY_VERSION,
     EthClient,
 )
-from raiden.utils.typing import Optional, Tuple
+from raiden_common.utils.typing import Optional, Tuple
 
 
 class VersionSupport(Enum):

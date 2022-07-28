@@ -11,12 +11,12 @@ import click
 from matrix_client.errors import MatrixRequestError
 from structlog import get_logger
 
-from raiden.constants import DeviceIDs, ServerListType
-from raiden.exceptions import TransportError
-from raiden.network.transport.matrix import login, make_client
-from raiden.network.transport.matrix.client import GMatrixClient, MatrixMessage
-from raiden.utils.cli import get_matrix_servers
-from raiden.utils.signer import LocalSigner
+from raiden_common.constants import DeviceIDs, ServerListType
+from raiden_common.exceptions import TransportError
+from raiden_common.network.transport.matrix import login, make_client
+from raiden_common.network.transport.matrix.client import GMatrixClient, MatrixMessage
+from raiden_common.utils.cli import get_matrix_servers
+from raiden_common.utils.signer import LocalSigner
 
 log = get_logger(__name__)
 

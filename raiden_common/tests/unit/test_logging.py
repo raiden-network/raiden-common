@@ -4,8 +4,8 @@ import os
 import pytest
 import structlog
 
-from raiden.exceptions import ConfigurationError
-from raiden.log_config import LogFilter, configure_logging
+from raiden_common.exceptions import ConfigurationError
+from raiden_common.log_config import LogFilter, configure_logging
 
 
 def test_log_filter():

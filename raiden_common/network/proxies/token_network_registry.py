@@ -4,8 +4,8 @@ import structlog
 from eth_utils import to_canonical_address
 from web3.exceptions import BadFunctionCallOutput
 
-from raiden.constants import BLOCK_ID_LATEST, NULL_ADDRESS_BYTES
-from raiden.exceptions import (
+from raiden_common.constants import BLOCK_ID_LATEST, NULL_ADDRESS_BYTES
+from raiden_common.exceptions import (
     AddressWithoutCode,
     BrokenPreconditionError,
     InvalidChannelParticipantDepositLimit,
@@ -16,18 +16,18 @@ from raiden.exceptions import (
     RaidenRecoverableError,
     RaidenUnrecoverableError,
 )
-from raiden.network.proxies.metadata import SmartContractMetadata
-from raiden.network.proxies.token import Token
-from raiden.network.proxies.utils import raise_on_call_returned_empty
-from raiden.network.rpc.client import (
+from raiden_common.network.proxies.metadata import SmartContractMetadata
+from raiden_common.network.proxies.token import Token
+from raiden_common.network.proxies.utils import raise_on_call_returned_empty
+from raiden_common.network.rpc.client import (
     JSONRPCClient,
     check_address_has_code_handle_pruned_block,
     check_transaction_failure,
     was_transaction_successfully_mined,
 )
-from raiden.utils.formatting import format_block_id, to_checksum_address
-from raiden.utils.smart_contracts import safe_gas_limit
-from raiden.utils.typing import (
+from raiden_common.utils.formatting import format_block_id, to_checksum_address
+from raiden_common.utils.smart_contracts import safe_gas_limit
+from raiden_common.utils.typing import (
     TYPE_CHECKING,
     Address,
     BlockIdentifier,
@@ -47,7 +47,7 @@ from raiden_contracts.constants import CONTRACT_SECRET_REGISTRY, CONTRACT_TOKEN_
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import
-    from raiden.network.proxies.proxy_manager import ProxyManager
+    from raiden_common.network.proxies.proxy_manager import ProxyManager
 
 
 log = structlog.get_logger(__name__)

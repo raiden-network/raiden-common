@@ -4,9 +4,9 @@ from pathlib import Path
 from eth_typing import BlockNumber
 from eth_utils import denoms, to_hex
 
-from raiden.constants import MATRIX_AUTO_SELECT_SERVER, Environment
-from raiden.network.pathfinding import PFSConfig
-from raiden.utils.typing import (
+from raiden_common.constants import MATRIX_AUTO_SELECT_SERVER, Environment
+from raiden_common.network.pathfinding import PFSConfig
+from raiden_common.utils.typing import (
     Address,
     BlockTimeout,
     ChainID,

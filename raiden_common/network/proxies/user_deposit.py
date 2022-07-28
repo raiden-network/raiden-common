@@ -7,19 +7,19 @@ from gevent.event import AsyncResult
 from gevent.threading import Lock
 from web3.exceptions import BadFunctionCallOutput
 
-from raiden.constants import BLOCK_ID_LATEST, BLOCK_ID_PENDING, EMPTY_ADDRESS, UINT256_MAX
-from raiden.exceptions import BrokenPreconditionError, RaidenRecoverableError
-from raiden.network.proxies.token import Token
-from raiden.network.proxies.utils import raise_on_call_returned_empty
-from raiden.network.rpc.client import (
+from raiden_common.constants import BLOCK_ID_LATEST, BLOCK_ID_PENDING, EMPTY_ADDRESS, UINT256_MAX
+from raiden_common.exceptions import BrokenPreconditionError, RaidenRecoverableError
+from raiden_common.network.proxies.token import Token
+from raiden_common.network.proxies.utils import raise_on_call_returned_empty
+from raiden_common.network.rpc.client import (
     JSONRPCClient,
     TransactionMined,
     TransactionSent,
     check_address_has_code_handle_pruned_block,
     was_transaction_successfully_mined,
 )
-from raiden.utils.formatting import format_block_id, to_checksum_address
-from raiden.utils.typing import (
+from raiden_common.utils.formatting import format_block_id, to_checksum_address
+from raiden_common.utils.typing import (
     TYPE_CHECKING,
     Address,
     Any,
@@ -46,7 +46,7 @@ from raiden_contracts.contract_manager import ContractManager, gas_measurements
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import
-    from raiden.network.proxies.proxy_manager import ProxyManager
+    from raiden_common.network.proxies.proxy_manager import ProxyManager
 
 
 log = structlog.get_logger(__name__)

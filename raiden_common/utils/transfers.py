@@ -1,8 +1,8 @@
 import os
 import random
 
-from raiden import constants
-from raiden.utils.typing import PaymentID, Secret
+from raiden_common import constants
+from raiden_common.utils.typing import PaymentID, Secret
 
 
 def random_secret() -> Secret:

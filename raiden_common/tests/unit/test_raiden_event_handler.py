@@ -2,11 +2,11 @@ from typing import cast
 from unittest.mock import Mock, call, patch
 from uuid import UUID, uuid4
 
-from raiden.constants import LOCKSROOT_OF_NO_LOCKS, RoutingMode
-from raiden.network.proxies.token_network import ParticipantDetails, ParticipantsDetails
-from raiden.raiden_event_handler import PFSFeedbackEventHandler, RaidenEventHandler
-from raiden.raiden_service import RaidenService
-from raiden.tests.utils.factories import (
+from raiden_common.constants import LOCKSROOT_OF_NO_LOCKS, RoutingMode
+from raiden_common.network.proxies.token_network import ParticipantDetails, ParticipantsDetails
+from raiden_common.raiden_event_handler import PFSFeedbackEventHandler, RaidenEventHandler
+from raiden_common.raiden_service import RaidenService
+from raiden_common.tests.utils.factories import (
     make_address,
     make_block_hash,
     make_canonical_identifier,
@@ -18,13 +18,16 @@ from raiden.tests.utils.factories import (
     make_token_network_address,
     make_token_network_registry_address,
 )
-from raiden.tests.utils.mocks import make_raiden_service_mock
-from raiden.transfer.events import ContractSendChannelBatchUnlock, EventPaymentSentSuccess
-from raiden.transfer.mediated_transfer.events import EventRouteFailed
-from raiden.transfer.state import ChainState
-from raiden.transfer.utils import hash_balance_data
-from raiden.transfer.views import get_channelstate_by_token_network_and_partner, state_from_raiden
-from raiden.utils.typing import (
+from raiden_common.tests.utils.mocks import make_raiden_service_mock
+from raiden_common.transfer.events import ContractSendChannelBatchUnlock, EventPaymentSentSuccess
+from raiden_common.transfer.mediated_transfer.events import EventRouteFailed
+from raiden_common.transfer.state import ChainState
+from raiden_common.transfer.utils import hash_balance_data
+from raiden_common.transfer.views import (
+    get_channelstate_by_token_network_and_partner,
+    state_from_raiden,
+)
+from raiden_common.utils.typing import (
     Address,
     ChannelID,
     List,
@@ -172,7 +175,7 @@ def test_pfs_handler_handle_routefailed_with_feedback_token():
         secrethash=make_secret_hash(), route=route, token_network_address=token_network_address
     )
 
-    with patch("raiden.raiden_event_handler.post_pfs_feedback") as pfs_feedback_handler:
+    with patch("raiden_common.raiden_event_handler.post_pfs_feedback") as pfs_feedback_handler:
         pfs_handler.on_raiden_events(
             raiden=raiden,
             chain_state=cast(ChainState, raiden.wal.get_current_state()),  # type: ignore
@@ -198,7 +201,7 @@ def test_pfs_handler_handle_routefailed_without_feedback_token():
         secrethash=make_secret_hash(), route=route, token_network_address=token_network_address
     )
 
-    with patch("raiden.raiden_event_handler.post_pfs_feedback") as pfs_feedback_handler:
+    with patch("raiden_common.raiden_event_handler.post_pfs_feedback") as pfs_feedback_handler:
         pfs_handler.on_raiden_events(
             raiden=raiden,
             chain_state=cast(ChainState, raiden.wal.get_current_state()),  # type: ignore
@@ -232,7 +235,7 @@ def test_pfs_handler_handle_paymentsentsuccess_with_feedback_token():
         route=route,
     )
 
-    with patch("raiden.raiden_event_handler.post_pfs_feedback") as pfs_feedback_handler:
+    with patch("raiden_common.raiden_event_handler.post_pfs_feedback") as pfs_feedback_handler:
         pfs_handler.on_raiden_events(
             raiden=raiden,
             chain_state=cast(ChainState, raiden.wal.get_current_state()),  # type: ignore
@@ -274,7 +277,7 @@ def test_pfs_handler_handle_paymentsentsuccess_without_feedback_token():
         route=route,
     )
 
-    with patch("raiden.raiden_event_handler.post_pfs_feedback") as pfs_feedback_handler:
+    with patch("raiden_common.raiden_event_handler.post_pfs_feedback") as pfs_feedback_handler:
         pfs_handler.on_raiden_events(
             raiden=raiden,
             chain_state=cast(ChainState, raiden.wal.get_current_state()),  # type: ignore

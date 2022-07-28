@@ -5,12 +5,15 @@ from eth_utils import to_hex
 from gevent import joinall
 from gevent.pool import Pool
 
-from raiden.constants import ABSENT_SECRET, BLOCK_ID_LATEST
-from raiden.exceptions import InvalidSecret, ServiceRequestFailed
-from raiden.messages.abstract import Message
-from raiden.messages.decode import balanceproof_from_envelope, lockedtransfersigned_from_message
-from raiden.messages.synchronization import Delivered, Processed
-from raiden.messages.transfers import (
+from raiden_common.constants import ABSENT_SECRET, BLOCK_ID_LATEST
+from raiden_common.exceptions import InvalidSecret, ServiceRequestFailed
+from raiden_common.messages.abstract import Message
+from raiden_common.messages.decode import (
+    balanceproof_from_envelope,
+    lockedtransfersigned_from_message,
+)
+from raiden_common.messages.synchronization import Delivered, Processed
+from raiden_common.messages.transfers import (
     LockedTransfer,
     LockExpired,
     RefundTransfer,
@@ -18,11 +21,11 @@ from raiden.messages.transfers import (
     SecretRequest,
     Unlock,
 )
-from raiden.messages.withdraw import WithdrawConfirmation, WithdrawExpired, WithdrawRequest
-from raiden.transfer import views
-from raiden.transfer.architecture import StateChange
-from raiden.transfer.identifiers import CanonicalIdentifier
-from raiden.transfer.mediated_transfer.state_change import (
+from raiden_common.messages.withdraw import WithdrawConfirmation, WithdrawExpired, WithdrawRequest
+from raiden_common.transfer import views
+from raiden_common.transfer.architecture import StateChange
+from raiden_common.transfer.identifiers import CanonicalIdentifier
+from raiden_common.transfer.mediated_transfer.state_change import (
     ActionInitMediator,
     ActionInitTarget,
     ActionTransferReroute,
@@ -33,8 +36,8 @@ from raiden.transfer.mediated_transfer.state_change import (
     ReceiveTransferCancelRoute,
     ReceiveTransferRefund,
 )
-from raiden.transfer.state import HopState
-from raiden.transfer.state_change import (
+from raiden_common.transfer.state import HopState
+from raiden_common.transfer.state_change import (
     ReceiveDelivered,
     ReceiveProcessed,
     ReceiveUnlock,
@@ -42,11 +45,11 @@ from raiden.transfer.state_change import (
     ReceiveWithdrawExpired,
     ReceiveWithdrawRequest,
 )
-from raiden.transfer.utils.secret import decrypt_secret
-from raiden.transfer.views import TransferRole
-from raiden.utils.formatting import to_checksum_address
-from raiden.utils.transfers import random_secret
-from raiden.utils.typing import (
+from raiden_common.transfer.utils.secret import decrypt_secret
+from raiden_common.transfer.views import TransferRole
+from raiden_common.utils.formatting import to_checksum_address
+from raiden_common.utils.transfers import random_secret
+from raiden_common.utils.typing import (
     TYPE_CHECKING,
     AddressMetadata,
     List,
@@ -58,7 +61,7 @@ from raiden.utils.typing import (
 )
 
 if TYPE_CHECKING:
-    from raiden.raiden_service import RaidenService
+    from raiden_common.raiden_service import RaidenService
 
 log = structlog.get_logger(__name__)
 

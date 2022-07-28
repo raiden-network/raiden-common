@@ -4,14 +4,14 @@ from datetime import datetime
 import marshmallow.fields
 import rlp
 
-from raiden.constants import EMPTY_SIGNATURE
-from raiden.messages.abstract import SignedMessage
-from raiden.transfer import channel
-from raiden.transfer.identifiers import CanonicalIdentifier
-from raiden.transfer.mediated_transfer.mediation_fee import FeeScheduleState
-from raiden.transfer.state import NettingChannelState
-from raiden.utils.formatting import to_checksum_address
-from raiden.utils.typing import Address, BlockTimeout, Nonce, TokenAmount
+from raiden_common.constants import EMPTY_SIGNATURE
+from raiden_common.messages.abstract import SignedMessage
+from raiden_common.transfer import channel
+from raiden_common.transfer.identifiers import CanonicalIdentifier
+from raiden_common.transfer.mediated_transfer.mediation_fee import FeeScheduleState
+from raiden_common.transfer.state import NettingChannelState
+from raiden_common.utils.formatting import to_checksum_address
+from raiden_common.utils.typing import Address, BlockTimeout, Nonce, TokenAmount
 
 
 @dataclass(repr=False, eq=False)

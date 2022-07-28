@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-from raiden.utils.typing import Dict
+from raiden_common.utils.typing import Dict
 
 
 def redact_secret(data: Dict) -> Dict:

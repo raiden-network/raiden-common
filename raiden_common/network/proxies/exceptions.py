@@ -1,4 +1,4 @@
-from raiden.exceptions import RaidenRecoverableError
+from raiden_common.exceptions import RaidenRecoverableError
 
 
 class MintFailed(RaidenRecoverableError):

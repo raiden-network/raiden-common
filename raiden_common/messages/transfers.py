@@ -5,21 +5,21 @@ from typing import Any
 import eth_hash.auto as eth_hash
 from eth_utils import keccak
 
-from raiden.constants import EMPTY_SIGNATURE, UINT64_MAX, UINT256_MAX
-from raiden.messages.abstract import SignedRetrieableMessage
-from raiden.messages.cmdid import CmdId
-from raiden.messages.metadata import Metadata
-from raiden.transfer.identifiers import CanonicalIdentifier
-from raiden.transfer.mediated_transfer.events import (
+from raiden_common.constants import EMPTY_SIGNATURE, UINT64_MAX, UINT256_MAX
+from raiden_common.messages.abstract import SignedRetrieableMessage
+from raiden_common.messages.cmdid import CmdId
+from raiden_common.messages.metadata import Metadata
+from raiden_common.transfer.identifiers import CanonicalIdentifier
+from raiden_common.transfer.mediated_transfer.events import (
     SendLockExpired,
     SendSecretRequest,
     SendSecretReveal,
     SendUnlock,
 )
-from raiden.transfer.utils import hash_balance_data
-from raiden.utils.packing import pack_balance_proof
-from raiden.utils.predicates import ishash
-from raiden.utils.typing import (
+from raiden_common.transfer.utils import hash_balance_data
+from raiden_common.utils.packing import pack_balance_proof
+from raiden_common.utils.predicates import ishash
+from raiden_common.utils.typing import (
     AdditionalHash,
     Address,
     BlockExpiration,

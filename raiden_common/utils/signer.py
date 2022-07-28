@@ -6,9 +6,9 @@ from eth_keys.datatypes import PublicKey
 from eth_keys.exceptions import BadSignature, ValidationError
 from eth_utils import keccak
 
-from raiden.exceptions import InvalidSignature
-from raiden.utils.formatting import to_hex_address
-from raiden.utils.typing import Address, AddressHex, Signature
+from raiden_common.exceptions import InvalidSignature
+from raiden_common.utils.formatting import to_hex_address
+from raiden_common.utils.typing import Address, AddressHex, Signature
 
 
 def eth_sign_sha3(data: bytes) -> bytes:

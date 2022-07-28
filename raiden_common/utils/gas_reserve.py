@@ -1,12 +1,12 @@
 from typing import TYPE_CHECKING, Dict, Tuple
 
-from raiden.constants import UNLOCK_TX_GAS_LIMIT
-from raiden.network.rpc.client import gas_price_for_fast_transaction
-from raiden.transfer import views
+from raiden_common.constants import UNLOCK_TX_GAS_LIMIT
+from raiden_common.network.rpc.client import gas_price_for_fast_transaction
+from raiden_common.transfer import views
 from raiden_contracts.contract_manager import gas_measurements
 
 if TYPE_CHECKING:
-    from raiden.raiden_service import RaidenService  # pylint: disable=unused-import
+    from raiden_common.raiden_service import RaidenService  # pylint: disable=unused-import
 
 GAS_REQUIRED_FOR_CHANNEL_LIFECYCLE_AFTER_SETTLE = UNLOCK_TX_GAS_LIMIT
 

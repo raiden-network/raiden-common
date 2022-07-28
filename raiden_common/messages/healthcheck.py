@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 
-from raiden.messages.abstract import SignedMessage
-from raiden.messages.cmdid import CmdId
-from raiden.utils.typing import ClassVar, Nonce, RaidenProtocolVersion
+from raiden_common.messages.abstract import SignedMessage
+from raiden_common.messages.cmdid import CmdId
+from raiden_common.utils.typing import ClassVar, Nonce, RaidenProtocolVersion
 
 
 @dataclass(repr=False, eq=False)

@@ -6,12 +6,12 @@ import canonicaljson
 from eth_utils import keccak, to_checksum_address
 from marshmallow import EXCLUDE, post_dump, post_load
 
-from raiden.messages.abstract import cached_property
-from raiden.storage.serialization import serializer
-from raiden.transfer.mediated_transfer.events import SendLockedTransfer
-from raiden.transfer.state import get_address_metadata
-from raiden.transfer.utils.secret import encrypt_secret
-from raiden.utils.typing import (
+from raiden_common.messages.abstract import cached_property
+from raiden_common.storage.serialization import serializer
+from raiden_common.transfer.mediated_transfer.events import SendLockedTransfer
+from raiden_common.transfer.state import get_address_metadata
+from raiden_common.transfer.utils.secret import encrypt_secret
+from raiden_common.utils.typing import (
     Address,
     AddressMetadata,
     Dict,
@@ -20,7 +20,7 @@ from raiden.utils.typing import (
     MetadataHash,
     Optional,
 )
-from raiden.utils.validation import MetadataValidation
+from raiden_common.utils.validation import MetadataValidation
 
 
 @dataclass

@@ -21,11 +21,11 @@ from hexbytes import HexBytes
 from werkzeug.exceptions import NotFound
 from werkzeug.routing import BaseConverter
 
-from raiden.api.exceptions import ChannelNotFound, NonexistingChannel
-from raiden.api.objects import AddressList, PartnersPerTokenList
-from raiden.api.python import RaidenAPI
-from raiden.api.rest_utils import api_error, api_response
-from raiden.api.v1.encoding import (
+from raiden_common.api.exceptions import ChannelNotFound, NonexistingChannel
+from raiden_common.api.objects import AddressList, PartnersPerTokenList
+from raiden_common.api.python import RaidenAPI
+from raiden_common.api.rest_utils import api_error, api_response
+from raiden_common.api.v1.encoding import (
     AddressListSchema,
     ChannelStateSchema,
     EventPaymentReceivedSuccessSchema,
@@ -37,7 +37,7 @@ from raiden.api.v1.encoding import (
     PartnersPerTokenListSchema,
     PaymentSchema,
 )
-from raiden.api.v1.resources import (
+from raiden_common.api.v1.resources import (
     AddressResource,
     ChannelsResource,
     ChannelsResourceByTokenAddress,
@@ -63,8 +63,8 @@ from raiden.api.v1.resources import (
     VersionResource,
     create_blueprint,
 )
-from raiden.constants import UINT256_MAX, Environment
-from raiden.exceptions import (
+from raiden_common.constants import UINT256_MAX, Environment
+from raiden_common.exceptions import (
     AddressWithoutCode,
     AlreadyRegisteredTokenAddress,
     APIServerPortInUseError,
@@ -98,22 +98,22 @@ from raiden.exceptions import (
     UserDepositNotConfigured,
     WithdrawMismatch,
 )
-from raiden.network.rpc.client import JSONRPCClient
-from raiden.settings import RestApiConfig
-from raiden.transfer import channel, views
-from raiden.transfer.events import (
+from raiden_common.network.rpc.client import JSONRPCClient
+from raiden_common.settings import RestApiConfig
+from raiden_common.transfer import channel, views
+from raiden_common.transfer.events import (
     EventPaymentReceivedSuccess,
     EventPaymentSentFailed,
     EventPaymentSentSuccess,
 )
-from raiden.transfer.state import ChannelState, NettingChannelState, RouteState
-from raiden.utils.formatting import optional_address_to_string, to_checksum_address
-from raiden.utils.gevent import spawn_named
-from raiden.utils.http import split_endpoint
-from raiden.utils.runnable import Runnable
-from raiden.utils.system import get_system_spec
-from raiden.utils.transfers import create_default_identifier
-from raiden.utils.typing import (
+from raiden_common.transfer.state import ChannelState, NettingChannelState, RouteState
+from raiden_common.utils.formatting import optional_address_to_string, to_checksum_address
+from raiden_common.utils.gevent import spawn_named
+from raiden_common.utils.http import split_endpoint
+from raiden_common.utils.runnable import Runnable
+from raiden_common.utils.system import get_system_spec
+from raiden_common.utils.transfers import create_default_identifier
+from raiden_common.utils.typing import (
     MYPY_ANNOTATION,
     Address,
     Any,

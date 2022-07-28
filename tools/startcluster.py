@@ -9,16 +9,16 @@ from eth_typing import URI, HexStr
 from eth_utils import keccak, remove_0x_prefix
 from web3 import HTTPProvider, Web3
 
-from raiden.tests.fixtures.constants import DEFAULT_BALANCE
-from raiden.tests.utils.eth_node import (
+from raiden_common.tests.fixtures.constants import DEFAULT_BALANCE
+from raiden_common.tests.utils.eth_node import (
     AccountDescription,
     EthNodeDescription,
     GenesisDescription,
     run_private_blockchain,
 )
-from raiden.utils.http import JSONRPCExecutor
-from raiden.utils.keys import privatekey_to_address
-from raiden.utils.typing import ChainID, List, Port, PrivateKey, TokenAmount
+from raiden_common.utils.http import JSONRPCExecutor
+from raiden_common.utils.keys import privatekey_to_address
+from raiden_common.utils.typing import ChainID, List, Port, PrivateKey, TokenAmount
 from raiden_contracts.constants import CHAINNAME_TO_ID
 
 NUM_GETH_NODES = 3

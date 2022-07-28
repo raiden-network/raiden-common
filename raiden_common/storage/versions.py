@@ -2,7 +2,7 @@ import os.path
 import re
 from pathlib import Path
 
-from raiden.utils.typing import List, Optional
+from raiden_common.utils.typing import List, Optional
 
 VERSION_RE = re.compile(r"^v(\d+)_log[.]db$")
 

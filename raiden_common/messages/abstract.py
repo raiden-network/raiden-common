@@ -1,9 +1,17 @@
 from dataclasses import dataclass
 
-from raiden.exceptions import InvalidSignature
-from raiden.messages.cmdid import CmdId
-from raiden.utils.signer import Signer, recover
-from raiden.utils.typing import Address, Any, Callable, ClassVar, MessageID, Optional, Signature
+from raiden_common.exceptions import InvalidSignature
+from raiden_common.messages.cmdid import CmdId
+from raiden_common.utils.signer import Signer, recover
+from raiden_common.utils.typing import (
+    Address,
+    Any,
+    Callable,
+    ClassVar,
+    MessageID,
+    Optional,
+    Signature,
+)
 
 
 class cached_property:

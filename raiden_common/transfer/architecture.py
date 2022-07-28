@@ -6,11 +6,11 @@ from typing import ClassVar, Optional
 import structlog
 from eth_utils import to_hex
 
-from raiden.constants import EMPTY_BALANCE_HASH, UINT64_MAX, UINT256_MAX
-from raiden.transfer.identifiers import CanonicalIdentifier, QueueIdentifier
-from raiden.transfer.utils import hash_balance_data
-from raiden.utils.formatting import to_checksum_address
-from raiden.utils.typing import (
+from raiden_common.constants import EMPTY_BALANCE_HASH, UINT64_MAX, UINT256_MAX
+from raiden_common.transfer.identifiers import CanonicalIdentifier, QueueIdentifier
+from raiden_common.transfer.utils import hash_balance_data
+from raiden_common.utils.formatting import to_checksum_address
+from raiden_common.utils.typing import (
     AdditionalHash,
     Address,
     AddressMetadata,

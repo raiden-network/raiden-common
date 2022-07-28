@@ -24,22 +24,22 @@ from werkzeug.exceptions import NotFound
 from werkzeug.routing import BaseConverter
 from werkzeug.urls import url_encode, url_parse
 
-from raiden.api.objects import Address, AddressList, PartnersPerToken, PartnersPerTokenList
-from raiden.constants import (
+from raiden_common.api.objects import Address, AddressList, PartnersPerToken, PartnersPerTokenList
+from raiden_common.constants import (
     NULL_ADDRESS_BYTES,
     NULL_ADDRESS_HEX,
     SECRET_LENGTH,
     SECRETHASH_LENGTH,
     UINT256_MAX,
 )
-from raiden.settings import DEFAULT_INITIAL_CHANNEL_TARGET, DEFAULT_JOINABLE_FUNDS_TARGET
-from raiden.storage.serialization.schemas import IntegerToStringField
-from raiden.storage.utils import TimestampedEvent
-from raiden.transfer import channel
-from raiden.transfer.state import ChainState, ChannelState, NettingChannelState, RouteState
-from raiden.transfer.views import get_token_network_by_address
-from raiden.utils.capabilities import _bool_to_binary, int_bool
-from raiden.utils.typing import Address as AddressBytes, AddressHex
+from raiden_common.settings import DEFAULT_INITIAL_CHANNEL_TARGET, DEFAULT_JOINABLE_FUNDS_TARGET
+from raiden_common.storage.serialization.schemas import IntegerToStringField
+from raiden_common.storage.utils import TimestampedEvent
+from raiden_common.transfer import channel
+from raiden_common.transfer.state import ChainState, ChannelState, NettingChannelState, RouteState
+from raiden_common.transfer.views import get_token_network_by_address
+from raiden_common.utils.capabilities import _bool_to_binary, int_bool
+from raiden_common.utils.typing import Address as AddressBytes, AddressHex
 
 
 class InvalidEndpoint(NotFound):

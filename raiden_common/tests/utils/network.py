@@ -7,18 +7,18 @@ import gevent
 import structlog
 from web3 import Web3
 
-from raiden import waiting
-from raiden.constants import BLOCK_ID_LATEST, GENESIS_BLOCK_NUMBER, Environment, RoutingMode
-from raiden.exceptions import PFSReturnedError
-from raiden.network.pathfinding import PFSProxy
-from raiden.network.proxies.proxy_manager import ProxyManager, ProxyManagerMetadata
-from raiden.network.proxies.secret_registry import SecretRegistry
-from raiden.network.proxies.service_registry import ServiceRegistry
-from raiden.network.proxies.token_network_registry import TokenNetworkRegistry
-from raiden.network.rpc.client import JSONRPCClient
-from raiden.raiden_event_handler import RaidenEventHandler
-from raiden.raiden_service import RaidenService
-from raiden.settings import (
+from raiden_common import waiting
+from raiden_common.constants import BLOCK_ID_LATEST, GENESIS_BLOCK_NUMBER, Environment, RoutingMode
+from raiden_common.exceptions import PFSReturnedError
+from raiden_common.network.pathfinding import PFSProxy
+from raiden_common.network.proxies.proxy_manager import ProxyManager, ProxyManagerMetadata
+from raiden_common.network.proxies.secret_registry import SecretRegistry
+from raiden_common.network.proxies.service_registry import ServiceRegistry
+from raiden_common.network.proxies.token_network_registry import TokenNetworkRegistry
+from raiden_common.network.rpc.client import JSONRPCClient
+from raiden_common.raiden_event_handler import RaidenEventHandler
+from raiden_common.raiden_service import RaidenService
+from raiden_common.settings import (
     DEFAULT_NUMBER_OF_BLOCK_CONFIRMATIONS,
     DEFAULT_RETRY_TIMEOUT,
     BlockchainConfig,
@@ -29,21 +29,21 @@ from raiden.settings import (
     RestApiConfig,
     ServiceConfig,
 )
-from raiden.tests.utils.app import database_from_privatekey
-from raiden.tests.utils.factories import UNIT_CHAIN_ID
-from raiden.tests.utils.protocol import HoldRaidenEventHandler, WaitForMessage
-from raiden.tests.utils.transport import ParsedURL, TestMatrixTransport
-from raiden.transfer import views
-from raiden.transfer.identifiers import CanonicalIdentifier
-from raiden.transfer.views import (
+from raiden_common.tests.utils.app import database_from_privatekey
+from raiden_common.tests.utils.factories import UNIT_CHAIN_ID
+from raiden_common.tests.utils.protocol import HoldRaidenEventHandler, WaitForMessage
+from raiden_common.tests.utils.transport import ParsedURL, TestMatrixTransport
+from raiden_common.transfer import views
+from raiden_common.transfer.identifiers import CanonicalIdentifier
+from raiden_common.transfer.views import (
     get_channelstate_by_canonical_identifier,
     get_channelstate_by_token_network_and_partner,
     state_from_raiden,
 )
-from raiden.ui.app import start_api_server
-from raiden.ui.startup import RaidenBundle, ServicesBundle
-from raiden.utils.formatting import to_checksum_address, to_hex_address
-from raiden.utils.typing import (
+from raiden_common.ui.app import start_api_server
+from raiden_common.ui.startup import RaidenBundle, ServicesBundle
+from raiden_common.utils.formatting import to_checksum_address, to_hex_address
+from raiden_common.utils.typing import (
     Address,
     BlockIdentifier,
     BlockNumber,
@@ -67,7 +67,7 @@ from raiden.utils.typing import (
     Tuple,
     UserDepositAddress,
 )
-from raiden.waiting import wait_for_token_network
+from raiden_common.waiting import wait_for_token_network
 from raiden_contracts.contract_manager import ContractManager
 
 AppChannels = Iterable[Tuple[RaidenService, RaidenService]]

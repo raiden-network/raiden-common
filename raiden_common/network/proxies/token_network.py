@@ -6,7 +6,7 @@ from eth_utils import encode_hex, is_binary_address, to_canonical_address, to_he
 from gevent.lock import RLock
 from web3.exceptions import BadFunctionCallOutput
 
-from raiden.constants import (
+from raiden_common.constants import (
     BLOCK_ID_LATEST,
     EMPTY_BALANCE_HASH,
     EMPTY_SIGNATURE,
@@ -15,7 +15,7 @@ from raiden.constants import (
     UINT256_MAX,
     UNLOCK_TX_GAS_LIMIT,
 )
-from raiden.exceptions import (
+from raiden_common.exceptions import (
     BrokenPreconditionError,
     DepositOverLimit,
     DuplicatedChannelError,
@@ -26,23 +26,27 @@ from raiden.exceptions import (
     SamePeerAddress,
     WithdrawMismatch,
 )
-from raiden.network.proxies.metadata import SmartContractMetadata
-from raiden.network.proxies.utils import raise_on_call_returned_empty
-from raiden.network.rpc.client import (
+from raiden_common.network.proxies.metadata import SmartContractMetadata
+from raiden_common.network.proxies.utils import raise_on_call_returned_empty
+from raiden_common.network.rpc.client import (
     JSONRPCClient,
     check_address_has_code_handle_pruned_block,
     check_transaction_failure,
     was_transaction_successfully_mined,
 )
-from raiden.transfer.channel import compute_locksroot
-from raiden.transfer.identifiers import CanonicalIdentifier
-from raiden.transfer.state import PendingLocksState
-from raiden.transfer.utils import hash_balance_data
-from raiden.utils.formatting import format_block_id, to_checksum_address
-from raiden.utils.packing import pack_balance_proof, pack_signed_balance_proof, pack_withdraw
-from raiden.utils.signer import recover
-from raiden.utils.smart_contracts import safe_gas_limit
-from raiden.utils.typing import (
+from raiden_common.transfer.channel import compute_locksroot
+from raiden_common.transfer.identifiers import CanonicalIdentifier
+from raiden_common.transfer.state import PendingLocksState
+from raiden_common.transfer.utils import hash_balance_data
+from raiden_common.utils.formatting import format_block_id, to_checksum_address
+from raiden_common.utils.packing import (
+    pack_balance_proof,
+    pack_signed_balance_proof,
+    pack_withdraw,
+)
+from raiden_common.utils.signer import recover
+from raiden_common.utils.smart_contracts import safe_gas_limit
+from raiden_common.utils.typing import (
     TYPE_CHECKING,
     AdditionalHash,
     Address,
@@ -80,7 +84,7 @@ from raiden_contracts.contract_manager import ContractManager
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import
-    from raiden.network.proxies.proxy_manager import ProxyManager
+    from raiden_common.network.proxies.proxy_manager import ProxyManager
 
 
 log = structlog.get_logger(__name__)

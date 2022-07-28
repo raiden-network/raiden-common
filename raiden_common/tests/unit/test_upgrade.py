@@ -3,14 +3,14 @@ from unittest.mock import ANY, Mock, patch
 
 from eth_typing import BlockNumber
 
-import raiden.utils.upgrades
-from raiden.storage.serialization import JSONSerializer
-from raiden.storage.sqlite import FilteredDBQuery, Operator, SQLiteStorage
-from raiden.tests.utils import factories
-from raiden.tests.utils.migrations import create_fake_web3_for_block_hash
-from raiden.transfer.state_change import Block
-from raiden.utils.typing import BlockGasLimit
-from raiden.utils.upgrades import VERSION_RE, UpgradeManager, UpgradeRecord, get_db_version
+import raiden_common.utils.upgrades
+from raiden_common.storage.serialization import JSONSerializer
+from raiden_common.storage.sqlite import FilteredDBQuery, Operator, SQLiteStorage
+from raiden_common.tests.utils import factories
+from raiden_common.tests.utils.migrations import create_fake_web3_for_block_hash
+from raiden_common.transfer.state_change import Block
+from raiden_common.utils.typing import BlockGasLimit
+from raiden_common.utils.upgrades import VERSION_RE, UpgradeManager, UpgradeRecord, get_db_version
 
 
 def test_version_regex():
@@ -32,15 +32,15 @@ def test_no_upgrade_executes_if_already_upgraded(tmp_path):
     for version in [16, 17, 18, 19]:
         old_db_filename = tmp_path / Path(f"v{version}_log.db")
 
-        with patch("raiden.storage.sqlite.RAIDEN_DB_VERSION", new=version), SQLiteStorage(
+        with patch("raiden_common.storage.sqlite.RAIDEN_DB_VERSION", new=version), SQLiteStorage(
             str(old_db_filename)
         ) as storage:
             storage.update_version()
 
     db_path = tmp_path / Path("v19_log.db")
 
-    with patch("raiden.utils.upgrades.UpgradeManager._upgrade") as upgrade_mock:
-        with patch("raiden.utils.upgrades.RAIDEN_DB_VERSION", new=version):
+    with patch("raiden_common.utils.upgrades.UpgradeManager._upgrade") as upgrade_mock:
+        with patch("raiden_common.utils.upgrades.RAIDEN_DB_VERSION", new=version):
             UpgradeManager(db_filename=db_path).run()
             # Latest database is of the same version as the current, no migrations should execute
             assert not upgrade_mock.called
@@ -49,7 +49,7 @@ def test_no_upgrade_executes_if_already_upgraded(tmp_path):
 def test_upgrade_executes_necessary_migration_functions(tmp_path, monkeypatch):
     old_db_filename = tmp_path / Path("v18_log.db")
 
-    with patch("raiden.storage.sqlite.RAIDEN_DB_VERSION", new=18), SQLiteStorage(
+    with patch("raiden_common.storage.sqlite.RAIDEN_DB_VERSION", new=18), SQLiteStorage(
         old_db_filename
     ) as storage:
         storage.update_version()
@@ -63,8 +63,8 @@ def test_upgrade_executes_necessary_migration_functions(tmp_path, monkeypatch):
         upgrade_functions.append(UpgradeRecord(from_version=i, function=mock))
 
     with monkeypatch.context() as m:
-        m.setattr(raiden.utils.upgrades, "UPGRADES_LIST", upgrade_functions)
-        m.setattr(raiden.utils.upgrades, "RAIDEN_DB_VERSION", 19)
+        m.setattr(raiden_common.utils.upgrades, "UPGRADES_LIST", upgrade_functions)
+        m.setattr(raiden_common.utils.upgrades, "RAIDEN_DB_VERSION", 19)
 
         UpgradeManager(db_filename=db_path).run()
 
@@ -79,7 +79,7 @@ def test_upgrade_manager_restores_backup(tmp_path, monkeypatch):
 
     old_db_filename = tmp_path / Path("v16_log.db")
 
-    with patch("raiden.storage.sqlite.RAIDEN_DB_VERSION", new=16), SQLiteStorage(
+    with patch("raiden_common.storage.sqlite.RAIDEN_DB_VERSION", new=16), SQLiteStorage(
         str(old_db_filename)
     ) as storage:
         state_change = Block(
@@ -97,8 +97,8 @@ def test_upgrade_manager_restores_backup(tmp_path, monkeypatch):
 
     web3, _ = create_fake_web3_for_block_hash(number_of_blocks=1)
     with monkeypatch.context() as m:
-        m.setattr(raiden.utils.upgrades, "UPGRADES_LIST", upgrade_functions)
-        m.setattr(raiden.utils.upgrades, "RAIDEN_DB_VERSION", 19)
+        m.setattr(raiden_common.utils.upgrades, "UPGRADES_LIST", upgrade_functions)
+        m.setattr(raiden_common.utils.upgrades, "RAIDEN_DB_VERSION", 19)
         UpgradeManager(db_filename=db_path, web3=web3).run()
 
     # Once restored, the state changes written above should be
@@ -106,7 +106,7 @@ def test_upgrade_manager_restores_backup(tmp_path, monkeypatch):
     with SQLiteStorage(str(db_path)) as storage:
         state_change_record = storage.get_latest_state_change_by_data_field(
             FilteredDBQuery(
-                filters=[{"_type": "raiden.transfer.state_change.Block"}],
+                filters=[{"_type": "raiden_common.transfer.state_change.Block"}],
                 main_operator=Operator.NONE,
                 inner_operator=Operator.NONE,
             )
@@ -135,7 +135,7 @@ def test_sequential_version_numbers(tmp_path, monkeypatch):
         mock.return_value = i + 1
         upgrade_functions.append(UpgradeRecord(from_version=i, function=mock))
 
-    with patch("raiden.storage.sqlite.RAIDEN_DB_VERSION", new=16), SQLiteStorage(
+    with patch("raiden_common.storage.sqlite.RAIDEN_DB_VERSION", new=16), SQLiteStorage(
         str(old_db_filename)
     ) as storage:
         storage.update_version()
@@ -145,9 +145,9 @@ def test_sequential_version_numbers(tmp_path, monkeypatch):
         def latest_db_file(paths):  # pylint: disable=unused-argument
             return old_db_filename
 
-        m.setattr(raiden.utils.upgrades, "UPGRADES_LIST", upgrade_functions)
-        m.setattr(raiden.utils.upgrades, "RAIDEN_DB_VERSION", 19)
-        m.setattr(raiden.utils.upgrades, "latest_db_file", latest_db_file)
+        m.setattr(raiden_common.utils.upgrades, "UPGRADES_LIST", upgrade_functions)
+        m.setattr(raiden_common.utils.upgrades, "RAIDEN_DB_VERSION", 19)
+        m.setattr(raiden_common.utils.upgrades, "latest_db_file", latest_db_file)
 
         UpgradeManager(db_filename=db_path).run()
 

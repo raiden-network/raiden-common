@@ -7,15 +7,15 @@ import pytest
 from eth_typing import HexStr
 from eth_utils import keccak, remove_0x_prefix
 
-from raiden.constants import Environment, EthClient
-from raiden.network.utils import get_free_port
-from raiden.settings import DEFAULT_NUMBER_OF_BLOCK_CONFIRMATIONS, DEFAULT_RETRY_TIMEOUT
-from raiden.tests.fixtures.constants import DEFAULT_BALANCE
-from raiden.tests.utils.ci import shortened_artifacts_storage
-from raiden.tests.utils.eth_node import EthNodeDescription
-from raiden.tests.utils.factories import UNIT_CHAIN_ID
-from raiden.tests.utils.tests import unique_path
-from raiden.utils.typing import Iterator, Port, TokenAmount
+from raiden_common.constants import Environment, EthClient
+from raiden_common.network.utils import get_free_port
+from raiden_common.settings import DEFAULT_NUMBER_OF_BLOCK_CONFIRMATIONS, DEFAULT_RETRY_TIMEOUT
+from raiden_common.tests.fixtures.constants import DEFAULT_BALANCE
+from raiden_common.tests.utils.ci import shortened_artifacts_storage
+from raiden_common.tests.utils.eth_node import EthNodeDescription
+from raiden_common.tests.utils.factories import UNIT_CHAIN_ID
+from raiden_common.tests.utils.tests import unique_path
+from raiden_common.utils.typing import Iterator, Port, TokenAmount
 from raiden_contracts.constants import TEST_SETTLE_TIMEOUT
 
 # we need to use fixture for the default values otherwise

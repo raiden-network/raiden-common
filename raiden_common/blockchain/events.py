@@ -9,24 +9,24 @@ from requests.exceptions import ReadTimeout
 from web3 import Web3
 from web3.types import LogReceipt, RPCEndpoint
 
-from raiden.blockchain.exceptions import EthGetLogsTimeout, UnknownRaidenEventType
-from raiden.blockchain.filters import (
+from raiden_common.blockchain.exceptions import EthGetLogsTimeout, UnknownRaidenEventType
+from raiden_common.blockchain.filters import (
     RaidenContractFilter,
     decode_event,
     get_filter_args_for_all_events_from_channel,
 )
-from raiden.blockchain.utils import BlockBatchSizeAdjuster
-from raiden.constants import (
+from raiden_common.blockchain.utils import BlockBatchSizeAdjuster
+from raiden_common.constants import (
     BLOCK_ID_LATEST,
     ETH_GET_LOGS_THRESHOLD_FAST,
     ETH_GET_LOGS_THRESHOLD_SLOW,
     GENESIS_BLOCK_NUMBER,
     UINT64_MAX,
 )
-from raiden.exceptions import InvalidBlockNumberInput
-from raiden.network.proxies.proxy_manager import ProxyManager
-from raiden.settings import BlockBatchSizeConfig
-from raiden.utils.typing import (
+from raiden_common.exceptions import InvalidBlockNumberInput
+from raiden_common.network.proxies.proxy_manager import ProxyManager
+from raiden_common.settings import BlockBatchSizeConfig
+from raiden_common.utils.typing import (
     ABI,
     Address,
     Any,

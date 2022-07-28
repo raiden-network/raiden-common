@@ -1,14 +1,14 @@
 from eth_utils import keccak
 
-from raiden.constants import EMPTY_SIGNATURE
-from raiden.messages.synchronization import Processed
-from raiden.tests.utils import factories
-from raiden.transfer.events import (
+from raiden_common.constants import EMPTY_SIGNATURE
+from raiden_common.messages.synchronization import Processed
+from raiden_common.tests.utils import factories
+from raiden_common.transfer.events import (
     EventPaymentReceivedSuccess,
     EventPaymentSentFailed,
     EventPaymentSentSuccess,
 )
-from raiden.transfer.state_change import ActionCancelPayment, Block
+from raiden_common.transfer.state_change import ActionCancelPayment, Block
 
 ADDRESS = keccak(b"foo")[:20]
 SECRET = b"secret"

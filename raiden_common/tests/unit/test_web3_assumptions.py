@@ -9,8 +9,8 @@ from web3 import HTTPProvider, Web3
 from web3.exceptions import BlockNotFound
 from web3.gas_strategies.rpc import rpc_gas_price_strategy
 
-from raiden.network.rpc.client import make_patched_web3_get_block, monkey_patch_web3
-from raiden.utils.typing import MYPY_ANNOTATION
+from raiden_common.network.rpc.client import make_patched_web3_get_block, monkey_patch_web3
+from raiden_common.utils.typing import MYPY_ANNOTATION
 
 _FAKE_BLOCK_DATA = {
     "difficulty": "0x1",

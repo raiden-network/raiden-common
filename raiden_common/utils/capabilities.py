@@ -2,8 +2,8 @@ from typing import Any, Dict, Union
 
 import structlog
 
-from raiden.constants import Capabilities
-from raiden.settings import CapabilitiesConfig
+from raiden_common.constants import Capabilities
+from raiden_common.settings import CapabilitiesConfig
 
 log = structlog.get_logger(__name__)
 

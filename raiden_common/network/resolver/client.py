@@ -7,16 +7,16 @@ import requests
 import structlog
 from eth_utils import to_bytes, to_hex
 
-from raiden.storage.wal import WriteAheadLog
-from raiden.transfer import views
-from raiden.transfer.mediated_transfer.events import SendSecretRequest
-from raiden.transfer.mediated_transfer.state_change import ReceiveSecretReveal
-from raiden.transfer.state import ChainState
-from raiden.utils.typing import Secret
+from raiden_common.storage.wal import WriteAheadLog
+from raiden_common.transfer import views
+from raiden_common.transfer.mediated_transfer.events import SendSecretRequest
+from raiden_common.transfer.mediated_transfer.state_change import ReceiveSecretReveal
+from raiden_common.transfer.state import ChainState
+from raiden_common.utils.typing import Secret
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import
-    from raiden.raiden_service import RaidenService
+    from raiden_common.raiden_service import RaidenService
 
 
 log = structlog.get_logger(__name__)

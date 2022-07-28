@@ -3,8 +3,8 @@ from eth_typing import URI
 from requests.exceptions import ConnectionError as RequestsConnectionError
 from web3 import HTTPProvider, Web3
 
-from raiden.network.rpc.client import JSONRPCClient
-from raiden.tests.utils.factories import make_privatekey_bin
+from raiden_common.network.rpc.client import JSONRPCClient
+from raiden_common.tests.utils.factories import make_privatekey_bin
 
 
 def test_connection_issues() -> None:

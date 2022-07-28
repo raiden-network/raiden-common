@@ -4,8 +4,8 @@ import pytest
 from marshmallow.fields import DateTime
 from werkzeug.routing import Map
 
-from raiden.api.v1.encoding import AddressField, BaseSchema, HexAddressConverter
-from raiden.utils.typing import Address
+from raiden_common.api.v1.encoding import AddressField, BaseSchema, HexAddressConverter
+from raiden_common.utils.typing import Address
 
 
 class SchemaTest(BaseSchema):

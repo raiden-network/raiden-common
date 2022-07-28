@@ -7,20 +7,20 @@ from datetime import datetime
 
 import pytest
 
-from raiden.exceptions import SerializationError
-from raiden.messages.metadata import Metadata
-from raiden.messages.monitoring_service import RequestMonitoring, SignedBlindedBalanceProof
-from raiden.messages.path_finding_service import PFSCapacityUpdate, PFSFeeUpdate
-from raiden.messages.synchronization import Delivered, Processed
-from raiden.messages.transfers import RevealSecret, SecretRequest
-from raiden.messages.withdraw import WithdrawConfirmation, WithdrawExpired, WithdrawRequest
-from raiden.storage.serialization import JSONSerializer
-from raiden.storage.serialization.schemas import BaseSchema, class_schema
-from raiden.storage.serialization.serializer import MessageSerializer
-from raiden.tests.utils import factories
-from raiden.transfer import state
-from raiden.utils.signer import LocalSigner
-from raiden.utils.typing import Address, List
+from raiden_common.exceptions import SerializationError
+from raiden_common.messages.metadata import Metadata
+from raiden_common.messages.monitoring_service import RequestMonitoring, SignedBlindedBalanceProof
+from raiden_common.messages.path_finding_service import PFSCapacityUpdate, PFSFeeUpdate
+from raiden_common.messages.synchronization import Delivered, Processed
+from raiden_common.messages.transfers import RevealSecret, SecretRequest
+from raiden_common.messages.withdraw import WithdrawConfirmation, WithdrawExpired, WithdrawRequest
+from raiden_common.storage.serialization import JSONSerializer
+from raiden_common.storage.serialization.schemas import BaseSchema, class_schema
+from raiden_common.storage.serialization.serializer import MessageSerializer
+from raiden_common.tests.utils import factories
+from raiden_common.transfer import state
+from raiden_common.utils.signer import LocalSigner
+from raiden_common.utils.typing import Address, List
 
 # Required for test_message_identical. It would be better to have a set of
 # messages that don't depend on randomness for that test. But right now, we

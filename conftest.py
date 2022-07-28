@@ -39,25 +39,25 @@ import gevent
 import structlog
 from gevent import Timeout
 
-from raiden.constants import (
+from raiden_common.constants import (
     HIGHEST_SUPPORTED_GETH_VERSION,
     HIGHEST_SUPPORTED_PARITY_VERSION,
     LOWEST_SUPPORTED_GETH_VERSION,
     LOWEST_SUPPORTED_PARITY_VERSION,
     EthClient,
 )
-from raiden.log_config import configure_logging
-from raiden.network.transport.matrix.rtc.aiogevent import yield_future
-from raiden.network.transport.matrix.rtc.utils import (
+from raiden_common.log_config import configure_logging
+from raiden_common.network.transport.matrix.rtc.aiogevent import yield_future
+from raiden_common.network.transport.matrix.rtc.utils import (
     ASYNCIO_LOOP_RUNNING_TIMEOUT,
     setup_asyncio_event_loop,
 )
-from raiden.tests.fixtures.blockchain import *  # noqa: F401,F403
-from raiden.tests.fixtures.variables import *  # noqa: F401,F403
-from raiden.tests.utils.transport import make_requests_insecure
-from raiden.utils.cli import LogLevelConfigType
-from raiden.utils.debugging import enable_monitoring_signal
-from raiden.utils.ethereum_clients import VersionSupport, is_supported_client
+from raiden_common.tests.fixtures.blockchain import *  # noqa: F401,F403
+from raiden_common.tests.fixtures.variables import *  # noqa: F401,F403
+from raiden_common.tests.utils.transport import make_requests_insecure
+from raiden_common.utils.cli import LogLevelConfigType
+from raiden_common.utils.debugging import enable_monitoring_signal
+from raiden_common.utils.ethereum_clients import VersionSupport, is_supported_client
 
 log = structlog.get_logger()
 
@@ -222,7 +222,7 @@ def profiler(request):
     profiler = None
 
     if request.config.option.profiler == "flamegraph-trace":
-        from raiden.utils.profiling.sampler import FlameGraphCollector, TraceSampler
+        from raiden_common.utils.profiling.sampler import FlameGraphCollector, TraceSampler
 
         now = datetime.datetime.now()
         stack_path = os.path.join("/tmp", f"{now:%Y%m%d_%H%M}_stack.data")

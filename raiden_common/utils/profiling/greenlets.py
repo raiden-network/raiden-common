@@ -6,7 +6,7 @@ from typing import Any
 import greenlet
 import structlog
 
-from raiden.utils.profiling.sampler import collect_frames
+from raiden_common.utils.profiling.sampler import collect_frames
 
 log = structlog.get_logger(__name__)
 

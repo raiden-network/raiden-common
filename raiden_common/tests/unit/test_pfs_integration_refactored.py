@@ -5,8 +5,8 @@ import pytest
 from eth_utils import to_canonical_address
 from requests import RequestException
 
-from raiden.exceptions import ServiceRequestFailed
-from raiden.network.pathfinding import PFSInfo, get_pfs_info, session
+from raiden_common.exceptions import ServiceRequestFailed
+from raiden_common.network.pathfinding import PFSInfo, get_pfs_info, session
 
 # We first test the correct handling of the pfs info endpoint. The info endpoint provides
 # the Raiden Client with price and information about the token network registry.

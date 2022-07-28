@@ -3,8 +3,8 @@ import math
 from eth_typing import BlockNumber
 from structlog import get_logger
 
-from raiden.blockchain.exceptions import BlockBatchSizeTooSmall
-from raiden.settings import BlockBatchSizeConfig
+from raiden_common.blockchain.exceptions import BlockBatchSizeTooSmall
+from raiden_common.settings import BlockBatchSizeConfig
 
 log = get_logger(__name__)
 

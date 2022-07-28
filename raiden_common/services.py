@@ -1,6 +1,6 @@
 import structlog
 
-from raiden.constants import (
+from raiden_common.constants import (
     BLOCK_ID_LATEST,
     DAI_TOKEN_ADDRESS,
     WETH_TOKEN_ADDRESS,
@@ -8,24 +8,24 @@ from raiden.constants import (
     Environment,
     RoutingMode,
 )
-from raiden.messages.monitoring_service import RequestMonitoring
-from raiden.messages.path_finding_service import PFSCapacityUpdate, PFSFeeUpdate
-from raiden.settings import (
+from raiden_common.messages.monitoring_service import RequestMonitoring
+from raiden_common.messages.path_finding_service import PFSCapacityUpdate, PFSFeeUpdate
+from raiden_common.settings import (
     MIN_MONITORING_AMOUNT_DAI,
     MIN_MONITORING_AMOUNT_WETH,
     MONITORING_REWARD,
 )
-from raiden.transfer import views
-from raiden.transfer.architecture import BalanceProofSignedState
-from raiden.transfer.channel import get_balance
-from raiden.transfer.identifiers import CanonicalIdentifier
-from raiden.transfer.state import ChainState
-from raiden.utils.formatting import to_checksum_address
-from raiden.utils.transfers import to_rdn
-from raiden.utils.typing import TYPE_CHECKING, Address
+from raiden_common.transfer import views
+from raiden_common.transfer.architecture import BalanceProofSignedState
+from raiden_common.transfer.channel import get_balance
+from raiden_common.transfer.identifiers import CanonicalIdentifier
+from raiden_common.transfer.state import ChainState
+from raiden_common.utils.formatting import to_checksum_address
+from raiden_common.utils.transfers import to_rdn
+from raiden_common.utils.typing import TYPE_CHECKING, Address
 
 if TYPE_CHECKING:
-    from raiden.raiden_service import RaidenService
+    from raiden_common.raiden_service import RaidenService
 
 
 log = structlog.get_logger(__name__)

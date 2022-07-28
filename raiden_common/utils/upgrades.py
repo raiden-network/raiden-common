@@ -8,10 +8,10 @@ from pathlib import Path
 import filelock
 import structlog
 
-from raiden.constants import RAIDEN_DB_VERSION
-from raiden.storage.sqlite import SQLiteStorage
-from raiden.storage.versions import VERSION_RE, filter_db_names, latest_db_file
-from raiden.utils.typing import Any, Callable, DatabasePath, List, NamedTuple
+from raiden_common.constants import RAIDEN_DB_VERSION
+from raiden_common.storage.sqlite import SQLiteStorage
+from raiden_common.storage.versions import VERSION_RE, filter_db_names, latest_db_file
+from raiden_common.utils.typing import Any, Callable, DatabasePath, List, NamedTuple
 
 
 class UpgradeRecord(NamedTuple):

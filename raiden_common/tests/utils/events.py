@@ -3,10 +3,13 @@ from typing import Any, Iterable, List, Optional, Tuple, Type, TypeVar, cast
 
 import gevent
 
-from raiden.raiden_service import RaidenService
-from raiden.storage.sqlite import RANGE_ALL_STATE_CHANGES
-from raiden.transfer.architecture import Event, StateChange
-from raiden.transfer.mediated_transfer.events import EventUnlockClaimFailed, EventUnlockFailed
+from raiden_common.raiden_service import RaidenService
+from raiden_common.storage.sqlite import RANGE_ALL_STATE_CHANGES
+from raiden_common.transfer.architecture import Event, StateChange
+from raiden_common.transfer.mediated_transfer.events import (
+    EventUnlockClaimFailed,
+    EventUnlockFailed,
+)
 
 NOVALUE = object()
 T = TypeVar("T")

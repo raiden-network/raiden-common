@@ -5,13 +5,13 @@ import web3
 from eth_utils import is_binary_address, to_canonical_address
 from web3.exceptions import BadFunctionCallOutput
 
-from raiden.exceptions import BrokenPreconditionError, RaidenUnrecoverableError
-from raiden.network.rpc.client import (
+from raiden_common.exceptions import BrokenPreconditionError, RaidenUnrecoverableError
+from raiden_common.network.rpc.client import (
     JSONRPCClient,
     check_address_has_code_handle_pruned_block,
     was_transaction_successfully_mined,
 )
-from raiden.utils.typing import (
+from raiden_common.utils.typing import (
     Address,
     Any,
     BlockIdentifier,

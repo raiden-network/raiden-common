@@ -5,11 +5,11 @@ import sys
 import click
 from eth_utils import encode_hex, to_normalized_address
 
-from raiden.accounts import AccountManager
-from raiden.utils.cli import ADDRESS_TYPE
-from raiden.utils.formatting import to_checksum_address
-from raiden.utils.signer import LocalSigner
-from raiden.utils.typing import Address
+from raiden_common.accounts import AccountManager
+from raiden_common.utils.cli import ADDRESS_TYPE
+from raiden_common.utils.formatting import to_checksum_address
+from raiden_common.utils.signer import LocalSigner
+from raiden_common.utils.typing import Address
 
 
 @click.command()

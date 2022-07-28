@@ -8,23 +8,32 @@ from operator import itemgetter
 
 from eth_utils import keccak
 
-from raiden.constants import EMPTY_SIGNATURE, LOCKSROOT_OF_NO_LOCKS, UINT64_MAX, UINT256_MAX
-from raiden.messages.decode import balanceproof_from_envelope
-from raiden.messages.metadata import Metadata, RouteMetadata
-from raiden.messages.transfers import Lock, LockedTransfer, LockExpired, RefundTransfer, Unlock
-from raiden.transfer import channel, token_network, views
-from raiden.transfer.channel import compute_locksroot
-from raiden.transfer.identifiers import CanonicalIdentifier
-from raiden.transfer.mediated_transfer.mediation_fee import FeeScheduleState
-from raiden.transfer.mediated_transfer.state import (
+from raiden_common.constants import EMPTY_SIGNATURE, LOCKSROOT_OF_NO_LOCKS, UINT64_MAX, UINT256_MAX
+from raiden_common.messages.decode import balanceproof_from_envelope
+from raiden_common.messages.metadata import Metadata, RouteMetadata
+from raiden_common.messages.transfers import (
+    Lock,
+    LockedTransfer,
+    LockExpired,
+    RefundTransfer,
+    Unlock,
+)
+from raiden_common.transfer import channel, token_network, views
+from raiden_common.transfer.channel import compute_locksroot
+from raiden_common.transfer.identifiers import CanonicalIdentifier
+from raiden_common.transfer.mediated_transfer.mediation_fee import FeeScheduleState
+from raiden_common.transfer.mediated_transfer.state import (
     HashTimeLockState,
     LockedTransferSignedState,
     LockedTransferUnsignedState,
     MediationPairState,
     TransferDescriptionWithSecretState,
 )
-from raiden.transfer.mediated_transfer.state_change import ActionInitInitiator, ActionInitMediator
-from raiden.transfer.state import (
+from raiden_common.transfer.mediated_transfer.state_change import (
+    ActionInitInitiator,
+    ActionInitMediator,
+)
+from raiden_common.transfer.state import (
     BalanceProofSignedState,
     BalanceProofUnsignedState,
     ChainState,
@@ -40,15 +49,15 @@ from raiden.transfer.state import (
     TransactionExecutionStatus,
     message_identifier_from_prng,
 )
-from raiden.transfer.state_change import ContractReceiveChannelNew, ContractReceiveRouteNew
-from raiden.transfer.utils import hash_balance_data
-from raiden.utils.formatting import to_checksum_address
-from raiden.utils.keys import privatekey_to_address
-from raiden.utils.packing import pack_balance_proof
-from raiden.utils.secrethash import sha256_secrethash
-from raiden.utils.signer import LocalSigner, Signer
-from raiden.utils.transfers import random_secret
-from raiden.utils.typing import (
+from raiden_common.transfer.state_change import ContractReceiveChannelNew, ContractReceiveRouteNew
+from raiden_common.transfer.utils import hash_balance_data
+from raiden_common.utils.formatting import to_checksum_address
+from raiden_common.utils.keys import privatekey_to_address
+from raiden_common.utils.packing import pack_balance_proof
+from raiden_common.utils.secrethash import sha256_secrethash
+from raiden_common.utils.signer import LocalSigner, Signer
+from raiden_common.utils.transfers import random_secret
+from raiden_common.utils.typing import (
     AdditionalHash,
     Address,
     AddressHex,

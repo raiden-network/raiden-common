@@ -5,30 +5,34 @@ from typing import Optional, Tuple
 import structlog
 from eth_utils import encode_hex, to_hex
 
-from raiden.constants import (
+from raiden_common.constants import (
     BLOCK_ID_LATEST,
     EMPTY_BALANCE_HASH,
     EMPTY_MESSAGE_HASH,
     EMPTY_SIGNATURE,
     LOCKSROOT_OF_NO_LOCKS,
 )
-from raiden.exceptions import InsufficientEth, RaidenUnrecoverableError, ServiceRequestFailed
-from raiden.messages.abstract import Message
-from raiden.messages.encode import message_from_sendevent
-from raiden.network.pathfinding import post_pfs_feedback
-from raiden.network.proxies.payment_channel import PaymentChannel, WithdrawInput
-from raiden.network.proxies.token_network import TokenNetwork
-from raiden.network.resolver.client import reveal_secret_with_resolver
-from raiden.network.transport.matrix.transport import MessagesQueue
-from raiden.storage.restore import (
+from raiden_common.exceptions import (
+    InsufficientEth,
+    RaidenUnrecoverableError,
+    ServiceRequestFailed,
+)
+from raiden_common.messages.abstract import Message
+from raiden_common.messages.encode import message_from_sendevent
+from raiden_common.network.pathfinding import post_pfs_feedback
+from raiden_common.network.proxies.payment_channel import PaymentChannel, WithdrawInput
+from raiden_common.network.proxies.token_network import TokenNetwork
+from raiden_common.network.resolver.client import reveal_secret_with_resolver
+from raiden_common.network.transport.matrix.transport import MessagesQueue
+from raiden_common.storage.restore import (
     channel_state_until_state_change,
     get_event_with_balance_proof_by_balance_hash,
     get_event_with_balance_proof_by_locksroot,
     get_state_change_with_balance_proof_by_balance_hash,
     get_state_change_with_balance_proof_by_locksroot,
 )
-from raiden.transfer.architecture import Event, SendMessageEvent
-from raiden.transfer.events import (
+from raiden_common.transfer.architecture import Event, SendMessageEvent
+from raiden_common.transfer.events import (
     ContractSendChannelBatchUnlock,
     ContractSendChannelClose,
     ContractSendChannelCoopSettle,
@@ -56,8 +60,8 @@ from raiden.transfer.events import (
     SendWithdrawRequest,
     UpdateServicesAddresses,
 )
-from raiden.transfer.identifiers import CanonicalIdentifier, QueueIdentifier
-from raiden.transfer.mediated_transfer.events import (
+from raiden_common.transfer.identifiers import CanonicalIdentifier, QueueIdentifier
+from raiden_common.transfer.mediated_transfer.events import (
     EventRouteFailed,
     EventUnlockClaimFailed,
     EventUnlockClaimSuccess,
@@ -69,15 +73,15 @@ from raiden.transfer.mediated_transfer.events import (
     SendSecretReveal,
     SendUnlock,
 )
-from raiden.transfer.state import ChainState, NettingChannelEndState
-from raiden.transfer.views import (
+from raiden_common.transfer.state import ChainState, NettingChannelEndState
+from raiden_common.transfer.views import (
     get_channelstate_by_canonical_identifier,
     get_channelstate_by_token_network_and_partner,
     state_from_raiden,
 )
-from raiden.utils.formatting import to_checksum_address
-from raiden.utils.packing import pack_signed_balance_proof, pack_withdraw
-from raiden.utils.typing import (
+from raiden_common.utils.formatting import to_checksum_address
+from raiden_common.utils.packing import pack_signed_balance_proof, pack_withdraw
+from raiden_common.utils.typing import (
     MYPY_ANNOTATION,
     TYPE_CHECKING,
     AddressMetadata,
@@ -90,7 +94,7 @@ from raiden_contracts.constants import MessageTypeId
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import
-    from raiden.raiden_service import RaidenService
+    from raiden_common.raiden_service import RaidenService
 
 log = structlog.get_logger(__name__)
 UNEVENTFUL_EVENTS = (

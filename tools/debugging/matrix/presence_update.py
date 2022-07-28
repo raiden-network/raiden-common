@@ -9,15 +9,15 @@ from typing import Optional
 import gevent
 
 
-from raiden.network.transport.matrix.rtc.utils import setup_asyncio_event_loop
+from raiden_common.network.transport.matrix.rtc.utils import setup_asyncio_event_loop
 
 
 setup_asyncio_event_loop()
 
 if True:
     import sys
-    from raiden.network.transport.matrix.client import GMatrixClient
-    from raiden.network.transport.matrix.utils import UserPresence
+    from raiden_common.network.transport.matrix.client import GMatrixClient
+    from raiden_common.network.transport.matrix.utils import UserPresence
 
 USER_ID = "@xxx:server1"
 ACCESS_TOKEN = "REDACTED"

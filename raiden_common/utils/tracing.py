@@ -1,7 +1,7 @@
 import opentracing
 from requests_opentracing import SessionTracing
 
-from raiden.network.transport.matrix.client import GMatrixClient
+from raiden_common.network.transport.matrix.client import GMatrixClient
 
 
 def matrix_client_enable_requests_tracing(client: GMatrixClient) -> None:
@@ -25,7 +25,7 @@ def enable_pfs_request_tracing() -> None:
     This is done by replacing the `Session` object in `raiden.network.pathfinding`.
     """
 
-    from raiden.network import pathfinding
+    from raiden_common.network import pathfinding
 
     # Propagate traces to the PFS
     tracing_session = SessionTracing(opentracing.tracer, propagate=True)

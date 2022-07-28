@@ -3,8 +3,8 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from raiden.storage.versions import VERSION_RE
-from raiden.utils.upgrades import delete_dbs_with_failed_migrations
+from raiden_common.storage.versions import VERSION_RE
+from raiden_common.utils.upgrades import delete_dbs_with_failed_migrations
 
 
 def _return_valid_db_version(db_filename: Path):
@@ -44,14 +44,14 @@ def test_delete_dbs_with_failed_migrations(monkeypatch):
     file_names = [Path("v1_log.db"), Path("v11_log.db"), Path("v9_log.db"), Path("v9999_log.db")]
 
     exists_mock = MagicMock(return_value=True)
-    monkeypatch.setattr("raiden.utils.upgrades.get_file_lock", GetLockMock)
+    monkeypatch.setattr("raiden_common.utils.upgrades.get_file_lock", GetLockMock)
 
     with monkeypatch.context() as m:
         remove_mock = MagicMock()
 
-        m.setattr("raiden.utils.upgrades.get_db_version", _return_valid_db_version)
-        m.setattr("raiden.utils.upgrades.os.path.exists", exists_mock)
-        m.setattr("raiden.utils.upgrades.os.remove", remove_mock)
+        m.setattr("raiden_common.utils.upgrades.get_db_version", _return_valid_db_version)
+        m.setattr("raiden_common.utils.upgrades.os.path.exists", exists_mock)
+        m.setattr("raiden_common.utils.upgrades.os.remove", remove_mock)
 
         delete_dbs_with_failed_migrations(list(file_names))
         remove_mock.assert_not_called()
@@ -59,9 +59,9 @@ def test_delete_dbs_with_failed_migrations(monkeypatch):
     with monkeypatch.context() as m:
         remove_mock = MagicMock()
 
-        m.setattr("raiden.utils.upgrades.get_db_version", _return_higher_db_version)
-        m.setattr("raiden.utils.upgrades.os.path.exists", exists_mock)
-        m.setattr("raiden.utils.upgrades.os.remove", remove_mock)
+        m.setattr("raiden_common.utils.upgrades.get_db_version", _return_higher_db_version)
+        m.setattr("raiden_common.utils.upgrades.os.path.exists", exists_mock)
+        m.setattr("raiden_common.utils.upgrades.os.remove", remove_mock)
 
         with pytest.raises(RuntimeError):
             delete_dbs_with_failed_migrations(list(file_names))
@@ -71,9 +71,9 @@ def test_delete_dbs_with_failed_migrations(monkeypatch):
     with monkeypatch.context() as m:
         remove_mock = MagicMock()
 
-        m.setattr("raiden.utils.upgrades.get_db_version", _return_smaller_db_version)
-        m.setattr("raiden.utils.upgrades.os.path.exists", exists_mock)
-        m.setattr("raiden.utils.upgrades.os.remove", remove_mock)
+        m.setattr("raiden_common.utils.upgrades.get_db_version", _return_smaller_db_version)
+        m.setattr("raiden_common.utils.upgrades.os.path.exists", exists_mock)
+        m.setattr("raiden_common.utils.upgrades.os.remove", remove_mock)
 
         delete_dbs_with_failed_migrations(list(file_names))
 

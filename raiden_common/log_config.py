@@ -11,7 +11,7 @@ from typing import Any, Callable, Dict, FrozenSet, List, Optional, Pattern, Tupl
 import gevent
 import structlog
 
-from raiden.exceptions import ConfigurationError
+from raiden_common.exceptions import ConfigurationError
 
 LOG_BLACKLIST: Dict[Pattern, str] = {
     re.compile(r"\b(access_?token=)([a-z0-9_-]+)", re.I): r"\1<redacted>",

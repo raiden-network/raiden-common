@@ -1,16 +1,16 @@
 import random
 
-from raiden.constants import EMPTY_HASH
-from raiden.tests.utils import factories
-from raiden.transfer import node, state, state_change
-from raiden.transfer.events import SendWithdrawRequest
-from raiden.transfer.identifiers import (
+from raiden_common.constants import EMPTY_HASH
+from raiden_common.tests.utils import factories
+from raiden_common.transfer import node, state, state_change
+from raiden_common.transfer.events import SendWithdrawRequest
+from raiden_common.transfer.identifiers import (
     CANONICAL_IDENTIFIER_UNORDERED_QUEUE,
     CanonicalIdentifier,
     QueueIdentifier,
 )
-from raiden.transfer.mediated_transfer.events import SendSecretReveal
-from raiden.transfer.state_change import ReceiveWithdrawConfirmation
+from raiden_common.transfer.mediated_transfer.events import SendSecretReveal
+from raiden_common.transfer.state_change import ReceiveWithdrawConfirmation
 
 
 def test_delivered_message_must_clean_unordered_messages(chain_id):

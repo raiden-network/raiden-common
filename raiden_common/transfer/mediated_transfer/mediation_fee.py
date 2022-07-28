@@ -4,9 +4,9 @@ from dataclasses import dataclass, field
 from fractions import Fraction
 from typing import List, Optional, Sequence, Tuple, TypeVar, Union
 
-from raiden.exceptions import UndefinedMediationFee
-from raiden.transfer.architecture import State
-from raiden.utils.typing import (
+from raiden_common.exceptions import UndefinedMediationFee
+from raiden_common.transfer.architecture import State
+from raiden_common.utils.typing import (
     Balance,
     FeeAmount,
     PaymentWithFeeAmount,

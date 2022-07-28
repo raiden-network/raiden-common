@@ -8,10 +8,10 @@ import gevent
 import pytest
 from gevent.event import Event
 
-from raiden.network.transport.matrix.client import ReceivedRaidenMessage
-from raiden.network.transport.matrix.rtc.web_rtc import WebRTCManager
-from raiden.tests.utils.factories import make_signer
-from raiden.utils.typing import Address
+from raiden_common.network.transport.matrix.client import ReceivedRaidenMessage
+from raiden_common.network.transport.matrix.rtc.web_rtc import WebRTCManager
+from raiden_common.tests.utils.factories import make_signer
+from raiden_common.utils.typing import Address
 
 pytestmark = pytest.mark.asyncio
 

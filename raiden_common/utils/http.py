@@ -17,7 +17,7 @@ from mirakuru.exceptions import AlreadyRunning, ProcessExitedWithError, TimeoutE
 from mirakuru.http import HTTPConnection, HTTPException, HTTPExecutor as MiHTTPExecutor
 from requests.adapters import HTTPAdapter
 
-from raiden.utils.typing import Endpoint, Host, HostPort, Port
+from raiden_common.utils.typing import Endpoint, Host, HostPort, Port
 
 T_IO_OR_INT = Union[IO, int]
 EXECUTOR_IO = Union[int, Tuple[T_IO_OR_INT, T_IO_OR_INT, T_IO_OR_INT]]

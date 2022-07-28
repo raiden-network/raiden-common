@@ -2,12 +2,12 @@ import os
 import sys
 from typing import Any, Dict
 
-import raiden
-from raiden import constants
+import raiden_common
+from raiden_common import constants
 
 
 def get_project_root() -> str:
-    return os.path.dirname(raiden.__file__)
+    return os.path.dirname(raiden_common.__file__)
 
 
 def get_system_spec() -> Dict[str, Any]:

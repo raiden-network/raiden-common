@@ -42,7 +42,7 @@ of the easy of conversion.
 from dataclasses import dataclass
 from datetime import datetime
 
-from raiden.transfer.architecture import Event
+from raiden_common.transfer.architecture import Event
 
 
 @dataclass

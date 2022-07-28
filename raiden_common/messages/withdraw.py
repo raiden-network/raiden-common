@@ -2,15 +2,15 @@ from dataclasses import dataclass
 
 from marshmallow import EXCLUDE
 
-from raiden.constants import EMPTY_SIGNATURE
-from raiden.messages.abstract import SignedRetrieableMessage
-from raiden.messages.cmdid import CmdId
-from raiden.transfer.events import (
+from raiden_common.constants import EMPTY_SIGNATURE
+from raiden_common.messages.abstract import SignedRetrieableMessage
+from raiden_common.messages.cmdid import CmdId
+from raiden_common.transfer.events import (
     SendWithdrawConfirmation,
     SendWithdrawExpired,
     SendWithdrawRequest,
 )
-from raiden.utils.typing import (
+from raiden_common.utils.typing import (
     Address,
     BlockExpiration,
     ChainID,

@@ -22,16 +22,16 @@ from requests.packages.urllib3.exceptions import InsecureRequestWarning
 from structlog import get_logger
 from synapse.handlers.auth import AuthHandler
 
-from raiden.constants import DeviceIDs, Environment
-from raiden.messages.abstract import Message
-from raiden.network.transport.matrix.client import GMatrixClient, MatrixMessage
-from raiden.network.transport.matrix.transport import MatrixTransport, MessagesQueue
-from raiden.settings import MatrixTransportConfig
-from raiden.tests.utils.factories import make_signer
-from raiden.transfer.identifiers import QueueIdentifier
-from raiden.utils.http import EXECUTOR_IO, HTTPExecutor
-from raiden.utils.signer import recover
-from raiden.utils.typing import Iterable, Port
+from raiden_common.constants import DeviceIDs, Environment
+from raiden_common.messages.abstract import Message
+from raiden_common.network.transport.matrix.client import GMatrixClient, MatrixMessage
+from raiden_common.network.transport.matrix.transport import MatrixTransport, MessagesQueue
+from raiden_common.settings import MatrixTransportConfig
+from raiden_common.tests.utils.factories import make_signer
+from raiden_common.transfer.identifiers import QueueIdentifier
+from raiden_common.utils.http import EXECUTOR_IO, HTTPExecutor
+from raiden_common.utils.signer import recover
+from raiden_common.utils.typing import Iterable, Port
 from raiden_contracts.utils.type_aliases import Signature
 
 log = get_logger(__name__)

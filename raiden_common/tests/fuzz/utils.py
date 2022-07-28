@@ -2,32 +2,32 @@ from dataclasses import dataclass, replace
 
 from hypothesis.strategies import builds, composite, integers, sampled_from
 
-from raiden.messages.decode import lockedtransfersigned_from_message
-from raiden.messages.encode import message_from_sendevent
-from raiden.messages.transfers import LockedTransfer
-from raiden.tests.utils import factories
-from raiden.transfer.identifiers import CanonicalIdentifier
-from raiden.transfer.mediated_transfer.events import (
+from raiden_common.messages.decode import lockedtransfersigned_from_message
+from raiden_common.messages.encode import message_from_sendevent
+from raiden_common.messages.transfers import LockedTransfer
+from raiden_common.tests.utils import factories
+from raiden_common.transfer.identifiers import CanonicalIdentifier
+from raiden_common.transfer.mediated_transfer.events import (
     SendLockedTransfer,
     SendSecretRequest,
     SendSecretReveal,
     SendUnlock,
 )
-from raiden.transfer.mediated_transfer.initiator import send_lockedtransfer
-from raiden.transfer.mediated_transfer.state import (
+from raiden_common.transfer.mediated_transfer.initiator import send_lockedtransfer
+from raiden_common.transfer.mediated_transfer.state import (
     LockedTransferSignedState,
     TransferDescriptionWithSecretState,
 )
-from raiden.transfer.mediated_transfer.state_change import (
+from raiden_common.transfer.mediated_transfer.state_change import (
     ActionInitInitiator,
     ActionInitTarget,
     ReceiveSecretRequest,
     ReceiveSecretReveal,
 )
-from raiden.transfer.state import HopState, NettingChannelState, RouteState
-from raiden.transfer.state_change import ReceiveUnlock
-from raiden.utils.signer import LocalSigner
-from raiden.utils.typing import (
+from raiden_common.transfer.state import HopState, NettingChannelState, RouteState
+from raiden_common.transfer.state_change import ReceiveUnlock
+from raiden_common.utils.signer import LocalSigner
+from raiden_common.utils.typing import (
     MYPY_ANNOTATION,
     Address,
     Any,

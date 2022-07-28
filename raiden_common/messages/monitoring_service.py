@@ -1,13 +1,17 @@
 from dataclasses import dataclass, field
 
-from raiden.constants import EMPTY_SIGNATURE
-from raiden.messages.abstract import SignedMessage
-from raiden.transfer.identifiers import CanonicalIdentifier
-from raiden.transfer.state import BalanceProofSignedState
-from raiden.transfer.utils import hash_balance_data
-from raiden.utils.packing import pack_balance_proof, pack_reward_proof, pack_signed_balance_proof
-from raiden.utils.signer import Signer, recover
-from raiden.utils.typing import (
+from raiden_common.constants import EMPTY_SIGNATURE
+from raiden_common.messages.abstract import SignedMessage
+from raiden_common.transfer.identifiers import CanonicalIdentifier
+from raiden_common.transfer.state import BalanceProofSignedState
+from raiden_common.transfer.utils import hash_balance_data
+from raiden_common.utils.packing import (
+    pack_balance_proof,
+    pack_reward_proof,
+    pack_signed_balance_proof,
+)
+from raiden_common.utils.signer import Signer, recover
+from raiden_common.utils.typing import (
     AdditionalHash,
     Address,
     BalanceHash,

@@ -7,8 +7,8 @@ import pytest
 import structlog
 from gevent.event import AsyncResult
 
-from raiden.api.rest import APIServer
-from raiden.raiden_service import RaidenService
+from raiden_common.api.rest import APIServer
+from raiden_common.raiden_service import RaidenService
 
 log = structlog.get_logger(__name__)
 

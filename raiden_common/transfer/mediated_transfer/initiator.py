@@ -2,46 +2,46 @@ import random
 from math import ceil
 from typing import Tuple
 
-from raiden.constants import ABSENT_SECRET
-from raiden.settings import (
+from raiden_common.constants import ABSENT_SECRET
+from raiden_common.settings import (
     DEFAULT_MEDIATION_FEE_MARGIN,
     DEFAULT_WAIT_BEFORE_LOCK_REMOVAL,
     MAX_MEDIATION_FEE_PERC,
     PAYMENT_AMOUNT_BASED_FEE_MARGIN,
 )
-from raiden.transfer import channel
-from raiden.transfer.architecture import Event, TransitionResult
-from raiden.transfer.events import (
+from raiden_common.transfer import channel
+from raiden_common.transfer.architecture import Event, TransitionResult
+from raiden_common.transfer.events import (
     EventInvalidSecretRequest,
     EventPaymentSentFailed,
     EventPaymentSentSuccess,
 )
-from raiden.transfer.identifiers import CANONICAL_IDENTIFIER_UNORDERED_QUEUE
-from raiden.transfer.mediated_transfer.events import (
+from raiden_common.transfer.identifiers import CANONICAL_IDENTIFIER_UNORDERED_QUEUE
+from raiden_common.transfer.mediated_transfer.events import (
     EventRouteFailed,
     EventUnlockFailed,
     EventUnlockSuccess,
     SendLockedTransfer,
     SendSecretReveal,
 )
-from raiden.transfer.mediated_transfer.state import (
+from raiden_common.transfer.mediated_transfer.state import (
     InitiatorTransferState,
     TransferDescriptionWithSecretState,
 )
-from raiden.transfer.mediated_transfer.state_change import (
+from raiden_common.transfer.mediated_transfer.state_change import (
     ReceiveSecretRequest,
     ReceiveSecretReveal,
 )
-from raiden.transfer.state import (
+from raiden_common.transfer.state import (
     ChannelState,
     NettingChannelState,
     RouteState,
     get_address_metadata,
     message_identifier_from_prng,
 )
-from raiden.transfer.state_change import Block, ContractReceiveSecretReveal, StateChange
-from raiden.transfer.utils import is_valid_secret_reveal
-from raiden.utils.typing import (
+from raiden_common.transfer.state_change import Block, ContractReceiveSecretReveal, StateChange
+from raiden_common.transfer.utils import is_valid_secret_reveal
+from raiden_common.utils.typing import (
     MYPY_ANNOTATION,
     Address,
     BlockExpiration,

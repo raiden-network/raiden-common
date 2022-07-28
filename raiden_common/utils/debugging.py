@@ -11,7 +11,7 @@ import structlog
 from gevent._tracer import GreenletTracer
 from gevent.hub import Hub
 
-from raiden.exceptions import RaidenUnrecoverableError
+from raiden_common.exceptions import RaidenUnrecoverableError
 
 LIBEV_LOW_PRIORITY = -2
 LIBEV_HIGH_PRIORITY = 2

@@ -3,10 +3,10 @@ import opentracing
 import structlog
 from eth_utils import is_binary_address
 
-from raiden import waiting
-from raiden.api.exceptions import ChannelNotFound, NonexistingChannel
-from raiden.constants import BLOCK_ID_PENDING, NULL_ADDRESS_BYTES, UINT64_MAX, UINT256_MAX
-from raiden.exceptions import (
+from raiden_common import waiting
+from raiden_common.api.exceptions import ChannelNotFound, NonexistingChannel
+from raiden_common.constants import BLOCK_ID_PENDING, NULL_ADDRESS_BYTES, UINT64_MAX, UINT256_MAX
+from raiden_common.exceptions import (
     AlreadyRegisteredTokenAddress,
     DepositMismatch,
     DepositOverLimit,
@@ -31,29 +31,29 @@ from raiden.exceptions import (
     UserDepositNotConfigured,
     WithdrawMismatch,
 )
-from raiden.settings import DEFAULT_RETRY_TIMEOUT, PythonApiConfig
-from raiden.storage.utils import TimestampedEvent
-from raiden.transfer import channel, views
-from raiden.transfer.architecture import Event, StateChange, TransferTask
-from raiden.transfer.events import (
+from raiden_common.settings import DEFAULT_RETRY_TIMEOUT, PythonApiConfig
+from raiden_common.storage.utils import TimestampedEvent
+from raiden_common.transfer import channel, views
+from raiden_common.transfer.architecture import Event, StateChange, TransferTask
+from raiden_common.transfer.events import (
     EventPaymentReceivedSuccess,
     EventPaymentSentFailed,
     EventPaymentSentSuccess,
 )
-from raiden.transfer.mediated_transfer.tasks import InitiatorTask, MediatorTask, TargetTask
-from raiden.transfer.state import (
+from raiden_common.transfer.mediated_transfer.tasks import InitiatorTask, MediatorTask, TargetTask
+from raiden_common.transfer.state import (
     ChainState,
     ChannelState,
     NettingChannelState,
     NetworkState,
     RouteState,
 )
-from raiden.transfer.state_change import ActionChannelClose, ActionChannelCoopSettle
-from raiden.transfer.views import TransferRole, get_token_network_by_address
-from raiden.utils.formatting import to_checksum_address
-from raiden.utils.gas_reserve import has_enough_gas_reserve
-from raiden.utils.transfers import create_default_identifier
-from raiden.utils.typing import (
+from raiden_common.transfer.state_change import ActionChannelClose, ActionChannelCoopSettle
+from raiden_common.transfer.views import TransferRole, get_token_network_by_address
+from raiden_common.utils.formatting import to_checksum_address
+from raiden_common.utils.gas_reserve import has_enough_gas_reserve
+from raiden_common.utils.transfers import create_default_identifier
+from raiden_common.utils.typing import (
     TYPE_CHECKING,
     Address,
     Any,
@@ -84,7 +84,7 @@ from raiden.utils.typing import (
 )
 
 if TYPE_CHECKING:
-    from raiden.raiden_service import PaymentStatus, RaidenService
+    from raiden_common.raiden_service import PaymentStatus, RaidenService
 
 log = structlog.get_logger(__name__)
 

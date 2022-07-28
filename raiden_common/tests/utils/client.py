@@ -1,7 +1,7 @@
-from raiden.constants import TRANSACTION_INTRINSIC_GAS
-from raiden.network.rpc.client import EthTransfer, JSONRPCClient
-from raiden.tests.utils.factories import HOP1
-from raiden.utils.typing import Address
+from raiden_common.constants import TRANSACTION_INTRINSIC_GAS
+from raiden_common.network.rpc.client import EthTransfer, JSONRPCClient
+from raiden_common.tests.utils.factories import HOP1
+from raiden_common.utils.typing import Address
 
 
 def burn_eth(rpc_client: JSONRPCClient, amount_to_leave: int = 0) -> None:

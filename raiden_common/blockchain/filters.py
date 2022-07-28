@@ -10,10 +10,10 @@ from web3._utils.events import get_event_data
 from web3._utils.filters import construct_event_filter_params
 from web3.types import BlockNumber, EventData, FilterParams, LogReceipt
 
-from raiden.constants import BLOCK_ID_LATEST, GENESIS_BLOCK_NUMBER
-from raiden.network.proxies.service_registry import ServiceRegistry
-from raiden.utils.formatting import to_checksum_address
-from raiden.utils.typing import (
+from raiden_common.constants import BLOCK_ID_LATEST, GENESIS_BLOCK_NUMBER
+from raiden_common.network.proxies.service_registry import ServiceRegistry
+from raiden_common.utils.formatting import to_checksum_address
+from raiden_common.utils.typing import (
     ABI,
     Address,
     BlockIdentifier,
