@@ -63,4 +63,4 @@ jobs:
       run: |
         source ./venv/bin/activate
         export PATH=$PATH:$HOME/.local/bin
-        pytest raiden_common/tests/unit -n 4 -x
+        pytest raiden_common/tests -n 4 -x
