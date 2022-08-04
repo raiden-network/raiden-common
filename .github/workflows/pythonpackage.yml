@@ -39,4 +39,4 @@ jobs:
     - name: Test
       run: |
         source ./venv/bin/activate
-        pytest raiden_common/tests/ -n 4 -x
+        pytest raiden_common/tests/unit -n 4 -x
