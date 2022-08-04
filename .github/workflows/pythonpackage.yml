@@ -6,6 +6,16 @@ on:
   pull_request:
     branches: [ "*" ]
 
+env:
+  GETH_URL_LINUX: 'https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.10.1-c2d2f4ed.tar.gz'
+  GETH_MD5_LINUX: '5e18a027f9919ed9ba08abd15c169f61'
+  GETH_URL_MACOS: 'https://gethstore.blob.core.windows.net/builds/geth-darwin-amd64-1.10.1-c2d2f4ed.tar.gz'
+  GETH_MD5_MACOS: '50270c1205c0a27457d9a8b182670c83'
+  GETH_VERSION: '1.10.1'
+  SOLC_URL_LINUX: 'https://github.com/ethereum/solidity/releases/download/v0.6.3/solc-static-linux'
+  SOLC_VERSION: 'v0.6.3'
+
+
 jobs:
   lint-and-test:
     runs-on: ubuntu-latest
@@ -14,6 +24,19 @@ jobs:
         python-version: [3.8, 3.9]
     steps:
     - uses: actions/checkout@v2
+    - name: Prepare cache key
+      run: |
+        echo ${GETH_VERSION} > /tmp/geth-version
+        echo ${SOLC_VERSION} > /tmp/solc-version
+    - uses: actions/cache@v2
+      with:
+        path: |
+          ~/.local
+        key: ${{ runner.os }}-v1-geth-${{ hashFiles('/tmp/geth-version') }}-solc-{{'/tmp/solc-version'}}
+    - name: Install geth and solc
+      run: |
+          export OS_NAME=$(uname -s | sed s/Darwin/macos/ | tr '[:lower:]' '[:upper:]')
+          .circleci/fetch_geth_parity_solc.sh
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
@@ -39,4 +62,5 @@ jobs:
     - name: Test
       run: |
         source ./venv/bin/activate
+        export PATH=$PATH:$HOME/.local/bin
         pytest raiden_common/tests/unit -n 4 -x
