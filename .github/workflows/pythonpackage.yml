@@ -36,7 +36,7 @@ jobs:
     - name: Install geth and solc
       run: |
           export OS_NAME=$(uname -s | sed s/Darwin/macos/ | tr '[:lower:]' '[:upper:]')
-          .circleci/fetch_geth_parity_solc.sh
+          .github/fetch_geth_parity_solc.sh
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
