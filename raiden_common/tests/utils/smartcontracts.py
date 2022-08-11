@@ -4,12 +4,8 @@ from solcx import compile_files
 from web3.contract import Contract
 from web3.types import TxReceipt
 
-from raiden_common.constants import BLOCK_ID_LATEST
-from raiden_common.network.pathfinding import get_random_pfs
-from raiden_common.network.proxies.custom_token import CustomToken
-from raiden_common.network.proxies.service_registry import ServiceRegistry
 from raiden_common.network.rpc.client import JSONRPCClient
-from raiden_common.utils.typing import Any, Dict, List, T_TransactionHash, TokenAmount, Tuple
+from raiden_common.utils.typing import Any, Dict, T_TransactionHash, TokenAmount, Tuple
 from raiden_contracts.contract_manager import ContractManager
 
 
@@ -39,90 +35,6 @@ def deploy_token(
         constructor_parameters=(initial_amount, decimals, token_name, token_symbol),
     )
     return contract_proxy
-
-
-def deploy_service_registry_and_set_urls(
-    private_keys, web3, contract_manager, service_registry_address
-) -> Tuple[ServiceRegistry, List[str]]:
-    urls = ["http://foo", "http://boo", "http://coo"]
-    block_identifier = BLOCK_ID_LATEST
-    c1_client = JSONRPCClient(web3, private_keys[0])
-    c1_service_proxy = ServiceRegistry(
-        jsonrpc_client=c1_client,
-        service_registry_address=service_registry_address,
-        contract_manager=contract_manager,
-        block_identifier=block_identifier,
-    )
-    token_address = c1_service_proxy.token_address(block_identifier=block_identifier)
-    c1_token_proxy = CustomToken(
-        jsonrpc_client=c1_client,
-        token_address=token_address,
-        contract_manager=contract_manager,
-        block_identifier=block_identifier,
-    )
-    c2_client = JSONRPCClient(web3, private_keys[1])
-    c2_service_proxy = ServiceRegistry(
-        jsonrpc_client=c2_client,
-        service_registry_address=service_registry_address,
-        contract_manager=contract_manager,
-        block_identifier=block_identifier,
-    )
-    c2_token_proxy = CustomToken(
-        jsonrpc_client=c2_client,
-        token_address=token_address,
-        contract_manager=contract_manager,
-        block_identifier=block_identifier,
-    )
-    c3_client = JSONRPCClient(web3, private_keys[2])
-    c3_service_proxy = ServiceRegistry(
-        jsonrpc_client=c3_client,
-        service_registry_address=service_registry_address,
-        contract_manager=contract_manager,
-        block_identifier=block_identifier,
-    )
-    c3_token_proxy = CustomToken(
-        jsonrpc_client=c3_client,
-        token_address=token_address,
-        contract_manager=contract_manager,
-        block_identifier=block_identifier,
-    )
-
-    # Test that getting a random service for an empty registry returns None
-    pfs_address = get_random_pfs(
-        c1_service_proxy, BLOCK_ID_LATEST, pathfinding_max_fee=TokenAmount(1)
-    )
-    assert pfs_address is None
-
-    log_details: Dict[str, Any] = {}
-    # Test that setting the urls works
-    c1_price = c1_service_proxy.current_price(block_identifier=BLOCK_ID_LATEST)
-    c1_token_proxy.mint_for(c1_price, c1_client.address)
-    assert c1_token_proxy.balance_of(c1_client.address) > 0
-    c1_token_proxy.approve(allowed_address=service_registry_address, allowance=c1_price)
-    c1_service_proxy.deposit(block_identifier=BLOCK_ID_LATEST, limit_amount=c1_price)
-    c1_service_proxy.set_url(urls[0])
-
-    c2_price = c2_service_proxy.current_price(block_identifier=BLOCK_ID_LATEST)
-    c2_token_proxy.mint_for(c2_price, c2_client.address)
-    assert c2_token_proxy.balance_of(c2_client.address) > 0
-    c2_token_proxy.approve(allowed_address=service_registry_address, allowance=c2_price)
-    transaction_hash = c2_service_proxy.deposit(
-        block_identifier=BLOCK_ID_LATEST, limit_amount=c2_price
-    )
-    assert is_tx_hash_bytes(transaction_hash)
-    transaction_hash = c2_service_proxy.set_url(urls[1])
-    assert is_tx_hash_bytes(transaction_hash)
-
-    c3_price = c3_service_proxy.current_price(block_identifier=BLOCK_ID_LATEST)
-    c3_token_proxy.mint_for(c3_price, c3_client.address)
-    assert c3_token_proxy.balance_of(c3_client.address) > 0
-    c3_token_proxy.approve(allowed_address=service_registry_address, allowance=c3_price)
-    c3_service_proxy.deposit(block_identifier=BLOCK_ID_LATEST, limit_amount=c3_price)
-    c3_token_proxy.client.estimate_gas(c3_token_proxy.proxy, "mint", log_details, c3_price)
-    c3_token_proxy.approve(allowed_address=service_registry_address, allowance=c3_price)
-    c3_service_proxy.set_url(urls[2])
-
-    return c1_service_proxy, urls
 
 
 def compile_files_cwd(*args: Any, **kwargs: Any) -> Dict[str, Any]:

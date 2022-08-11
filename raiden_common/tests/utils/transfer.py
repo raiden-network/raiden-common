@@ -55,7 +55,6 @@ from raiden_common.transfer.mediated_transfer.state_change import (
 from raiden_common.transfer.state import (
     BalanceProofSignedState,
     BalanceProofUnsignedState,
-    ChannelState,
     HashTimeLockState,
     NettingChannelState,
     PendingLocksState,
@@ -436,125 +435,6 @@ def _transfer_locked(
         secrethash=secrethash,
         route_states=route_states,
     )
-
-    return secrethash
-
-
-def transfer_and_assert_path(
-    path: List[RaidenService],
-    token_address: TokenAddress,
-    amount: PaymentAmount,
-    identifier: PaymentID,
-    timeout: float = 10,
-    fee_estimate: FeeAmount = FeeAmount(0),  # noqa: B008
-) -> SecretHash:
-    """Nice to read shortcut to make successful LockedTransfer.
-
-    Note:
-        This utility *does not enforce the path*, however it does check the
-        provided path is used in totality. It's the responsability of the
-        caller to ensure the path will be used. All nodes in `path` are
-        synched.
-    """
-    assert identifier is not None, "The identifier must be provided"
-    secret, secrethash = make_secret_with_hash()
-
-    first_app = path[0]
-    token_network_registry_address = first_app.default_registry.address
-    token_network_address = views.get_token_network_address_by_token_address(
-        chain_state=views.state_from_raiden(first_app),
-        token_network_registry_address=token_network_registry_address,
-        token_address=token_address,
-    )
-    assert token_network_address
-
-    for app in path:
-        assert isinstance(app.message_handler, WaitForMessage)
-
-        msg = "The apps must be on the same token network registry"
-        assert app.default_registry.address == token_network_registry_address, msg
-
-        app_token_network_address = views.get_token_network_address_by_token_address(
-            chain_state=views.state_from_raiden(app),
-            token_network_registry_address=token_network_registry_address,
-            token_address=token_address,
-        )
-
-        msg = "The apps must be synchronized with the blockchain"
-        assert token_network_address == app_token_network_address, msg
-
-    pairs = zip(path[:-1], path[1:])
-    receiving = []
-    for from_app, to_app in pairs:
-        from_channel_state = views.get_channelstate_by_token_network_and_partner(
-            chain_state=views.state_from_raiden(from_app),
-            token_network_address=token_network_address,
-            partner_address=to_app.address,
-        )
-        to_channel_state = views.get_channelstate_by_token_network_and_partner(
-            chain_state=views.state_from_raiden(to_app),
-            token_network_address=token_network_address,
-            partner_address=from_app.address,
-        )
-
-        msg = (
-            f"{to_checksum_address(from_app.address)} does not have a channel with "
-            f"{to_checksum_address(to_app.address)} needed to transfer through the "
-            f"path {[to_checksum_address(app.address) for app in path]}."
-        )
-        assert from_channel_state, msg
-        assert to_channel_state, msg
-
-        msg = (
-            f"channel among {to_checksum_address(from_app.address)} and "
-            f"{to_checksum_address(to_app.address)} must be open to be used for a "
-            f"transfer"
-        )
-        assert channel.get_status(from_channel_state) == ChannelState.STATE_OPENED, msg
-        assert channel.get_status(to_channel_state) == ChannelState.STATE_OPENED, msg
-
-        receiving.append((to_app, to_channel_state.identifier))
-
-    assert isinstance(app.message_handler, WaitForMessage)
-    results = set(
-        app.message_handler.wait_for_message(
-            Unlock,
-            {
-                "channel_identifier": channel_identifier,
-                "token_network_address": token_network_address,
-                "payment_identifier": identifier,
-                "secret": secret,
-            },
-        )
-        for app, channel_identifier in receiving
-    )
-
-    last_app = path[-1]
-    payment_status = first_app.mediated_transfer_async(
-        token_network_address=token_network_address,
-        amount=amount,
-        target=TargetAddress(path[-1].address),
-        identifier=identifier,
-        secret=secret,
-        route_states=[
-            create_route_state_for_route(
-                apps=path,
-                token_address=token_address,
-                fee_estimate=fee_estimate,
-            )
-        ],
-    )
-
-    msg = (
-        f"transfer from {to_checksum_address(first_app.address)} "
-        f"to {to_checksum_address(last_app.address)} for amount "
-        f"{amount} failed"
-    )
-    exception = RuntimeError(msg + " due to Timeout")
-    with watch_for_unlock_failures(*path):
-        with Timeout(seconds=timeout, exception=exception):
-            gevent.joinall(results, raise_error=True)
-            assert payment_status.payment_done.get(), msg
 
     return secrethash
 

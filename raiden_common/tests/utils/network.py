@@ -1,14 +1,13 @@
 """ Utilities to set-up a Raiden network. """
 from dataclasses import dataclass
 from itertools import product
-from pathlib import Path
 
 import gevent
 import structlog
 from web3 import Web3
 
 from raiden_common import waiting
-from raiden_common.constants import BLOCK_ID_LATEST, GENESIS_BLOCK_NUMBER, Environment, RoutingMode
+from raiden_common.constants import BLOCK_ID_LATEST, GENESIS_BLOCK_NUMBER
 from raiden_common.exceptions import PFSReturnedError
 from raiden_common.network.pathfinding import PFSProxy
 from raiden_common.network.proxies.proxy_manager import ProxyManager, ProxyManagerMetadata
@@ -16,23 +15,9 @@ from raiden_common.network.proxies.secret_registry import SecretRegistry
 from raiden_common.network.proxies.service_registry import ServiceRegistry
 from raiden_common.network.proxies.token_network_registry import TokenNetworkRegistry
 from raiden_common.network.rpc.client import JSONRPCClient
-from raiden_common.raiden_event_handler import RaidenEventHandler
 from raiden_common.raiden_service import RaidenService
-from raiden_common.settings import (
-    DEFAULT_NUMBER_OF_BLOCK_CONFIRMATIONS,
-    DEFAULT_RETRY_TIMEOUT,
-    BlockchainConfig,
-    CapabilitiesConfig,
-    MatrixTransportConfig,
-    MediationFeeConfig,
-    RaidenConfig,
-    RestApiConfig,
-    ServiceConfig,
-)
-from raiden_common.tests.utils.app import database_from_privatekey
+from raiden_common.settings import DEFAULT_RETRY_TIMEOUT
 from raiden_common.tests.utils.factories import UNIT_CHAIN_ID
-from raiden_common.tests.utils.protocol import HoldRaidenEventHandler, WaitForMessage
-from raiden_common.tests.utils.transport import ParsedURL, TestMatrixTransport
 from raiden_common.transfer import views
 from raiden_common.transfer.identifiers import CanonicalIdentifier
 from raiden_common.transfer.views import (
@@ -40,23 +25,14 @@ from raiden_common.transfer.views import (
     get_channelstate_by_token_network_and_partner,
     state_from_raiden,
 )
-from raiden_common.ui.app import start_api_server
-from raiden_common.ui.startup import RaidenBundle, ServicesBundle
 from raiden_common.utils.formatting import to_checksum_address, to_hex_address
 from raiden_common.utils.typing import (
     Address,
     BlockIdentifier,
-    BlockNumber,
     BlockTimeout,
-    ChainID,
-    Host,
     Iterable,
-    Iterator,
     List,
-    MonitoringServiceAddress,
-    OneToNAddress,
     Optional,
-    Port,
     PrivateKey,
     SecretRegistryAddress,
     ServiceRegistryAddress,
@@ -65,7 +41,6 @@ from raiden_common.utils.typing import (
     TokenNetworkAddress,
     TokenNetworkRegistryAddress,
     Tuple,
-    UserDepositAddress,
 )
 from raiden_common.waiting import wait_for_token_network
 from raiden_contracts.contract_manager import ContractManager
@@ -379,144 +354,6 @@ def create_sequential_channels(
         app_channels = list(zip(raiden_apps[:-1], raiden_apps[1:]))
 
     return app_channels
-
-
-def create_apps(
-    chain_id: ChainID,
-    contracts_path: Path,
-    blockchain_services: List[ProxyManager],
-    token_network_registry_address: TokenNetworkRegistryAddress,
-    one_to_n_address: Optional[OneToNAddress],
-    secret_registry_address: SecretRegistryAddress,
-    service_registry_address: Optional[ServiceRegistryAddress],
-    user_deposit_address: Optional[UserDepositAddress],
-    monitoring_service_contract_address: MonitoringServiceAddress,
-    reveal_timeout: BlockTimeout,
-    settle_timeout: BlockTimeout,
-    database_basedir: str,
-    retry_interval_initial: float,
-    retry_interval_max: float,
-    retries_before_backoff: int,
-    environment_type: Environment,
-    unrecoverable_error_should_crash: bool,
-    local_matrix_url: Optional[ParsedURL],
-    routing_mode: RoutingMode,
-    blockchain_query_interval: float,
-    resolver_ports: List[Optional[int]],
-    enable_rest_api: bool,
-    port_generator: Iterator[Port],
-    capabilities_config: CapabilitiesConfig,
-) -> List[RaidenService]:
-    """Create the apps."""
-    # pylint: disable=too-many-locals
-    apps: List[RaidenService] = []
-    for idx, proxy_manager in enumerate(blockchain_services):
-        database_path = database_from_privatekey(base_dir=database_basedir, app_number=idx)
-        assert len(resolver_ports) > idx
-        resolver_port = resolver_ports[idx]
-
-        config = RaidenConfig(
-            chain_id=chain_id,
-            environment_type=environment_type,
-            unrecoverable_error_should_crash=unrecoverable_error_should_crash,
-            reveal_timeout=reveal_timeout,
-            settle_timeout=settle_timeout,
-            contracts_path=contracts_path,
-            database_path=database_path,
-            blockchain=BlockchainConfig(
-                confirmation_blocks=DEFAULT_NUMBER_OF_BLOCK_CONFIRMATIONS,
-                query_interval=blockchain_query_interval,
-            ),
-            mediation_fees=MediationFeeConfig(),
-            services=ServiceConfig(monitoring_enabled=False),
-            rest_api=RestApiConfig(
-                rest_api_enabled=enable_rest_api, host=Host("localhost"), port=next(port_generator)
-            ),
-            console=False,
-            transport_type="matrix",
-        )
-        config.transport.capabilities_config = capabilities_config
-
-        if local_matrix_url is not None:
-            config.transport = MatrixTransportConfig(
-                retries_before_backoff=retries_before_backoff,
-                retry_interval_initial=retry_interval_initial,
-                retry_interval_max=retry_interval_max,
-                server=local_matrix_url,
-                available_servers=[],
-                capabilities_config=capabilities_config,
-            )
-
-        assert config.transport.capabilities_config is not None
-        if resolver_port is not None:
-            config.resolver_endpoint = f"http://localhost:{resolver_port}"
-
-        registry = proxy_manager.token_network_registry(
-            token_network_registry_address, block_identifier=BLOCK_ID_LATEST
-        )
-        secret_registry = proxy_manager.secret_registry(
-            secret_registry_address, block_identifier=BLOCK_ID_LATEST
-        )
-
-        services_bundle = None
-        if user_deposit_address:
-            user_deposit = proxy_manager.user_deposit(
-                user_deposit_address, block_identifier=BLOCK_ID_LATEST
-            )
-
-            service_registry: Optional[ServiceRegistry] = None
-            if service_registry_address:
-                service_registry = proxy_manager.service_registry(
-                    service_registry_address, block_identifier=BLOCK_ID_LATEST
-                )
-
-            monitoring_service = None
-            if monitoring_service_contract_address:
-                monitoring_service = proxy_manager.monitoring_service(
-                    monitoring_service_contract_address, block_identifier=BLOCK_ID_LATEST
-                )
-
-            one_to_n = None
-            if one_to_n_address:
-                one_to_n = proxy_manager.one_to_n(
-                    one_to_n_address, block_identifier=BLOCK_ID_LATEST
-                )
-
-            services_bundle = ServicesBundle(
-                user_deposit, service_registry, monitoring_service, one_to_n
-            )
-
-        # Use `TestMatrixTransport` that saves sent messages for assertions in tests
-        assert config.transport.capabilities_config is not None
-        transport = TestMatrixTransport(config=config.transport, environment=environment_type)
-
-        raiden_event_handler = RaidenEventHandler()
-        hold_handler = HoldRaidenEventHandler(raiden_event_handler)
-        message_handler = WaitForMessage()
-
-        api_server = None
-        if enable_rest_api:
-            api_server = start_api_server(
-                rpc_client=proxy_manager.client, config=config.rest_api, eth_rpc_endpoint="bla"
-            )
-
-        app = RaidenService(
-            config=config,
-            rpc_client=proxy_manager.client,
-            proxy_manager=proxy_manager,
-            query_start_block=BlockNumber(0),
-            raiden_bundle=RaidenBundle(registry, secret_registry),
-            services_bundle=services_bundle,
-            transport=transport,
-            raiden_event_handler=hold_handler,
-            message_handler=message_handler,
-            routing_mode=routing_mode,
-            api_server=api_server,
-            pfs_proxy=SimplePFSProxy(apps),
-        )
-        apps.append(app)
-
-    return apps
 
 
 class SimplePFSProxy(PFSProxy):

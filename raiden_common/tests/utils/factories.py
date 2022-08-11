@@ -47,7 +47,6 @@ from raiden_common.transfer.state import (
     TokenNetworkRegistryState,
     TokenNetworkState,
     TransactionExecutionStatus,
-    message_identifier_from_prng,
 )
 from raiden_common.transfer.state_change import ContractReceiveChannelNew, ContractReceiveRouteNew
 from raiden_common.transfer.utils import hash_balance_data
@@ -1343,120 +1342,6 @@ class MediatorTransfersPair(NamedTuple):
     @property
     def channel_map(self) -> Dict[ChannelID, NettingChannelState]:
         return self.channels.channel_map
-
-
-def make_transfers_pair(
-    number_of_channels: int, amount: int = UNIT_TRANSFER_AMOUNT, block_number: int = 5
-) -> MediatorTransfersPair:
-    """
-    Creates a set of channels and transfers_pair:
-
-
-    For example:
-
-    We are HOP1 (set as "our_state" for all channels)
-    HOP1 = US
-
-    E.g. for 5 number of channels we will create transfer pairs
-    for the following payments, always as seen from our state (US)
-
-    INITIATOR -> HOP2 -> US -> HOP3 -> HOP4 -> HOP5 -> TARGET
-      received_transfer from HOP2
-      sent transfer to HOP3
-    INITIATOR -> HOP2 -> HOP3 -> US -> HOP4 -> HOP5 -> TARGET
-      received_transfer from HOP3
-      sent transfer to HOP4
-    INITIATOR -> HOP2 -> US -> HOP3 -> HOP4 -> US -> HOP5 -> TARGET
-      received_transfer from HOP4
-      sent transfer to HOP5
-    """
-
-    deposit = 5 * amount
-    defaults = create_properties(
-        NettingChannelStateProperties(
-            our_state=NettingChannelEndStateProperties(balance=deposit),
-            partner_state=NettingChannelEndStateProperties(balance=deposit),
-            open_transaction=SuccessfulTransactionStateProperties(finished_block_number=10),
-        )
-    )
-    properties_list = [
-        NettingChannelStateProperties(
-            canonical_identifier=make_canonical_identifier(channel_identifier=i),
-            our_state=NettingChannelEndStateProperties(
-                address=ChannelSet.ADDRESSES[0], privatekey=ChannelSet.PKEYS[0]
-            ),
-            partner_state=NettingChannelEndStateProperties(
-                address=ChannelSet.ADDRESSES[i + 1], privatekey=ChannelSet.PKEYS[i + 1]
-            ),
-        )
-        for i in range(number_of_channels)
-    ]
-    channels = make_channel_set(properties_list, defaults)
-
-    lock_expiration = block_number + UNIT_REVEAL_TIMEOUT * 2
-    pseudo_random_generator = random.Random()
-    transfers_pairs = []
-
-    our_address = channels[0].our_state.address
-    for payer_index in range(number_of_channels - 1):
-        payee_index = payer_index + 1
-
-        receiver_channel = channels[payer_index]
-        received_transfer = create(
-            LockedTransferSignedStateProperties(
-                amount=amount,
-                expiration=lock_expiration,
-                payment_identifier=UNIT_TRANSFER_IDENTIFIER,
-                canonical_identifier=receiver_channel.canonical_identifier,
-                sender=channels.partner_address(payer_index),
-                recipient=our_address,
-                pkey=channels.partner_privatekeys[payer_index],
-            )
-        )
-
-        is_valid, _, msg = channel.handle_receive_lockedtransfer(
-            receiver_channel, received_transfer
-        )
-        assert is_valid, msg
-
-        message_identifier = message_identifier_from_prng(pseudo_random_generator)
-        secret = None
-
-        lockedtransfer_event = channel.send_lockedtransfer(
-            channel_state=channels[payee_index],
-            initiator=UNIT_TRANSFER_INITIATOR,
-            target=UNIT_TRANSFER_TARGET,
-            secret=secret,
-            amount=amount,
-            message_identifier=message_identifier,
-            payment_identifier=UNIT_TRANSFER_IDENTIFIER,
-            expiration=lock_expiration,
-            secrethash=UNIT_SECRETHASH,
-            route_states=received_transfer.route_states,
-            previous_metadata=received_transfer.metadata,
-        )
-        assert lockedtransfer_event
-
-        lock_timeout = lock_expiration - block_number
-        assert channel.is_channel_usable_for_mediation(
-            channel_state=channels[payee_index], transfer_amount=amount, lock_timeout=lock_timeout
-        )
-        sent_transfer = lockedtransfer_event.transfer
-
-        pair = MediationPairState(
-            payer_transfer=received_transfer,
-            payee_address=lockedtransfer_event.recipient,
-            payee_transfer=sent_transfer,
-        )
-        transfers_pairs.append(pair)
-
-    return MediatorTransfersPair(
-        channels=channels,
-        transfers_pair=transfers_pairs,
-        amount=amount,
-        block_number=block_number,
-        block_hash=make_block_hash(),
-    )
 
 
 @dataclass
