@@ -15,10 +15,7 @@ from eth_account import Account
 from eth_utils import decode_hex
 
 from raiden_common.constants import DeviceIDs
-from raiden_common.network.transport.matrix.rtc.utils import setup_asyncio_event_loop
 from raiden_common.utils.signer import LocalSigner
-
-setup_asyncio_event_loop()
 
 log = structlog.get_logger(__name__)
 

@@ -5,14 +5,6 @@ from gevent import monkey
 
 monkey.patch_all(subprocess=False, thread=False)
 
-# isort:split
-
-import aiortc_pyav_stub
-
-# Install the av replacement stub to make sure we catch possible version
-# upgrade breakages
-aiortc_pyav_stub.install_as_av()
-
 # isort: split
 
 import pkgutil
@@ -26,7 +18,6 @@ for module_info in pkgutil.iter_modules(["raiden/tests/utils"]):
 
 # isort:split
 
-import asyncio
 import contextlib
 import datetime
 import os
@@ -37,7 +28,6 @@ import time
 
 import gevent
 import structlog
-from gevent import Timeout
 
 from raiden_common.constants import (
     HIGHEST_SUPPORTED_GETH_VERSION,
@@ -47,11 +37,6 @@ from raiden_common.constants import (
     EthClient,
 )
 from raiden_common.log_config import configure_logging
-from raiden_common.network.transport.matrix.rtc.aiogevent import yield_future
-from raiden_common.network.transport.matrix.rtc.utils import (
-    ASYNCIO_LOOP_RUNNING_TIMEOUT,
-    setup_asyncio_event_loop,
-)
 from raiden_common.tests.fixtures.blockchain import *  # noqa: F401,F403
 from raiden_common.tests.fixtures.variables import *  # noqa: F401,F403
 from raiden_common.tests.utils.transport import make_requests_insecure
@@ -525,30 +510,3 @@ if sys.platform == "darwin":
     def pytest_configure(config) -> None:
         if config.option.basetemp is None:
             config.option.basetemp = f"/tmp/pytest-of-{os.getlogin():.6s}-{os.getpid()}"
-
-
-@pytest.fixture(autouse=True)
-def asyncio_loop(request):
-    if request.node.get_closest_marker("asyncio") is not None:
-        event_loop = setup_asyncio_event_loop(RuntimeError)
-        yield
-        log.debug("Killing asyncio loop")
-        if event_loop.is_running():
-            tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
-            log.debug("Canceling outstanding tasks", tasks=tasks)
-            for task in tasks:
-                task.cancel()
-            yield_future(asyncio.gather(*tasks, return_exceptions=True))
-
-        event_loop.call_soon_threadsafe(event_loop.stop)
-        with Timeout(ASYNCIO_LOOP_RUNNING_TIMEOUT, RuntimeError):
-            while event_loop.is_running():
-                gevent.sleep(0.05)
-        event_loop.close()
-        with Timeout(ASYNCIO_LOOP_RUNNING_TIMEOUT, RuntimeError):
-            while not event_loop.is_closed():
-                gevent.sleep(0.05)
-
-    else:
-        log.debug("NO ASYNC IO MARKER FOUND")
-        yield

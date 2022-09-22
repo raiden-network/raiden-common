@@ -1,4 +1,3 @@
-import asyncio
 import os
 import signal
 import time
@@ -19,13 +18,11 @@ log = structlog.get_logger(__name__)
 
 
 def enable_monitoring_signal() -> None:
-    """Install a signal handler for SIGUSR1 that executes ``gevent.util.print_run_info()`` as well
-    as ``task.print_stack()`` for all asyncio tasks.
-    This can help evaluating the gevent greenlet tree and the asyncio stack, which can be useful
+    """Install a signal handler for SIGUSR1 that executes ``gevent.util.print_run_info()``.
+    This can help evaluating the gevent greenlet tree, which can be useful
     when debugging potential deadlocks.
     See
     - http://www.gevent.org/monitoring.html
-    - https://docs.python.org/3/library/asyncio-task.html#asyncio.Task.print_stack
     for more information.
 
     Usage:
@@ -36,22 +33,12 @@ def enable_monitoring_signal() -> None:
 
     def on_signal(signalnum: Any, stack_frame: Any) -> None:  # pylint: disable=unused-argument
         gevent.util.print_run_info()
-        debug_asyncio()
 
     if os.name == "nt":
         # SIGUSR1 not supported on Windows
         return
 
     signal.signal(signal.SIGUSR1, on_signal)
-
-
-def debug_asyncio() -> None:
-    try:
-        asyncio.get_running_loop()
-    except RuntimeError:
-        return
-    for task in asyncio.all_tasks():
-        task.print_stack()
 
 
 def limit_thread_cpu_usage_by_time() -> None:

@@ -15,10 +15,6 @@ import gevent
 import requests
 import structlog
 
-from raiden_common.network.transport.matrix.rtc.utils import setup_asyncio_event_loop
-
-setup_asyncio_event_loop()
-
 NODE_SECTION_RE = re.compile("^node[0-9]+")
 API_VERSION = "v1"
 Address = NewType("Address", str)

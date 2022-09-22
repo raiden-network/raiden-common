@@ -12,7 +12,6 @@ from raiden_common.constants import Environment, MatrixMessageType
 from raiden_common.messages.transfers import SecretRequest
 from raiden_common.network.transport import MatrixTransport
 from raiden_common.network.transport.matrix.client import GMatrixHttpApi
-from raiden_common.network.transport.matrix.rtc.web_rtc import WebRTCManager
 from raiden_common.network.transport.matrix.transport import RETRY_QUEUE_IDLE_AFTER, _RetryQueue
 from raiden_common.settings import MatrixTransportConfig
 from raiden_common.storage.serialization.serializer import MessageSerializer
@@ -118,12 +117,6 @@ def mock_matrix(
 
     transport = MatrixTransport(config=config, environment=Environment.DEVELOPMENT)
     transport._raiden_service = mock_raiden_service
-    transport._web_rtc_manager = WebRTCManager(
-        mock_raiden_service.address,
-        transport._process_raiden_messages,
-        transport._send_raw,
-        transport._stop_event,
-    )
     transport._stop_event.clear()
 
     transport._client.user_id = USERID0
