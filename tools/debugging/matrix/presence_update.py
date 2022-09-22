@@ -8,12 +8,6 @@ from typing import Optional
 
 import gevent
 
-
-from raiden_common.network.transport.matrix.rtc.utils import setup_asyncio_event_loop
-
-
-setup_asyncio_event_loop()
-
 if True:
     import sys
     from raiden_common.network.transport.matrix.client import GMatrixClient

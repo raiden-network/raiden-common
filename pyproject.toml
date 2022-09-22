@@ -30,7 +30,6 @@ filterwarnings = [
 ]
 markers = [
     "timeout",
-    "asyncio: tests that require an asyncio eventloop",
 ]
 junit_family = "xunit1"
 

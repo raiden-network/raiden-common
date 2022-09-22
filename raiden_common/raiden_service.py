@@ -812,7 +812,7 @@ class RaidenService(Runnable):
                     if args["participant1"] != self.address
                     else args["participant2"]
                 )
-                self.transport.health_check_web_rtc(other)
+                log.warn(f"Not starting healthcheck with {other}")
 
     def _start_alarm_task(self) -> None:
         """Start the alarm task.
@@ -1364,7 +1364,7 @@ class RaidenService(Runnable):
                 # FIXME: this will load the recipient's metadata from the persisted
                 #  state. If the recipient roamed during the offline time of our node,
                 #  the message will never reach the recipient,
-                #  especially since we don't have a WebRTC connection with the recipient at
+                #  especially if we don't have a WebRTC connection with the recipient at
                 #  startup.
                 #  Depending on the time our node is offline, roaming of the recipient
                 #  can become more likely.

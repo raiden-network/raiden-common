@@ -1,10 +1,7 @@
-import asyncio
 import itertools
-import json
 import time
 from collections import Counter, defaultdict
 from dataclasses import dataclass
-from json import JSONDecodeError
 from random import randint
 from typing import TYPE_CHECKING, Counter as CounterType
 from urllib.parse import urlparse
@@ -38,7 +35,6 @@ from raiden_common.network.transport.matrix.client import (
     ReceivedCallMessage,
     ReceivedRaidenMessage,
 )
-from raiden_common.network.transport.matrix.rtc.web_rtc import WebRTCManager
 from raiden_common.network.transport.matrix.utils import (
     DisplayNameCache,
     MessageAckTimingKeeper,
@@ -371,7 +367,6 @@ class MatrixTransport(Runnable):
         self._config = config
         self._environment = environment
         self._raiden_service: Optional["RaidenService"] = None
-        self._web_rtc_manager: Optional[WebRTCManager] = None
 
         if config.server == MATRIX_AUTO_SELECT_SERVER:
             homeserver_candidates = config.available_servers
@@ -498,16 +493,6 @@ class MatrixTransport(Runnable):
         self._stop_event.clear()
         self._raiden_service = raiden_service
         assert raiden_service.pfs_proxy is not None, "must be set"
-        self._web_rtc_manager = WebRTCManager(
-            raiden_service.address,
-            self._process_raiden_messages,
-            self._send_signaling_message,
-            self._stop_event,
-        )
-        self._web_rtc_manager.greenlet.link_exception(self.on_error)
-
-        assert asyncio.get_event_loop().is_running(), "the loop must be running"
-        self.log.debug("Asyncio loop is running", running=asyncio.get_event_loop().is_running())
 
         try:
             capabilities = capconfig_to_dict(self._config.capabilities_config)
@@ -551,13 +536,7 @@ class MatrixTransport(Runnable):
         self._schedule_new_greenlet(self._set_presence, UserPresence.ONLINE)
 
         chain_state = views.state_from_raiden(raiden_service)
-        for neighbour in views.all_neighbour_nodes(chain_state):
-            self.health_check_web_rtc(neighbour)
-
-    def health_check_web_rtc(self, partner: Address) -> None:
-        assert self._web_rtc_manager is not None, "must be set"
-        if self._started and not self._web_rtc_manager.has_ready_channel(partner):
-            self._web_rtc_manager.health_check(partner)
+        assert chain_state, "Must not be None"
 
     def _set_presence(self, state: UserPresence) -> None:
         waiting_period = randint(SET_PRESENCE_INTERVAL // 4, SET_PRESENCE_INTERVAL)
@@ -597,10 +576,6 @@ class MatrixTransport(Runnable):
         self._broadcast_queue.join()
         self._stop_event.set()
         self._broadcast_event.set()
-
-        assert self._web_rtc_manager is not None, "must be set"
-        self._web_rtc_manager.stop()
-        self._web_rtc_manager = None
 
         for retrier in self._address_to_retrier.values():
             if retrier:
@@ -924,46 +899,7 @@ class MatrixTransport(Runnable):
 
         raiden_messages, call_messages = self._validate_matrix_messages(messages)
         self._process_raiden_messages(raiden_messages)
-        self._process_call_messages(call_messages)
         return len(raiden_messages) > 0 or len(call_messages) > 0
-
-    def _process_call_messages(self, call_messages: List[ReceivedCallMessage]) -> None:
-        """
-        This function handles incoming signalling messages (in matrix called 'call' events).
-        In Raiden 'm.room.message' events are used as the communication format.
-        Main function is to forward it to the aiortc library to establish connections.
-        Messages contain sdp messages to follow the ROAP (RTC Offer Answer Protocol).
-        Args:
-            call_messages: List of signalling messages
-        """
-
-        if self._stop_event.is_set():
-            return
-
-        assert self._web_rtc_manager is not None, "must be set"
-
-        for received_message in call_messages:
-            call_message = received_message.message
-            partner_address = received_message.sender
-            try:
-                content = json.loads(call_message["content"]["body"])
-                rtc_message_type = content["type"]
-            except (KeyError, JSONDecodeError):
-                self.log.warning(
-                    "Malformed signaling message",
-                    partner_address=partner_address,
-                    content=call_message["content"]["body"],
-                )
-            else:
-                self.log.debug(
-                    "Received signaling message",
-                    partner_address=to_checksum_address(partner_address),
-                    type=rtc_message_type,
-                    content=content,
-                )
-                self._web_rtc_manager.process_signaling_message(
-                    partner_address, rtc_message_type, content
-                )
 
     def _get_retrier(self, receiver: Address) -> _RetryQueue:
         """Construct and return a _RetryQueue for receiver"""
@@ -982,8 +918,6 @@ class MatrixTransport(Runnable):
         recipient = queue.queue_identifier.recipient
         retrier = self._get_retrier(recipient)
         retrier.enqueue(queue_identifier=queue.queue_identifier, messages=queue.messages)
-        if self.started:
-            self.health_check_web_rtc(recipient)
 
     def _multicast_services(
         self,
@@ -1031,27 +965,22 @@ class MatrixTransport(Runnable):
         if self._stop_event.ready():
             return
 
-        assert self._web_rtc_manager is not None, "must be set"
-
         user_ids: Set[UserID] = set()
-        if self._web_rtc_manager.has_ready_channel(receiver_address):
-            communication_medium = CommunicationMedium.WEB_RTC
+        user_id = get_user_id_from_metadata(receiver_address, receiver_metadata)
+        # Don't check whether the to-device capability is set -
+        # this will only happen for older, incompatible clients that
+        # will simply ignore our communication attempt
+        communication_medium = CommunicationMedium.TO_DEVICE
+        if user_id is None:
+            self.log.error(
+                "Cannot send raw message without address metadata.",
+                receiver=to_checksum_address(receiver_address),
+                send_medium=communication_medium.value,
+                data=data.replace("\n", "\\n"),
+            )
+            return
         else:
-            user_id = get_user_id_from_metadata(receiver_address, receiver_metadata)
-            # Don't check whether the to-device capability is set -
-            # this will only happen for older, incompatible clients that
-            # will simply ignore our communication attempt
-            communication_medium = CommunicationMedium.TO_DEVICE
-            if user_id is None:
-                self.log.error(
-                    "Cannot send raw message without address metadata.",
-                    receiver=to_checksum_address(receiver_address),
-                    send_medium=communication_medium.value,
-                    data=data.replace("\n", "\\n"),
-                )
-                return
-            else:
-                user_ids.add(user_id)
+            user_ids.add(user_id)
 
         self.log.debug(
             "Send raw message",
@@ -1060,20 +989,15 @@ class MatrixTransport(Runnable):
             data=data.replace("\n", "\\n"),
         )
 
-        if communication_medium is CommunicationMedium.WEB_RTC:
-            # if we already have a webrtc channel ready, the address-metadata doesn't matter
-            self._web_rtc_manager.send_message(receiver_address, data)
-            return
-        else:
-            msg = "Only to-device messages are supported other than web-rtc"
-            assert communication_medium is CommunicationMedium.TO_DEVICE, msg
-            self._send_to_device_raw(
-                user_ids=user_ids,
-                device_id=DeviceIDs.RAIDEN.value,
-                message_type=message_type,
-                data=data,
-            )
-            return
+        msg = "Only to-device messages are supported."
+        assert communication_medium is CommunicationMedium.TO_DEVICE, msg
+        self._send_to_device_raw(
+            user_ids=user_ids,
+            device_id=DeviceIDs.RAIDEN.value,
+            message_type=message_type,
+            data=data,
+        )
+        return
 
     def _send_signaling_message(self, address: Address, message: str) -> None:
         assert self._raiden_service is not None, "must be set"
