@@ -86,5 +86,8 @@ def is_supported_client(
     elif client_version.startswith("arb-rpc-node"):
         our_version = client_version.split("/")[-1][1:]
         return VersionSupport.SUPPORTED, EthClient.ARBITRUM, our_version
+    elif client_version.startswith("nitro"):
+        our_version = client_version.split("/")[1]
+        return VersionSupport.SUPPORTED, EthClient.NITRO, our_version
 
     return VersionSupport.UNSUPPORTED, None, None
