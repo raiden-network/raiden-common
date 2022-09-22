@@ -140,6 +140,7 @@ class EthClient(Enum):
     GETH = "geth"
     PARITY = "parity"
     ARBITRUM = "arbitrum"
+    NITRO = "nitro"
 
 
 SNAPSHOT_STATE_CHANGES_COUNT = 500

@@ -328,8 +328,10 @@ def discover_next_available_nonce(web3: Web3, eth_node: EthClient, address: Addr
     elif eth_node is EthClient.GETH:
         geth_assert_rpc_interfaces(web3)
         available_nonce = geth_discover_next_available_nonce(web3, address)
-    elif eth_node is EthClient.ARBITRUM:
+    elif eth_node in (EthClient.ARBITRUM, EthClient.NITRO):
         available_nonce = geth_discover_next_available_nonce(web3, address)
+    else:
+        raise Exception(f"discover_next_available_nonce not implemented for {eth_node}")
 
     return available_nonce
 
