@@ -22,7 +22,7 @@ bitarray==1.2.1
     # via eth-account
 cachetools==4.2.4
     # via -r requirements.in
-canonicaljson==1.6.1
+canonicaljson==1.6.3
     # via -r requirements.in
 certifi==2019.3.9
     # via requests
@@ -44,7 +44,7 @@ coincurve==15.0.1
     #   raiden-contracts
 colorama==0.4.4
     # via -r requirements.in
-cytoolz==0.10.1
+cytoolz==0.12.0
     # via
     #   eth-keyfile
     #   eth-utils
@@ -236,7 +236,7 @@ structlog==21.5.0
     # via -r requirements.in
 toml==0.10.2
     # via -r requirements.in
-toolz==0.9.0
+toolz==0.12.0
     # via cytoolz
 typeguard==2.11.1
     # via marshmallow-dataclass

@@ -85,7 +85,7 @@ bump2version==1.0.1
     # via -r requirements-dev.txt
 cachetools==4.2.4
     # via -r requirements-dev.txt
-canonicaljson==1.6.1
+canonicaljson==1.6.3
     # via
     #   -r requirements-dev.txt
     #   matrix-synapse
@@ -137,7 +137,7 @@ cryptography==3.4.7
     #   matrix-synapse
     #   pyopenssl
     #   service-identity
-cytoolz==0.10.1
+cytoolz==0.12.0
     # via
     #   -r requirements-dev.txt
     #   eth-keyfile
@@ -242,7 +242,7 @@ flask-opentracing==1.1.0
     # via -r requirements-dev.txt
 flask-restful==0.3.9
     # via -r requirements-dev.txt
-frozendict==1.2
+frozendict==2.3.4
     # via
     #   -r requirements-dev.txt
     #   matrix-synapse
@@ -670,7 +670,7 @@ tomli==2.0.1
     #   black
     #   build
     #   mypy
-toolz==0.9.0
+toolz==0.12.0
     # via
     #   -r requirements-dev.txt
     #   cytoolz
