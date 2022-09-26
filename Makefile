@@ -86,7 +86,7 @@ check-pre-commit:
 format: isort black
 
 test:
-	pytest -n auto -v raiden/tests
+	pytest -n auto -v raiden_common/tests
 
 coverage:
 	coverage run --source raiden -m pytest -v raiden/tests
