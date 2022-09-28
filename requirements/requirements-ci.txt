@@ -585,7 +585,7 @@ raiden-contracts==0.50.1
     # via -r requirements-dev.txt
 raiden-webui==1.2.1
     # via -r requirements-dev.txt
-requests==2.27.1
+requests==2.28.1
     # via
     #   -r requirements-dev.txt
     #   grequests
