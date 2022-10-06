@@ -79,13 +79,13 @@ T_Address = bytes
 AddressHex = HexAddress
 
 T_Balance = int
-Balance = NewType("Balance", T_Balance)
+Balance = NewType("Balance", int)
 
 T_GasPrice = int
-GasPrice = NewType("GasPrice", T_GasPrice)
+GasPrice = NewType("GasPrice", int)
 
 T_BlockGasLimit = int
-BlockGasLimit = NewType("BlockGasLimit", T_BlockGasLimit)
+BlockGasLimit = NewType("BlockGasLimit", int)
 
 T_BlockHash = bytes
 BlockHash = Hash32
@@ -93,106 +93,106 @@ BlockHash = Hash32
 T_BlockNumber = int
 
 T_Timestamp = int
-Timestamp = NewType("Timestamp", T_Timestamp)
+Timestamp = NewType("Timestamp", int)
 
 # A relative number of blocks
 T_BlockTimeout = int
-BlockTimeout = NewType("BlockTimeout", T_BlockTimeout)
+BlockTimeout = NewType("BlockTimeout", int)
 
 T_ChannelState = int
-ChannelState = NewType("ChannelState", T_ChannelState)
+ChannelState = NewType("ChannelState", int)
 
 T_InitiatorAddress = bytes
-InitiatorAddress = NewType("InitiatorAddress", T_InitiatorAddress)
+InitiatorAddress = NewType("InitiatorAddress", bytes)
 
 T_MessageID = int
-MessageID = NewType("MessageID", T_MessageID)
+MessageID = NewType("MessageID", int)
 
 T_Nonce = int
 
 T_NetworkTimeout = float
-NetworkTimeout = NewType("NetworkTimeout", T_NetworkTimeout)
+NetworkTimeout = NewType("NetworkTimeout", float)
 
 T_PaymentID = int
-PaymentID = NewType("PaymentID", T_PaymentID)
+PaymentID = NewType("PaymentID", int)
 
 # PaymentAmount is for amounts of tokens paid end-to-end
 T_PaymentAmount = int
-PaymentAmount = NewType("PaymentAmount", T_PaymentAmount)
+PaymentAmount = NewType("PaymentAmount", int)
 
 T_PublicKey = bytes
-PublicKey = NewType("PublicKey", T_PublicKey)
+PublicKey = NewType("PublicKey", bytes)
 
 T_FeeAmount = int
-FeeAmount = NewType("FeeAmount", T_FeeAmount)
+FeeAmount = NewType("FeeAmount", int)
 
 # A proportional fee, unit is parts-per-million
 # 1_000_000 means 100%, 25_000 is 2.5%
 T_ProportionalFeeAmount = int
-ProportionalFeeAmount = NewType("ProportionalFeeAmount", T_ProportionalFeeAmount)
+ProportionalFeeAmount = NewType("ProportionalFeeAmount", int)
 
 T_LockedAmount = int
-LockedAmount = NewType("LockedAmount", T_LockedAmount)
+LockedAmount = NewType("LockedAmount", int)
 
 T_PaymentWithFeeAmount = int
-PaymentWithFeeAmount = NewType("PaymentWithFeeAmount", T_FeeAmount)
+PaymentWithFeeAmount = NewType("PaymentWithFeeAmount", int)
 
 T_TokenNetworkRegistryAddress = bytes
-TokenNetworkRegistryAddress = NewType("TokenNetworkRegistryAddress", T_TokenNetworkRegistryAddress)
+TokenNetworkRegistryAddress = NewType("TokenNetworkRegistryAddress", bytes)
 
 T_RaidenProtocolVersion = int
-RaidenProtocolVersion = NewType("RaidenProtocolVersion", T_RaidenProtocolVersion)
+RaidenProtocolVersion = NewType("RaidenProtocolVersion", int)
 
 T_RaidenDBVersion = int
-RaidenDBVersion = NewType("RaidenDBVersion", T_RaidenDBVersion)
+RaidenDBVersion = NewType("RaidenDBVersion", int)
 
 T_TargetAddress = bytes
-TargetAddress = NewType("TargetAddress", T_TargetAddress)
+TargetAddress = NewType("TargetAddress", bytes)
 
 T_TokenAddress = bytes
-TokenAddress = NewType("TokenAddress", T_TokenAddress)
+TokenAddress = NewType("TokenAddress", bytes)
 
 T_UserDepositAddress = bytes
-UserDepositAddress = NewType("UserDepositAddress", T_UserDepositAddress)
+UserDepositAddress = NewType("UserDepositAddress", bytes)
 
 T_MonitoringServiceAddress = bytes
-MonitoringServiceAddress = NewType("MonitoringServiceAddress", T_MonitoringServiceAddress)
+MonitoringServiceAddress = NewType("MonitoringServiceAddress", bytes)
 
 T_ServiceRegistryAddress = bytes
-ServiceRegistryAddress = NewType("ServiceRegistryAddress", T_ServiceRegistryAddress)
+ServiceRegistryAddress = NewType("ServiceRegistryAddress", bytes)
 
 T_OneToNAddress = bytes
-OneToNAddress = NewType("OneToNAddress", T_OneToNAddress)
+OneToNAddress = NewType("OneToNAddress", bytes)
 
 T_TokenNetworkAddress = bytes
-TokenNetworkAddress = NewType("TokenNetworkAddress", T_TokenNetworkAddress)
+TokenNetworkAddress = NewType("TokenNetworkAddress", bytes)
 
 T_TransferID = bytes
-TransferID = NewType("TransferID", T_TransferID)
+TransferID = NewType("TransferID", bytes)
 
 T_Secret = bytes
-Secret = NewType("Secret", T_Secret)
+Secret = NewType("Secret", bytes)
 
 T_EncryptedSecret = bytes
-EncryptedSecret = NewType("EncryptedSecret", T_EncryptedSecret)
+EncryptedSecret = NewType("EncryptedSecret", bytes)
 
 T_SecretHash = bytes
-SecretHash = NewType("SecretHash", T_SecretHash)
+SecretHash = NewType("SecretHash", bytes)
 
 T_SecretRegistryAddress = bytes
-SecretRegistryAddress = NewType("SecretRegistryAddress", T_SecretRegistryAddress)
+SecretRegistryAddress = NewType("SecretRegistryAddress", bytes)
 
 T_TransactionHash = bytes
-TransactionHash = NewType("TransactionHash", T_TransactionHash)
+TransactionHash = NewType("TransactionHash", bytes)
 
 T_EncodedData = bytes
-EncodedData = NewType("EncodedData", T_EncodedData)
+EncodedData = NewType("EncodedData", bytes)
 
 T_WithdrawAmount = int
-WithdrawAmount = NewType("WithdrawAmount", T_WithdrawAmount)
+WithdrawAmount = NewType("WithdrawAmount", int)
 
 T_MetadataHash = bytes
-MetadataHash = NewType("MetadataHash", T_MetadataHash)
+MetadataHash = NewType("MetadataHash", bytes)
 
 NodeNetworkStateMap = Dict[Address, "NetworkState"]
 
@@ -208,10 +208,10 @@ LockedTransferType = Union["LockedTransferUnsignedState", "LockedTransferSignedS
 DatabasePath = Union[Path, Literal[":memory:"]]
 
 T_PeerCapabilities = Dict[str, Union[str, bool]]
-PeerCapabilities = NewType("PeerCapabilities", T_PeerCapabilities)
+PeerCapabilities = NewType("PeerCapabilities", Dict)
 
 T_UserID = str
-UserID = NewType("UserID", T_UserID)
+UserID = NewType("UserID", str)
 
 AddressMetadata = Dict[str, Union[UserID, str]]
 
