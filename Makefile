@@ -89,7 +89,7 @@ test:
 	pytest -n auto -v raiden_common/tests
 
 coverage:
-	coverage run --source raiden -m pytest -v raiden/tests
+	coverage run --source raiden -m pytest -v raiden_common/tests
 	coverage report -m
 	coverage html
 

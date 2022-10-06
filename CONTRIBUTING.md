@@ -200,14 +200,14 @@ all patch releases for the corresponding major release.
 
 To run the tests use pytest
 
-    pytest raiden
+    pytest raiden_common
 
 Tests are split in unit tests, fuzz tests (which are currently grouped under
 unit tests) and integration tests. The first are faster to execute while
 the latter test the whole system but are slower to run. To choose which type of
 tests to run, just use the appropriate directory.
 
-    pytest raiden/tests/<integration|unit>
+    pytest raiden_common/tests/<integration|unit>
 
 For a detailed explanation of the different types of tests, see the
 [test suite section](#test-suite) below.
@@ -640,7 +640,7 @@ Subsequently you can render them to an `.svg` by doing `flamegraph.pl  /path/to/
 
 A test run can be profiled by providing an extra argument to pytest `--profiler=flamegraph-trace`. For example:
 
-`pytest --profiler=flamegraph-trace -xs raiden/tests/integration/api/test_restapi.py::test_api_payments`
+`pytest --profiler=flamegraph-trace -xs raiden_common/tests/integration/api/test_restapi.py::test_api_payments`
 
 Will generate stack data under `/tmp/datetime_stack.data`. Just as before you can render it into a flamegreaph by doing `flamegraph.pl /tmp/datetime_stack.data`.
 
