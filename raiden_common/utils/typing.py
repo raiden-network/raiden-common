@@ -1,7 +1,6 @@
-import sys
 from pathlib import Path
 from typing import *  # NOQA pylint:disable=wildcard-import,unused-wildcard-import
-from typing import TYPE_CHECKING, Any, Dict, NewType, Tuple, Type, Union
+from typing import TYPE_CHECKING, Any, Dict, Literal, NewType, Tuple, Type, Union
 
 from eth_typing import (  # NOQA pylint:disable=unused-import
     Address,
@@ -33,12 +32,6 @@ from raiden_contracts.utils.type_aliases import (  # NOQA pylint:disable=unused-
     T_TokenAmount,
     TokenAmount,
 )
-
-if sys.version_info < (3, 8):
-    from typing_extensions import Literal
-else:
-    from typing import Literal
-
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import
