@@ -463,7 +463,7 @@ pyrsistent==0.15.7
     #   jsonschema
 pysha3==1.0.2
     # via -r requirements.txt
-pytest==6.2.5
+pytest==7.1.3
     # via
     #   -r requirements-dev.in
     #   pytest-forked
@@ -562,12 +562,12 @@ toml==0.10.2
     #   -r requirements.txt
     #   pep517
     #   pylint
-    #   pytest
 tomli==2.0.1
     # via
     #   black
     #   build
     #   mypy
+    #   pytest
 toolz==0.12.0
     # via
     #   -r requirements.txt
