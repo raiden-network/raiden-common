@@ -8,13 +8,14 @@ monkey.patch_all(subprocess=False, thread=False)
 # isort: split
 
 import pkgutil
+
 import pytest
 
-# Register pytest assert rewriting on all submodules of `raiden/tests/utils`.
+# Register pytest assert rewriting on all submodules of `raiden_common/tests/utils`.
 # This is necessary due to our split fixture setup since pytest doesn't detect these
 # imports automatically.
-for module_info in pkgutil.iter_modules(["raiden/tests/utils"]):
-    pytest.register_assert_rewrite(f"raiden.tests.utils.{module_info.name}")
+for module_info in pkgutil.iter_modules(["raiden_common/tests/utils"]):
+    pytest.register_assert_rewrite(f"raiden_common.tests.utils.{module_info.name}")
 
 # isort:split
 

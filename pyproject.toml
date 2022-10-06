@@ -15,7 +15,7 @@ exclude = '''
 
 [tool.pytest.ini_options]
 testpaths = [
-    "raiden/tests",
+    "raiden_common/tests",
 ]
 addopts = "--no-success-flaky-report"
 timeout_limit_for_setup_and_call = 240
