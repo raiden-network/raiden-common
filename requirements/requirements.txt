@@ -138,13 +138,13 @@ lru-dict==1.1.6
     # via web3
 markupsafe==2.0.1
     # via jinja2
-marshmallow==3.15.0
+marshmallow==3.18.0
     # via
     #   -r requirements.in
     #   marshmallow-dataclass
     #   marshmallow-enum
     #   marshmallow-polyfield
-marshmallow-dataclass[union]==8.0.0
+marshmallow-dataclass[union]==8.5.9
     # via -r requirements.in
 marshmallow-enum==1.5.1
     # via -r requirements.in
@@ -244,7 +244,8 @@ typing-extensions==4.3.0
     # via
     #   -r requirements.in
     #   aiohttp
-typing-inspect==0.4.0
+    #   typing-inspect
+typing-inspect==0.8.0
     # via marshmallow-dataclass
 ulid-py==1.1.0
     # via -r requirements.in
