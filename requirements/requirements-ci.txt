@@ -338,13 +338,13 @@ markupsafe==2.0.1
     # via
     #   -r requirements-dev.txt
     #   jinja2
-marshmallow==3.15.0
+marshmallow==3.18.0
     # via
     #   -r requirements-dev.txt
     #   marshmallow-dataclass
     #   marshmallow-enum
     #   marshmallow-polyfield
-marshmallow-dataclass[union]==8.0.0
+marshmallow-dataclass[union]==8.5.9
     # via -r requirements-dev.txt
 marshmallow-enum==1.5.1
     # via -r requirements-dev.txt
@@ -378,7 +378,7 @@ multidict==5.1.0
     #   -r requirements-dev.txt
     #   aiohttp
     #   yarl
-mypy==0.950
+mypy==0.982
     # via -r requirements-dev.txt
 mypy-extensions==0.4.3
     # via
@@ -733,7 +733,8 @@ typing-extensions==4.3.0
     #   matrix-synapse
     #   mypy
     #   signedjson
-typing-inspect==0.4.0
+    #   typing-inspect
+typing-inspect==0.8.0
     # via
     #   -r requirements-dev.txt
     #   marshmallow-dataclass
