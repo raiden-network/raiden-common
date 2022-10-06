@@ -367,7 +367,7 @@ class APIServer(Runnable):  # pragma: no unittest
                 response = send_from_directory(self.flask_app.config["WEBUI_PATH"], "index.html")
         return response
 
-    def _run(self) -> None:  # type: ignore
+    def _run(self) -> None:
         try:
             # stop may have been executed before _run was scheduled, in this
             # case wsgiserver will be None

@@ -313,7 +313,7 @@ class _RetryQueue(Runnable):
                         self.receiver, message_batch, receiver_metadata=address_metadata
                     )
 
-    def _run(self) -> None:  # type: ignore
+    def _run(self) -> None:
         msg = (
             """_RetryQueue started before transport._raiden_service is set. """
             """_RetryQueue should not be started before transport.start() is called"""
@@ -548,7 +548,7 @@ class MatrixTransport(Runnable):
             return
         self._client.set_presence_state(state.value)
 
-    def _run(self) -> None:  # type: ignore
+    def _run(self) -> None:
         """Runnable main method, perform wait on long-running subtasks"""
         # dispatch auth data on first scheduling after start
         assert self._raiden_service is not None, "_raiden_service not set"
