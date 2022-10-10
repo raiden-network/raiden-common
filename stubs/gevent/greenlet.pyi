@@ -1,7 +1,5 @@
 from sys import _OptExcInfo
-from typing import Any, Callable, Collection, Dict, Generic, Optional, Tuple, TypeVar
-
-from typing_extensions import Protocol
+from typing import Any, Callable, Collection, Dict, Generic, Optional, Protocol, Tuple, TypeVar
 
 RawlinkCallback = Callable[["Greenlet", Any], None]
 T = TypeVar("T")

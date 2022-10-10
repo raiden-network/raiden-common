@@ -1,6 +1,4 @@
-from typing import Any, Callable, List, Tuple, TypeVar, Union, overload
-
-from typing_extensions import Literal
+from typing import Any, Callable, List, Literal, Tuple, TypeVar, Union, overload
 
 FuncType = Callable[..., Any]
 F = TypeVar("F", bound=FuncType)
@@ -14,6 +12,7 @@ Scopes = Union[
 ]
 
 GenerativeParams = List[Tuple[Any, ...]]
+
 @overload
 def fixture(scope: F) -> F: ...
 @overload
