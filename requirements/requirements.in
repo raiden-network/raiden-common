@@ -26,7 +26,7 @@ raiden-contracts>=0.50.1,<0.51.0
 raiden-webui
 requests
 structlog
-web3
+web3==6.0.0b6
 objgraph
 ulid-py
 dbapi-opentracing

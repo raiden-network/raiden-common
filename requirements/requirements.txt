@@ -18,7 +18,7 @@ attrs==19.3.0
     #   jsonschema
 base58==2.0.0
     # via multiaddr
-bitarray==1.2.1
+bitarray==2.6.0
     # via eth-account
 cachetools==4.2.4
     # via -r requirements.in
@@ -45,53 +45,49 @@ coincurve==15.0.1
 colorama==0.4.4
     # via -r requirements.in
 cytoolz==0.12.0
-    # via
-    #   eth-keyfile
-    #   eth-utils
+    # via eth-utils
 dbapi-opentracing==0.0.5
     # via -r requirements.in
-eciespy==0.3.11
+eciespy==0.3.12
     # via -r requirements.in
-eth-abi==2.1.0
+eth-abi==3.0.1
     # via
     #   eth-account
     #   raiden-contracts
     #   web3
-eth-account==0.5.7
+eth-account==0.7.0
     # via web3
-eth-hash[pycryptodome]==0.3.1
+eth-hash[pycryptodome]==0.3.3
     # via
     #   eth-utils
     #   web3
-eth-keyfile==0.5.1
+eth-keyfile==0.6.0
     # via
     #   -r requirements.in
     #   eth-account
-eth-keys==0.3.4
+eth-keys==0.4.0
     # via
     #   -r requirements.in
     #   eciespy
     #   eth-account
     #   eth-keyfile
-eth-rlp==0.2.1
+eth-rlp==0.3.0
     # via eth-account
-eth-typing==2.3.0
+eth-typing==3.2.0
     # via
     #   eth-abi
     #   eth-keys
     #   eth-utils
     #   raiden-contracts
     #   web3
-eth-utils==1.10.0
+eth-utils==2.0.0
     # via
     #   -r requirements.in
     #   eth-abi
     #   eth-account
-    #   eth-hash
     #   eth-keyfile
     #   eth-keys
     #   eth-rlp
-    #   hexbytes
     #   raiden-contracts
     #   rlp
     #   web3
@@ -117,7 +113,7 @@ greenlet==1.1.2
     # via gevent
 guppy3==3.1.2
     # via -r requirements.in
-hexbytes==0.2.0
+hexbytes==0.3.0
     # via
     #   eth-account
     #   eth-rlp
@@ -134,7 +130,7 @@ itsdangerous==2.0.1
     # via flask
 jinja2==3.0.3
     # via flask
-jsonschema==3.2.0
+jsonschema==4.16.0
     # via web3
 lru-dict==1.1.6
     # via web3
@@ -161,9 +157,7 @@ multidict==5.1.0
     #   aiohttp
     #   yarl
 mypy-extensions==0.4.3
-    # via
-    #   raiden-contracts
-    #   typing-inspect
+    # via typing-inspect
 netaddr==0.7.19
     # via multiaddr
 objgraph==3.5.0
@@ -179,7 +173,7 @@ packaging==21.3
     #   marshmallow
 parsimonious==0.8.1
     # via eth-abi
-protobuf==3.15.0
+protobuf==3.20.1
     # via web3
 psutil==5.8.0
     # via -r requirements.in
@@ -187,7 +181,7 @@ py-solc-x==1.1.0
     # via raiden-contracts
 pycparser==2.19
     # via cffi
-pycryptodome==3.10.1
+pycryptodome==3.15.0
     # via
     #   eciespy
     #   eth-hash
@@ -200,7 +194,7 @@ pysha3==1.0.2
     # via -r requirements.in
 pytz==2019.1
     # via flask-restful
-raiden-contracts==0.50.1
+raiden-contracts==0.50.2
     # via -r requirements.in
 raiden-webui==1.2.1
     # via -r requirements.in
@@ -214,11 +208,10 @@ requests==2.28.1
     #   web3
 requests-opentracing==0.3.0
     # via -r requirements.in
-rlp==2.0.1
+rlp==3.0.0
     # via
     #   eth-account
     #   eth-rlp
-    #   raiden-contracts
 semantic-version==2.8.5
     # via
     #   py-solc-x
@@ -229,10 +222,8 @@ six==1.16.0
     # via
     #   flask-cors
     #   flask-restful
-    #   jsonschema
     #   multiaddr
     #   parsimonious
-    #   protobuf
     #   pyrsistent
 structlog==21.5.0
     # via -r requirements.in
@@ -242,7 +233,7 @@ toolz==0.12.0
     # via cytoolz
 typeguard==2.11.1
     # via marshmallow-dataclass
-typing-extensions==4.3.0
+typing-extensions==4.4.0
     # via
     #   aiohttp
     #   typing-inspect
@@ -254,11 +245,11 @@ urllib3==1.26.5
     # via requests
 varint==1.0.2
     # via multiaddr
-web3==5.28.0
+web3==6.0.0b6
     # via
     #   -r requirements.in
     #   raiden-contracts
-websockets==9.1
+websockets==10.3
     # via web3
 werkzeug==2.0.1
     # via flask

@@ -1,4 +1,7 @@
 # Changelog
+## 0.1.7 (2022-10-13)
+* Update dependencies
+
 ## 0.1.6 (2022-10-13)
 * Remove typing extensions dependency by @karlb in https://github.com/raiden-network/raiden-common/pull/24
 

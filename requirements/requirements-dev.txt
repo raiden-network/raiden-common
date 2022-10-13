@@ -51,7 +51,7 @@ base58==2.0.0
     #   multiaddr
 bcrypt==3.1.6
     # via matrix-synapse
-bitarray==1.2.1
+bitarray==2.6.0
     # via
     #   -r requirements.txt
     #   eth-account
@@ -117,44 +117,43 @@ cryptography==3.4.7
 cytoolz==0.12.0
     # via
     #   -r requirements.txt
-    #   eth-keyfile
     #   eth-utils
 dbapi-opentracing==0.0.5
     # via -r requirements.txt
 decorator==4.4.2
     # via ipython
-eciespy==0.3.11
+eciespy==0.3.12
     # via -r requirements.txt
-eth-abi==2.1.0
+eth-abi==3.0.1
     # via
     #   -r requirements.txt
     #   eth-account
     #   raiden-contracts
     #   web3
-eth-account==0.5.7
+eth-account==0.7.0
     # via
     #   -r requirements.txt
     #   web3
-eth-hash[pycryptodome]==0.3.1
+eth-hash[pycryptodome]==0.3.3
     # via
     #   -r requirements.txt
     #   eth-utils
     #   web3
-eth-keyfile==0.5.1
+eth-keyfile==0.6.0
     # via
     #   -r requirements.txt
     #   eth-account
-eth-keys==0.3.4
+eth-keys==0.4.0
     # via
     #   -r requirements.txt
     #   eciespy
     #   eth-account
     #   eth-keyfile
-eth-rlp==0.2.1
+eth-rlp==0.3.0
     # via
     #   -r requirements.txt
     #   eth-account
-eth-typing==2.3.0
+eth-typing==3.2.0
     # via
     #   -r requirements.txt
     #   eth-abi
@@ -162,16 +161,14 @@ eth-typing==2.3.0
     #   eth-utils
     #   raiden-contracts
     #   web3
-eth-utils==1.10.0
+eth-utils==2.0.0
     # via
     #   -r requirements.txt
     #   eth-abi
     #   eth-account
-    #   eth-hash
     #   eth-keyfile
     #   eth-keys
     #   eth-rlp
-    #   hexbytes
     #   raiden-contracts
     #   rlp
     #   web3
@@ -229,7 +226,7 @@ grequests==0.6.0
     # via -r requirements-dev.in
 guppy3==3.1.2
     # via -r requirements.txt
-hexbytes==0.2.0
+hexbytes==0.3.0
     # via
     #   -r requirements.txt
     #   eth-account
@@ -282,7 +279,7 @@ jinja2==3.0.3
     #   -r requirements.txt
     #   flask
     #   matrix-synapse
-jsonschema==3.2.0
+jsonschema==4.16.0
     # via
     #   -r requirements.txt
     #   matrix-synapse
@@ -339,7 +336,6 @@ mypy-extensions==0.4.3
     #   -r requirements.txt
     #   black
     #   mypy
-    #   raiden-contracts
     #   typing-inspect
 netaddr==0.7.19
     # via
@@ -395,7 +391,7 @@ prometheus-client==0.8.0
     # via matrix-synapse
 prompt-toolkit==3.0.5
     # via ipython
-protobuf==3.15.0
+protobuf==3.20.1
     # via
     #   -r requirements.txt
     #   web3
@@ -430,7 +426,7 @@ pycparser==2.19
     # via
     #   -r requirements.txt
     #   cffi
-pycryptodome==3.10.1
+pycryptodome==3.15.0
     # via
     #   -r requirements.txt
     #   eciespy
@@ -490,7 +486,7 @@ pyyaml==5.4
     # via matrix-synapse
 raiden-api-client==1.1.1
     # via -r requirements-dev.in
-raiden-contracts==0.50.1
+raiden-contracts==0.50.2
     # via -r requirements.txt
 raiden-webui==1.2.1
     # via -r requirements.txt
@@ -510,12 +506,11 @@ requests-opentracing==0.3.0
     # via -r requirements.txt
 responses==0.21.0
     # via -r requirements-dev.in
-rlp==2.0.1
+rlp==3.0.0
     # via
     #   -r requirements.txt
     #   eth-account
     #   eth-rlp
-    #   raiden-contracts
 semantic-version==2.8.5
     # via
     #   -r requirements.txt
@@ -542,10 +537,8 @@ six==1.16.0
     #   flake8-tuple
     #   flask-cors
     #   flask-restful
-    #   jsonschema
     #   multiaddr
     #   parsimonious
-    #   protobuf
     #   pymacaroons
     #   pynacl
     #   pyopenssl
@@ -612,7 +605,7 @@ types-urllib3==1.26.14
     # via types-requests
 types-werkzeug==1.0.1
     # via types-flask
-typing-extensions==4.3.0
+typing-extensions==4.4.0
     # via
     #   -r requirements.txt
     #   aiohttp
@@ -644,13 +637,13 @@ varint==1.0.2
     #   multiaddr
 wcwidth==0.1.9
     # via prompt-toolkit
-web3==5.28.0
+web3==6.0.0b6
     # via
     #   -r requirements.txt
     #   raiden-contracts
 webencodings==0.5.1
     # via bleach
-websockets==9.1
+websockets==10.3
     # via
     #   -r requirements.txt
     #   web3
