@@ -1,4 +1,8 @@
 # Changelog
+
+## 0.1.8 (2022-10-13)
+* Fix problems introduced by update to web3 v6
+
 ## 0.1.7 (2022-10-13)
 * Update dependencies
 

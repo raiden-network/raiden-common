@@ -504,7 +504,7 @@ class TokenNetworkRegistry:
         )
         events = filter_.get_all_entries()
         if filter_.filter_id:
-            self.proxy.web3.eth.uninstallFilter(filter_.filter_id)
+            self.proxy.w3.eth.uninstall_filter(filter_.filter_id)
 
         return events
 
