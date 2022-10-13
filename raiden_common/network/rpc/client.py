@@ -402,7 +402,7 @@ def get_transaction_data(
         abi=abi, abi_codec=web3.codec, fn_identifier=function_name, args=args, kwargs=kwargs
     )
     return encode_transaction_data(
-        web3=web3,
+        w3=web3,
         fn_identifier=function_name,
         contract_abi=abi,
         fn_abi=fn_abi,
@@ -640,8 +640,8 @@ def estimate_gas_for_function(
 ) -> int:
     """Temporary workaround until next web3.py release (5.X.X)"""
     estimate_transaction = prepare_transaction(
+        w3=web3,
         address=to_checksum_address(address),
-        web3=web3,
         fn_identifier=fn_identifier,
         contract_abi=contract_abi,
         fn_abi=fn_abi,
@@ -924,10 +924,10 @@ class TransactionPending:
             if not expected_error:
                 raise err
 
-        block = self.data.contract.web3.eth.get_block(BLOCK_ID_LATEST)
+        block = self.data.contract.w3.eth.get_block(BLOCK_ID_LATEST)
 
         if estimated_gas is not None:
-            gas_price = gas_price_for_fast_transaction(self.data.contract.web3)
+            gas_price = gas_price_for_fast_transaction(self.data.contract.w3)
 
             transaction_estimated = TransactionEstimated(
                 from_address=self.from_address,
@@ -942,7 +942,7 @@ class TransactionPending:
             log.debug(
                 "Transaction gas estimated",
                 **transaction_estimated.to_log_details(),
-                node_gas_price=self.data.contract.web3.eth.gas_price,
+                node_gas_price=self.data.contract.w3.eth.gas_price,
             )
 
             return transaction_estimated
@@ -1296,7 +1296,7 @@ class JSONRPCClient:
                 if isinstance(slot.data, SmartContractCall):
                     function_call = slot.data
                     data = get_transaction_data(
-                        web3=function_call.contract.web3,
+                        web3=function_call.contract.w3,
                         abi=function_call.contract.abi,
                         function_name=function_call.function,
                         args=function_call.args,
@@ -1412,7 +1412,9 @@ class JSONRPCClient:
     def new_contract_proxy(
         self, abi: ABI, contract_address: Union[Address, ChecksumAddress]
     ) -> Contract:
-        return self.web3.eth.contract(abi=abi, address=contract_address)
+        contract = self.web3.eth.contract(abi=abi, address=contract_address)
+        assert isinstance(contract, Contract)
+        return contract
 
     def deploy_single_contract(
         self,
@@ -1431,8 +1433,9 @@ class JSONRPCClient:
 
         ctor_parameters = constructor_parameters or ()
 
-        contract_object = self.web3.eth.contract(abi=contract["abi"], bytecode=contract["bin"])
-        contract_transaction = contract_object.constructor(*ctor_parameters).buildTransaction()
+        contract_object = self.web3.eth.contract(abi=contract["abi"], bytecode=contract["bin"])()
+        assert isinstance(contract_object, Contract)
+        contract_transaction = contract_object.constructor(*ctor_parameters).build_transaction()
         constructor_call = ByteCode(contract_name, contract_transaction["data"])
 
         block = self.get_block(BLOCK_ID_LATEST)

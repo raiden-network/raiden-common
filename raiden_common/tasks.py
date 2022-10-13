@@ -98,7 +98,7 @@ def check_gas_reserve(raiden: "RaidenService") -> None:  # pragma: no unittest
         has_enough_balance, estimated_required_balance = gas_reserve.has_enough_gas_reserve(
             raiden, channels_to_open=1
         )
-        estimated_required_balance_eth = Web3.fromWei(estimated_required_balance, "ether")
+        estimated_required_balance_eth = Web3.from_wei(estimated_required_balance, "ether")
 
         if not has_enough_balance:
             notification_body = (
