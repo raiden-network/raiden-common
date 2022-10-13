@@ -1,4 +1,11 @@
 # Changelog
+## 0.1.6 (2022-10-13)
+* Remove typing extensions dependency by @karlb in https://github.com/raiden-network/raiden-common/pull/24
+
+## 0.1.5 (2022-10-06)
+* Remove RTC dependencies by @konradkonrad in https://github.com/raiden-network/raiden-common/pull/16
+* Fix tests/typing in python 3.10 by @konradkonrad in https://github.com/raiden-network/raiden-common/pull/22
+* Add http_retry_with_backoff_middleware by @karlb in https://github.com/raiden-network/raiden-common/pull/23
 
 ## 0.1.4 (2022-09-22)
 * Add support for nitro ETH client
