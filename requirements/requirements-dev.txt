@@ -503,7 +503,7 @@ requests==2.28.1
     #   web3
 requests-opentracing==0.3.0
     # via -r requirements.txt
-responses==0.21.0
+responses==0.22.0
     # via -r requirements-dev.in
 rlp==3.0.0
     # via
@@ -556,6 +556,7 @@ toml==0.10.2
     #   -r requirements.txt
     #   pep517
     #   pylint
+    #   responses
 tomli==2.0.1
     # via
     #   black
@@ -599,7 +600,9 @@ types-pyyaml==6.0.12
 types-requests==2.27.27
     # via -r requirements-dev.in
 types-toml==0.10.1
-    # via -r requirements-dev.in
+    # via
+    #   -r requirements-dev.in
+    #   responses
 types-urllib3==1.26.14
     # via types-requests
 types-werkzeug==1.0.1
