@@ -283,7 +283,6 @@ idna==2.8
 importlib-metadata==5.0.0
     # via
     #   -r requirements-dev.txt
-    #   flask
     #   pluggy
 incremental==17.5.0
     # via
@@ -596,7 +595,7 @@ requests==2.28.1
     #   web3
 requests-opentracing==0.3.0
     # via -r requirements-dev.txt
-responses==0.21.0
+responses==0.22.0
     # via -r requirements-dev.txt
 rlp==3.0.0
     # via
@@ -657,6 +656,7 @@ toml==0.10.2
     #   -r requirements-dev.txt
     #   pep517
     #   pylint
+    #   responses
 tomli==2.0.1
     # via
     #   -r requirements-dev.txt
@@ -711,7 +711,9 @@ types-pyyaml==6.0.12
 types-requests==2.27.27
     # via -r requirements-dev.txt
 types-toml==0.10.1
-    # via -r requirements-dev.txt
+    # via
+    #   -r requirements-dev.txt
+    #   responses
 types-urllib3==1.26.14
     # via
     #   -r requirements-dev.txt
@@ -724,11 +726,8 @@ typing-extensions==4.4.0
     # via
     #   -r requirements-dev.txt
     #   aiohttp
-    #   astroid
-    #   black
     #   matrix-synapse
     #   mypy
-    #   pylint
     #   signedjson
     #   typing-inspect
 typing-inspect==0.8.0
