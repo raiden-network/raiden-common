@@ -32,10 +32,10 @@ attrs==19.3.0
     # via
     #   -r requirements.txt
     #   aiohttp
-    #   automat
     #   flake8-bugbear
     #   hypothesis
     #   jsonschema
+    #   matrix-common
     #   matrix-synapse
     #   pytest
     #   service-identity
@@ -241,11 +241,11 @@ hypothesis==6.46.9
 idna==2.8
     # via
     #   -r requirements.txt
-    #   hyperlink
-    #   matrix-synapse
     #   requests
     #   twisted
     #   yarl
+ijson==3.1.4
+    # via matrix-synapse
 importlib-metadata==5.0.0
     # via
     #   -r requirements-dev.in
@@ -309,7 +309,9 @@ matplotlib-inline==0.1.2
     # via ipython
 matrix-client==0.3.2
     # via -r requirements.txt
-matrix-synapse==1.33.0
+matrix-common==1.1.0
+    # via matrix-synapse
+matrix-synapse==1.57.1
     # via -r requirements-dev.in
 mccabe==0.6.1
     # via
@@ -355,6 +357,7 @@ packaging==21.3
     #   bleach
     #   build
     #   marshmallow
+    #   matrix-synapse
     #   pytest
 parsimonious==0.8.1
     # via
@@ -528,9 +531,7 @@ simplejson==3.17.2
 six==1.16.0
     # via
     #   -r requirements.txt
-    #   asttokens
     #   attrdict
-    #   automat
     #   bcrypt
     #   bleach
     #   flake8-tuple
@@ -554,7 +555,6 @@ structlog==21.5.0
 toml==0.10.2
     # via
     #   -r requirements.txt
-    #   pep517
     #   pylint
 tomli==2.0.1
     # via
