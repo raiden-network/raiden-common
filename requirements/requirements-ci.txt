@@ -649,7 +649,7 @@ stack-data==0.2.0
     # via
     #   -r requirements-dev.txt
     #   ipython
-structlog==21.5.0
+structlog==22.1.0
     # via -r requirements-dev.txt
 toml==0.10.2
     # via
