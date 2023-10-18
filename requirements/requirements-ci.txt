@@ -147,7 +147,7 @@ decorator==4.4.2
     # via
     #   -r requirements-dev.txt
     #   ipython
-eciespy==0.3.12
+eciespy==0.3.13
     # via -r requirements-dev.txt
 eth-abi==3.0.1
     # via
@@ -649,7 +649,7 @@ stack-data==0.2.0
     # via
     #   -r requirements-dev.txt
     #   ipython
-structlog==21.5.0
+structlog==23.2.0
     # via -r requirements-dev.txt
 toml==0.10.2
     # via
@@ -660,9 +660,6 @@ toml==0.10.2
 tomli==2.0.1
     # via
     #   -r requirements-dev.txt
-    #   black
-    #   build
-    #   mypy
     #   pytest
 toolz==0.12.0
     # via
