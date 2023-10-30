@@ -219,7 +219,7 @@ flake8==4.0.1
     #   flake8-bugbear
     #   flake8-comprehensions
     #   flake8-tuple
-flake8-bugbear==21.9.2
+flake8-bugbear==23.3.12
     # via -r requirements-dev.txt
 flake8-comprehensions==3.9.0
     # via -r requirements-dev.txt
@@ -283,6 +283,7 @@ idna==2.8
 importlib-metadata==5.0.0
     # via
     #   -r requirements-dev.txt
+    #   flask
     #   pluggy
 incremental==17.5.0
     # via
@@ -726,8 +727,11 @@ typing-extensions==4.4.0
     # via
     #   -r requirements-dev.txt
     #   aiohttp
+    #   astroid
+    #   black
     #   matrix-synapse
     #   mypy
+    #   pylint
     #   signedjson
     #   typing-inspect
 typing-inspect==0.8.0
