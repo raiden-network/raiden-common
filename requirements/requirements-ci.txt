@@ -55,10 +55,6 @@ automat==20.2.0
     # via
     #   -r requirements-dev.txt
     #   twisted
-backcall==0.1.0
-    # via
-    #   -r requirements-dev.txt
-    #   ipython
 base58==2.0.0
     # via
     #   -r requirements-dev.txt
@@ -162,6 +158,7 @@ eth-account==0.7.0
 eth-hash[pycryptodome]==0.3.3
     # via
     #   -r requirements-dev.txt
+    #   eth-hash
     #   eth-utils
     #   web3
 eth-keyfile==0.6.0
@@ -197,6 +194,10 @@ eth-utils==2.0.0
     #   raiden-contracts
     #   rlp
     #   web3
+exceptiongroup==1.2.0
+    # via
+    #   -r requirements-dev.txt
+    #   ipython
 execnet==1.6.0
     # via
     #   -r requirements-dev.txt
@@ -283,6 +284,7 @@ idna==2.8
 importlib-metadata==5.0.0
     # via
     #   -r requirements-dev.txt
+    #   flask
     #   pluggy
 incremental==17.5.0
     # via
@@ -297,7 +299,7 @@ ipfshttpclient==0.8.0a2
     # via
     #   -r requirements-dev.txt
     #   web3
-ipython==8.4.0
+ipython==8.18.1
     # via -r requirements-dev.txt
 isort==5.10.1
     # via
@@ -342,7 +344,9 @@ marshmallow==3.18.0
     #   marshmallow-enum
     #   marshmallow-polyfield
 marshmallow-dataclass[union]==8.5.9
-    # via -r requirements-dev.txt
+    # via
+    #   -r requirements-dev.txt
+    #   marshmallow-dataclass
 marshmallow-enum==1.5.1
     # via -r requirements-dev.txt
 marshmallow-polyfield==5.10
@@ -429,10 +433,6 @@ phonenumbers==8.10.13
     # via
     #   -r requirements-dev.txt
     #   matrix-synapse
-pickleshare==0.7.5
-    # via
-    #   -r requirements-dev.txt
-    #   ipython
 pillow==9.0.1
     # via
     #   -r requirements-dev.txt
@@ -452,7 +452,7 @@ prometheus-client==0.8.0
     # via
     #   -r requirements-dev.txt
     #   matrix-synapse
-prompt-toolkit==3.0.5
+prompt-toolkit==3.0.41
     # via
     #   -r requirements-dev.txt
     #   ipython
@@ -682,6 +682,7 @@ twisted[tls]==21.2.0
     #   -r requirements-dev.txt
     #   matrix-synapse
     #   treq
+    #   twisted
 typeguard==2.11.1
     # via
     #   -r requirements-dev.txt
@@ -726,8 +727,12 @@ typing-extensions==4.4.0
     # via
     #   -r requirements-dev.txt
     #   aiohttp
+    #   astroid
+    #   black
+    #   ipython
     #   matrix-synapse
     #   mypy
+    #   pylint
     #   signedjson
     #   typing-inspect
 typing-inspect==0.8.0
