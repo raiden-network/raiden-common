@@ -59,6 +59,7 @@ eth-account==0.7.0
     # via web3
 eth-hash[pycryptodome]==0.3.3
     # via
+    #   eth-hash
     #   eth-utils
     #   web3
 eth-keyfile==0.6.0
@@ -225,7 +226,7 @@ six==1.16.0
     #   multiaddr
     #   parsimonious
     #   pyrsistent
-structlog==21.5.0
+structlog==23.3.0
     # via -r requirements.in
 toml==0.10.2
     # via -r requirements.in
